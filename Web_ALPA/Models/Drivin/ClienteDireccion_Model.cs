@@ -119,6 +119,7 @@ namespace Web_ALPA.Models.Drivin
 
                 //    rpta2 = dbx.DRIVIN_update_Pedidos(oPedidosx., "", oBE.placa, rpta);
                 //}
+                // Se agrega comentario
                 rpta2 = 1;
 
                 if (rpta2 != 0) //rpta2 == 1
