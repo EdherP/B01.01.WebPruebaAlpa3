@@ -1,0 +1,190 @@
+﻿
+
+<style>
+    .pac-container {
+        z-index: 99999;
+    }
+</style>
+<body>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+            Dirección de Reparto
+        </h5>
+        @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>*@
+    </div>
+    <div class="modal-body">
+        <div class="kt-section">
+            <div class="kt-section__content">
+                <form form id="form" class="kt-form">
+                    <fieldset id="SubmitFormx">
+                        <div class="kt-portlet__body">
+
+                            <div class="form-group" style="display:none">
+                                @Html.TextBox("oCodDireccion", ViewBag.xCodDireccion as string, "", new { @class = "form-control form-control-sm", @name = "oCodDireccion" })
+                                @Html.TextBox("oDireccion", ViewBag.xDireccion as string, "", new { @class = "form-control form-control-sm", @name = "oDireccion" })
+                                @Html.TextBox("oCity", ViewBag.xCity as string, "", new { @class = "form-control form-control-sm", @name = "oCity" })
+                                @Html.TextBox("oState", ViewBag.xState as string, "", new { @class = "form-control form-control-sm", @name = "oState" })
+                                @Html.TextBox("oCounty", ViewBag.xCounty as string, "", new { @class = "form-control form-control-sm", @name = "oCounty" })
+                                @Html.TextBox("oCountry", ViewBag.xCountry as string, "", new { @class = "form-control form-control-sm", @name = "oCountry" })
+                                @Html.TextBox("oNombreDireccion", ViewBag.xNombreDireccion as string, "", new { @class = "form-control form-control-sm", @name = "oNombreDireccion" })
+                                @Html.TextBox("oCliente", ViewBag.xCliente as string, "", new { @class = "form-control form-control-sm", @name = "oCliente" })
+                                @Html.TextBox("oCodCliente", ViewBag.xCodCliente as string, "", new { @class = "form-control form-control-sm", @name = "oCodCliente" })
+                                @Html.TextBox("oAddressType", ViewBag.xAddressType as string, "", new { @class = "form-control form-control-sm", @name = "oAddressType" })
+                                @Html.TextBox("oContactName", ViewBag.xContactName as string, "", new { @class = "form-control form-control-sm", @name = "oContactName" })
+
+                            </div>
+
+                            <p><h5>@ViewBag.xCliente</h5></p>
+                            <br />
+                            <p><h5>@ViewBag.xDireccion</h5></p>
+                            <div id="ModalMapPreview" style="width: 100%; height: 350px;"></div>
+
+                            @*<div class="clearfix">&nbsp;</div>*@
+
+                            <div class="form-group row">
+
+                                <div class="col-lg-6">
+                                    <br />
+                                    <div class="form-group">
+                                        <label>Buscar Dirección:</label>
+                                        <input class="form-control form-control-sm" id="ModalMap-address" value="Ate" @*@ViewBag.xDireccionBusq*@ type="text" name="ModalMap-address" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <br />
+                                    <div class="form-group">
+                                        <label>Latitud:</label>
+                                        <input class="form-control form-control-sm" id="oLatitud" type="text" name="oLatitud" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <br />
+                                    <div class="form-group">
+                                        <label>Longitud:</label>
+                                        <input class="form-control form-control-sm" id="oLongitud" type="text" name="oLongitud" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <script>
+                    $('#ModalMapPreview').locationpicker({
+                        location: {
+
+                            latitude:  @ViewBag.oLatitud,  //-12.0509469,
+                            longitude: @ViewBag.oLongitud  //-76.9507009
+                        },
+                        locationName: "",
+                        radius: 15,
+                        zoom: 18,
+                        mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP,
+                        styles: [],
+                        mapOptions: {},
+                        scrollwheel: true,
+                        inputBinding: {
+                            latitudeInput: $('#oLatitud'),
+                            longitudeInput: $('#oLongitud'),
+                            radiusInput: null,
+                            locationNameInput: $('#ModalMap-address')
+                        },
+                        enableAutocomplete: true,
+                        enableAutocompleteBlur: true,
+                        autocompleteOptions: null,
+                        addressFormat: 'postal_code',
+                        enableReverseGeocode: true,
+                        draggable: true,
+                        onchanged: function (currentLocation, radius, isMarkerDropped) { },
+                        onlocationnotfound: function (locationName) { },
+                        oninitialized: function (component) { },
+                        // must be undefined to use the default gMaps marker
+                        markerIcon: undefined,
+                        markerDraggable: true,
+                        markerVisible: true
+                    });
+                    $('#Modal_EditLocalizacion').on('shown.bs.modal', function () {
+                        $('#ModalMapPreview').locationpicker('autosize');
+                    });
+                    </script>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="kt-spinner kt-spinner--v2 kt-spinner--lg kt-spinner--focus" style="text-align:center;display:none" id="loaderDiv">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="BtnCerrar">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="btnActualizarGL">
+            Actualizar
+        </button>
+    </div>
+</body>
+<script>
+    $("#btnActualizarGL").click(function () {
+        $("#loaderDiv").show();
+
+        var button = $(this).find('input[type="submit"]');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+        var datax = $("#SubmitFormx").serialize();
+        $.ajax({
+            url: '/Drivin/Actualizar_Direcciones_Drivin_Post',
+            type: 'post',
+            data: datax,
+            dataType: 'json',
+            success: function (result) {
+                $("#loaderDiv").hide();
+                $("#btnActualizarGL").show();
+                if (result.EnableSuccess == true) {
+                    swal({
+                    //position: 'top-Center',
+                    type: 'success',
+                    title: result.SuccessMsg,
+                    showConfirmButton: true,
+                    timer: 2500
+                    });
+                    $("#Modal_EditLocalizacion").modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                    $('#progress').show();
+                    BuscarPedidos();                    
+                   @*var xFechaHasta = document.getElementById("oFechaHasta").value;
+                    var xCodZona = document.getElementById("oCodZona").value;
+                    var xBuscaGral = document.getElementById("oBuscaGral").value;
+                    var dataT = { oFechaHasta: xFechaHasta, oCodZona: xCodZona, oBusqueraGral: xBuscaGral };
+
+                     var url = "@Url.Action("VP_ListarDocsVenta", "RutaDespacho")";
+                        $.get(url, dataT).done(function (data) {
+                            $("#DivGetDocs").html(data);
+                            $('#progress').hide();
+                        });*@
+                }
+                else {
+                    swal({
+                        //position: 'top-right',
+                        type: 'error',
+                        title: 'No Creado',
+                        text: result.SuccessMsg,
+                        showConfirmButton: true,
+                    });
+                }
+                $('#progress').hide();
+            },
+            error: function () {
+                console.log("fallo");
+                swal({
+                    position: 'top-right',
+                    type: 'error',
+                    title: result.SuccessMsg,
+                    showConfirmButton: true,
+                    //timer: 3000
+                });
+            }
+        });
+    });
+</script>

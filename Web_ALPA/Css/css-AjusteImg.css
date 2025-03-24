@@ -1,0 +1,54 @@
+﻿body {
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.doc {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+
+.box {
+    width: 220px;
+    height: 270px;
+    background: #CCC;
+    overflow: hidden;
+    max-width:100%;
+}
+
+    .box img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+@supports(object-fit: cover) {
+    .box img {
+        height: 100%;
+        max-width: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+
+.box p {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+@supports(object-fit: cover) {
+    .box p {
+        height: 100%;
+        max-width: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+}

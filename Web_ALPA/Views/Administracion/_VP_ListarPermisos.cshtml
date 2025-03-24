@@ -1,0 +1,194 @@
+﻿
+
+@using Web_ALPA.Models.Entidad
+@model List<Permisos>
+
+@{
+    Layout = null;
+}
+
+<html>
+<body>
+    <div>
+        <fieldset id="SubmitFormx">
+            <div style="display:none">
+                <input class="form-control form-control-sm" id="RoleID" name="RoleID" value="@ViewBag.RoleID" />
+                <input class="form-control form-control-sm" id="UserID" name="UserID" value="@ViewBag.UserID" />
+            </div>
+            <table class="table table-striped table-bordered table-hover dt-responsive" id="kt_table_1x" cellspacing="0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-light"># Menu</th>
+                        <th class="text-light">Nombre Menu</th>
+                        <th class="text-light">Permiso Usuario</th>
+                        <th class="text-light">Permiso Rol</th>
+                        <th class="text-light" style="display:none">dato</th>
+                    </tr>
+                </thead>
+                @if (Model != null)
+                {
+                    <tbody>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            if (Model[i].ParentMenuID == 0)
+                            {
+                                <tr class="info">
+                                    <td>
+                                        <b>
+                                            @Html.HiddenFor(x => Model[i].MenuID)
+                                            @Html.DisplayFor(x => Model[i].MenuID, Model[i].MenuID)
+                                        </b>
+                                    </td>
+
+                                    <td>
+                                        <b>
+                                            @Html.HiddenFor(x => Model[i].DisplayName)
+                                            @Html.DisplayFor(x => Model[i].DisplayName, Model[i].DisplayName)
+                                        </b>
+                                    </td>
+
+                                    <td>
+                                        @if (Model[i].PermisoType == 1)
+                                        {
+
+                                            @Html.CheckBoxFor(x => Model[i].Permiso, new { @class = "kt-checkbox kt-checkbox--brand", id = "Checkbox1" + Model[i].MenuID })
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" disabled="disabled">
+                                        }
+                                    </td>
+
+                                    <td>
+                                        @if (Model[i].PermisoType == 0)
+                                        {
+
+                                            @Html.CheckBoxFor(x => Model[i].Permiso, new { @class = "kt-checkbox kt-checkbox--brand", id = "Checkbox1" + Model[i].MenuID })
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" disabled="disabled">
+                                        }
+                                    </td>
+                                </tr>
+                                for (int j = 0; j < Model.Count; j++)
+                                {
+                                    if (Model[j].ParentMenuID == Model[i].MenuID)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.HiddenFor(x => Model[j].MenuID)
+                                                @Html.DisplayFor(x => Model[j].MenuID, Model[j].MenuID)
+                                            </td>
+
+                                            <td>
+                                                @Html.HiddenFor(x => Model[j].DisplayName)
+                                                @Html.DisplayFor(x => Model[j].DisplayName, Model[j].DisplayName)
+                                            </td>
+
+
+                                            <td>
+                                                @if (Model[j].PermisoType == 1)
+                                                {
+
+                                                    @Html.CheckBoxFor(x => Model[j].Permiso, new { @class = "kt-checkbox kt-checkbox--brand", id = "Checkbox1" + Model[j].MenuID })
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" disabled="disabled">
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @if (Model[j].PermisoType == 0)
+                                                {
+
+                                                    @Html.CheckBoxFor(x => Model[j].Permiso, new { @class = "kt-checkbox kt-checkbox--brand", id = "Checkbox1" + Model[j].MenuID })
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" disabled="disabled">
+                                                }
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
+
+                            }
+                        }
+
+                    </tbody>
+                }
+            </table>
+        </fieldset>
+    </div>
+</body>
+</html>
+<script src="~/assets/app/custom/general/components/datatables/MyTable/Table_BaseScroller2.js"></script>
+<script>
+    $("#BtnActualizarPerm").click("click", function () {
+        var datax = $("#SubmitFormx").serialize();
+        var urlx = "@Url.Action("VP_ListarPermisos", "Administracion")";
+
+        var xUsu = document.getElementById("UserID").value;
+        var xRol = document.getElementById("RoleID").value;
+        var odata = { RoleID: xRol, UserID: xUsu };
+
+        var oMsg = "Debe seleccionar un Usuario o Rol";
+        if (xUsu == "" && xRol == "") {
+            swal({
+                type: 'alert',
+                text: oMsg,
+                title: 'Alerta',
+                showConfirmButton: true,
+            });
+        }
+        else {
+
+
+            swal({
+                title: "Desea actualizar los permisos?",
+                //text: "Este proceso es irreversible!",
+                showCancelButton: true,
+                confirmButtonText: 'Si, actualizar!',
+
+            }).then(function (result) {
+                if (result.value == true) {
+                    $.ajax({
+                        url: '/Administracion/ActualizarPermisos',
+                        type: 'post',
+                        data: datax,
+                        dataType: 'json',
+                        success: function (result) {
+
+                            if (result.EnableSuccess == true) {
+                                swal({
+                                    type: 'success',
+                                    text: result.SuccessMsg,
+                                    title: result.Title,
+                                    showConfirmButton: true,
+                                });
+                                $.get(urlx, odata).done(function (data) {
+
+                                    $("#dvListPermisos").html(data);
+
+                                });
+                            }
+                            $('#progress').hide();
+                            if (result.EnableSuccess == false) {
+                                swal({
+                                    type: 'error',
+                                    title: result.Title,
+                                    text: result.SuccessMsg,
+                                    showConfirmButton: true,
+                                });
+                            }
+                        },
+                    });
+                }
+            });
+        }
+    });
+</script>
+

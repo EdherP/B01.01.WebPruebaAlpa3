@@ -1,0 +1,375 @@
+﻿
+<body>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+            @ViewBag.oTitulo
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body">
+        <form form id="form" class="kt-form">
+            <fieldset id="SubmitFormx">
+                <div>
+                    <div class="form-group" style="display:none">
+                        @Html.TextBox("oIdTx", ViewBag.oIdTx as string, "", new { @class = "form-control", @name = "oIdTx" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Tipo de documento (*)</label>
+                            @Html.DropDownList("oTipoDocumento", ViewBag.ListarTipo as SelectList, "Seleccionar",
+                            new { @class = "form-control", @name = "oTipoDocumento", @disabled = "disabled" })
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>Numero de Documento (*)</label>
+                            @Html.TextBox("oDocIdentidad", ViewBag.oDocIdentidad as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oDocIdentidad", @autocomplete = "off", @requerid = "requerid", @id = "oDocIdentidad" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Nombres (*)</label>
+                            @Html.TextBox("oNombre", ViewBag.oNombre as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oNombre", @autocomplete = "off", @requerid = "requerid", @id = "oNombre" })
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>Apellidos (*)</label>
+                            @Html.TextBox("oApellidos", ViewBag.oApellidos as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oApellidos", @autocomplete = "off", @requerid = "requerid", @id = "oApellidos" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Codigo de Empresa (*)</label>
+                            @Html.DropDownList("oCodEmpresa", ViewBag.ListarEmpresa as SelectList, "Seleccionar",
+                           new { @class = "form-control", @name = "oCodEmpresa", @disabled = "disabled" })
+                        </div>
+
+                    </div>
+
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+
+                        Requisitos de Ingreso:
+                    </h5>
+                    <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <label>Cuestionario</label>
+                            <div></div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="oCustomFile1">
+                                <label class="custom-file-label"> @ViewBag.oRutaCuestionario</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <label>Carnet Vacunación</label>
+                            <div></div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="oCustomFile2">
+                                <label class="custom-file-label">@ViewBag.oRutaVacunacion</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <label>SCTR</label>
+                            <div></div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="oCustomFile3">
+                                <label class="custom-file-label">@ViewBag.oRutaSCTR</label>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        Requisitos de Movilidad:
+                    </h5>
+                    <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <label>Licencia Conducir</label>
+                            <div></div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="oCustomFile4">
+                                <label class="custom-file-label">@ViewBag.oRutaLicConducir</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group row"  id="divActivoCon">
+                        <div class="col-lg-12">
+                            <div class="kt-checkbox-inline">
+                                <label class="kt-checkbox kt-checkbox--brand">
+
+                                    @if (ViewBag.oActivo == true)
+                                    {<input type="checkbox" id="oActivoCON" name="oActivoCON" checked="checked" disabled="disabled">}
+                                    else
+                                    {<input type="checkbox" id="oActivoCON" name="oActivoCON" disabled="disabled">}
+                                    Activo <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="kt-spinner kt-spinner--v2 kt-spinner--lg kt-spinner--focus" style="text-align:center;display:none" id="loaderDiv">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="BtnCerrar">Cerrar</button>
+        <button type="button" class="btnRegistrarCon btn btn-primary" id="btnRegistrarCon"></button>
+    </div>
+</body>
+@*<script src="../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+<script src="../assets/app/bundle/app.bundle.js" type="text/javascript"></script>*@
+<script>
+
+     $(document).ready(function () {
+
+        var TipoForm = '@ViewBag.oTipoForm';
+         var x = document.getElementById("divActivoCon");
+        if (TipoForm == 'A') {
+            document.getElementById("btnRegistrarCon").innerHTML = 'Registrar';
+            document.getElementById("oTipoDocumento").disabled = false;
+            document.getElementById("oDocIdentidad").disabled = false;
+            document.getElementById("oNombre").disabled = false;
+            document.getElementById("oApellidos").disabled = false;
+            document.getElementById("oCodEmpresa").disabled = false;
+            x.style.display = "none";
+
+        }
+        else {
+
+            document.getElementById("btnRegistrarCon").innerHTML = 'Editar';
+            document.getElementById("oNombre").disabled = false;
+            document.getElementById("oApellidos").disabled = false;
+            document.getElementById("oCuestionario").disabled = false;            
+            document.getElementById("oActivoCON").disabled = false;
+        }
+    });
+
+
+    $(function () {
+        $('.validanumericos').keypress(function (e) {
+            if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                return false;
+        })
+            .on("cut copy paste", function (e) {
+                e.preventDefault();
+            });
+    });
+
+
+    function ValidarForm() {
+        try {
+            var Rpta = "";
+            var CodEmpresa = document.getElementById("oCodEmpresa").value;
+            var DocIdentidad = document.getElementById("oDocIdentidad").value;
+
+            if (document.getElementById("oNombre").value == "" || document.getElementById("oApellidos").value == "") {
+                Rpta = "Debe ingresar el nombre y apellido.";
+            }
+            if (DocIdentidad == "") {
+                Rpta = "Debe Ingresar documento de identidad.";
+            }
+            if (CodEmpresa == "") {
+                Rpta = "Debe seleccionar la Empresa.";
+            }
+
+        }
+        catch (ex) {
+            Rpta = ex.message;
+        }
+        return Rpta;
+    }
+    $("#oCustomFile1").change(function () {
+        var extension = $("#oCustomFile1").val().split('.').pop().toUpperCase();
+        if (extension != "PDF") {
+            swal({
+                type: 'error',
+                title: 'Formato incorrecto',
+                text: 'seleccione un documento en pdf.',
+                showConfirmButton: true,
+            });
+            $("#oCustomFile1").val('');
+        }
+    });
+    $("#oCustomFile2").change(function () {
+        var extension = $("#oCustomFile2").val().split('.').pop().toUpperCase();
+        if (extension != "PDF") {
+            swal({
+                type: 'error',
+                title: 'Formato incorrecto',
+                text: 'seleccione un documento en pdf.',
+                showConfirmButton: true,
+            });
+            $("#oCustomFile2").val('');
+        }
+    });
+    $("#oCustomFile3").change(function () {
+        var extension = $("#oCustomFile3").val().split('.').pop().toUpperCase();
+        if (extension != "PDF") {
+            swal({
+                type: 'error',
+                title: 'Formato incorrecto',
+                text: 'seleccione un documento en pdf.',
+                showConfirmButton: true,
+            });
+            $("#oCustomFile3").val('');
+        }
+    });
+    $("#oCustomFile4").change(function () {
+        var extension = $("#oCustomFile4").val().split('.').pop().toUpperCase();
+        if (extension != "PDF") {
+            swal({
+                type: 'error',
+                title: 'Formato incorrecto',
+                text: 'seleccione un documento en pdf.',
+                showConfirmButton: true,
+            });
+            $("#oCustomFile4").val('');
+        }
+    });
+
+    $('.btnRegistrarCon').click("click", function () {
+        try {
+            var TipoForm = '@ViewBag.oTipoForm';
+            var oMensaje = "";
+            var oUrl = "";
+            if (TipoForm == "A") {
+                oUrl = '/IngresosAlpa/RegistrarConductor';
+                
+            }
+            else {
+                oUrl = '/IngresosAlpa/ActualizarConductor';
+            }
+
+            oMensaje = ValidarForm();
+            if (oMensaje != "") {
+                swal({
+                    type: 'info',
+                    title: 'Validación',
+                    text: oMensaje,
+                    showConfirmButton: true,
+                });
+            }
+            else {
+
+                $("#loaderDiv").show();
+                var button = $(this).find('input[type="submit"]');
+                setTimeout(function () {
+                    button.removeAttr('disabled');
+                }, 1);
+                var datax = new FormData();
+                var files1 = $("#oCustomFile1").get(0).files;
+                var files2 = $("#oCustomFile2").get(0).files;
+                var files3 = $("#oCustomFile3").get(0).files;
+                var files4 = $("#oCustomFile4").get(0).files;
+                if (files1.length == 1) {
+                    datax.append("oCustomFile1", files1[0]);
+                }
+                if (files2.length == 1) {
+                    datax.append("oCustomFile2", files2[0]);
+                }
+                if (files3.length == 1) {
+                    datax.append("oCustomFile3", files3[0]);
+                }
+                if (files4.length == 1) {
+                    datax.append("oCustomFile4", files4[0]);
+                }
+                
+                datax.append("oTipoDocumento", document.getElementById("oTipoDocumento").value);
+                datax.append("oDocIdentidad", document.getElementById("oDocIdentidad").value);
+                datax.append("oNombre", document.getElementById("oNombre").value);
+                datax.append("oApellidos", document.getElementById("oApellidos").value);
+                datax.append("oCodEmpresa", document.getElementById("oCodEmpresa").value);
+                datax.append("oIdTx", document.getElementById("oIdTx").value);
+                datax.append("oActivoAYU", document.getElementById("oActivoAYU").value);
+                $.ajax({
+                    url: oUrl,
+                    type: 'POST',
+                    processData: false,
+                    data: datax,
+                    //dataType: 'json',
+                    contentType: false,
+                    success: function (result) {
+                        $("#loaderDiv").hide();
+                        $("#btnCrearCon").show();
+                        if (result.EnableSuccess == true) {
+                            $("#ModalCrearEdit").modal('hide');
+                            $('body').removeClass('modal-open');
+                            $('.modal-backdrop').remove();
+                            swal({
+                                //position: 'top-Center',
+                                type: 'success',
+                                title: result.SuccessMsg,
+                                showConfirmButton: true,
+                                timer: 4000
+                            });
+                            BuscarConductores();
+                        }
+                        else {
+                            swal({
+                                //position: 'top-right',
+                                type: 'error',
+                                title: 'No Creado',
+                                text: result.SuccessMsg,
+                                showConfirmButton: true,
+                            });
+                        }
+
+                    },
+                    error: function () {
+                        console.log("fallo");
+                        swal({
+                            position: 'top-right',
+                            type: 'error',
+                            title: result.SuccessMsg,
+                            showConfirmButton: true,
+                            //timer: 3000
+                        });
+                    }
+                });
+
+            }
+        }
+        catch (err) {
+            console.log(err.message);
+
+        }
+    });
+
+
+    $("#oDocIdentidad").change(function () {
+        var xDNI = document.getElementById("oDocIdentidad").value;
+        if (xDNI.length == 8) {
+            var datax = { oConsulta: "DNI", oNroDoc: xDNI };
+            var oUrl = "@Url.Action("ValidarDocIdentidad", "IngresosAlpa")";
+            $.ajax({
+                url: oUrl, type: 'post', data: datax, dataType: 'json', success: function (result) {
+                    if (result.EnableSuccess == true) {
+                        document.getElementById("oNombre").value = result.xNombres;
+                        document.getElementById("oApellidos").value = result.xApellidos;
+                        document.getElementById("oCodEmpresa").focus();
+                    }
+                    else {
+                        document.getElementById("oNombre").disabled = false;
+                        document.getElementById("oNombre").value = '';
+                        document.getElementById("oApellidos").disabled = false;
+                        document.getElementById("oApellidos").value = '';
+                    }
+                },
+            });
+        }
+    });
+
+</script>
+

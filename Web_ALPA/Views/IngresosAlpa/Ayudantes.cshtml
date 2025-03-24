@@ -1,0 +1,238 @@
+﻿
+
+@{ ViewBag.Title = "Ayudantes";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="kt-portlet">
+                <div class="kt-portlet__body">
+                    <ul class="nav nav-tabs nav-tabs-line nav-tabs-line-success" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#kt_tabs_9_1" role="tab"><i class="la la-angle-down"></i> Ayudantes</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_tabs_9_2" role="tab"><i class="la la-angle-down"></i> Conductor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_tabs_9_3" role="tab"><i class="la la-angle-down"></i> Transportista</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="kt_tabs_9_1" role="tabpanel">
+                            <form class="kt-form kt-form--label-right">
+
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">
+                                            Administración de Ayudantes
+                                        </h3>
+                                    </div>
+                                    <div class="kt-portlet__head-toolbar">
+                                        <a href="#" class="btn btn-secondary kt-margin-r-10" id="BtnRefreshAyu" title="Consultar">
+                                            <i class="la la-refresh"></i> <span class="kt-hidden-mobile">Consultar</span>
+                                        </a>
+                                        <a href="#ModalCrearEdit" class="btnCrearAyu btn btn-danger kt-margin-r-10" data-toggle="modal" id="btnCrearAyu" title="Nuevo Ayudante">
+                                            <i class="la la-plus"></i> <span class="kt-hidden-mobile">Nuevo</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="kt-portlet__body">
+
+                                    <div id="DivListAyudantes">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane" id="kt_tabs_9_2" role="tabpanel">
+
+                            <form class="kt-form kt-form--label-right">
+
+
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">
+                                            Administración de Conductores
+                                        </h3>
+                                    </div>
+                                    <div class="kt-portlet__head-toolbar">
+                                        <a href="#" class="btn btn-secondary kt-margin-r-10" id="BtnRefreshCon" title="Consultar">
+                                            <i class="la la-refresh"></i> <span class="kt-hidden-mobile">Consultar</span>
+                                        </a>
+                                        <a href="#ModalCrearEdit" class="btnCrearCon btn btn-danger kt-margin-r-10" data-toggle="modal" id="btnCrearCon" title="Nuevo Conductor">
+                                            <i class="la la-plus"></i> <span class="kt-hidden-mobile">Nuevo</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="kt-portlet__body">
+
+                                    <div id="DivListConductores">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="kt_tabs_9_3" role="tabpanel">
+                            <form class="kt-form kt-form--label-right">
+
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">
+                                            Administración de Transportistas
+                                        </h3>
+                                    </div>
+                                    <div class="kt-portlet__head-toolbar">
+                                        <a href="#" class="btn btn-secondary kt-margin-r-10" id="BtnRefreshTra" title="Consultar">
+                                            <i class="la la-refresh"></i> <span class="kt-hidden-mobile">Consultar</span>
+                                        </a>
+                                        <a href="#ModalCrearEdit" class="btnCrearTra btn btn-danger kt-margin-r-10" data-toggle="modal" id="btnCrearTra" title="Nuevo Transportista">
+                                            <i class="la la-plus"></i> <span class="kt-hidden-mobile">Nuevo</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="kt-portlet__body">
+
+                                    <div id="DivListTransportistas">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="ModalCrearEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-lg" role="document">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+                            <div id="modal-contentCrearEdit">
+                                Cargando...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="progress" class="modal">
+            <div class="center" style="position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">
+                <div class="kt-section__content kt-section__content--border">
+                    <div class="spinner-grow text-primary" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-secondary" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-success" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-danger" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-warning" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-light" role="status"> <span class="sr-only">Loading...</span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+<script>
+    //$(document).ready(function () {
+
+    //      //BuscarAyudantes();
+    //      //BuscarConductores();
+    //      //BuscarTransportistas();
+
+    //});
+
+
+    function BuscarAyudantes() {
+
+        $('#progress').show();
+        //var button = $(this).find('input[type="button"]');
+        //setTimeout(function () {
+        //    button.removeAttr('disabled');
+        //}, 1);
+
+        var url = "@Url.Action("VP_ListarAyudantes", "IngresosAlpa")";
+        $.get(url).done(function (data) {
+            $("#DivListAyudantes").html(data);
+            //setTimeout(function () {
+            //   button.attr('disabled', 'disabled');
+            //}, 0);
+            $('#progress').hide();
+        });
+    }
+
+    function BuscarConductores() {
+
+        $('#progress').show();
+        //var button = $(this).find('input[type="button"]');
+        //setTimeout(function () {
+        //    button.removeAttr('disabled');
+        //}, 1);
+
+        var url = "@Url.Action("VP_ListarConductores", "IngresosAlpa")";
+        $.get(url).done(function (data) {
+            $("#DivListConductores").html(data);
+            //setTimeout(function () {
+            //    button.attr('disabled', 'disabled');
+            //}, 0);
+            $('#progress').hide();
+        });
+    }
+    function BuscarTransportistas() {
+
+        $('#progress').show();
+        //var button = $(this).find('input[type="button"]');
+        //setTimeout(function () {
+        //    button.removeAttr('disabled');
+        //}, 1);
+
+        var url = "@Url.Action("VP_ListarTransportistas", "IngresosAlpa")";
+        $.get(url).done(function (data) {
+            $("#DivListTransportistas").html(data);
+            //setTimeout(function () {
+            //   button.attr('disabled', 'disabled');
+            //}, 0);
+            $('#progress').hide();
+        });
+    }
+
+
+    $("#BtnRefreshAyu").click(function () {
+        BuscarAyudantes();
+    });
+
+    $(".btnCrearAyu").click(function (eve) {
+
+       $.get('/IngresosAlpa/VP_Crear_Ayudante').done(function (data) {
+           $("#modal-contentCrearEdit").html(data);
+        });
+    });
+
+    $("#BtnRefreshCon").click(function () {
+            BuscarConductores();
+    });
+
+    $(".btnCrearCon").click(function (eve) {
+
+            $.get('/IngresosAlpa/VP_Crear_Conductor').done(function (data) {
+                $("#modal-contentCrearEdit").html(data);
+        });
+    });
+
+    $("#BtnRefreshTra").click(function () {
+        BuscarTransportistas();
+    });
+
+    $(".btnCrearTra").click(function (eve) {
+
+        $.get('/IngresosAlpa/VP_Crear_Transportista').done(function (data) {
+            $("#modal-contentCrearEdit").html(data);
+        });
+    });
+
+
+
+</script>

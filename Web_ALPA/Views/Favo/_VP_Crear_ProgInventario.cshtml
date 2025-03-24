@@ -1,0 +1,252 @@
+﻿
+<body>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+            Programación de Inventario
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body">
+        @*<div class="kt-section">
+            <div class="kt-section__content">*@
+        <form form id="form" class="kt-form">
+            <fieldset id="SubmitFormx">
+                <div>
+                    @*<div class="kt-portlet__body">*@
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Tipo de Inventario</label>
+                            @Html.DropDownList("TipoInventario", ViewBag.ListarTipoInventario as SelectList, "Seleccionar",
+                            new { @class = "form-control", @name = "TipoInventario" })
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>Fecha</label>
+                            <input class="form-control" id="FechaProg" type="date" value=@ViewBag.FechaProg name="FechaProg" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label class="">Comentario</label>
+                            @Html.TextArea("Comentario", null, new { @class = "form-control", @name = "Comentario" })
+                        </div>
+                        <div class="col-lg-6" id="myDivExcel" style="display:none">
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <label style="color:red">seleccionar XLS</label>
+                                    <br />
+                                    <span class="FileUploadx">
+                                        <input type="file" id="file" name="file" />
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <input type="button" class=" form-control btn btn-danger" value="Importar XLS" id="BtnExcelUbic" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="DivListubic" style="display:none">
+
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        @*</div>
+            </div>*@
+    </div>
+    <div class="modal-footer">
+        <div class="kt-spinner kt-spinner--v2 kt-spinner--lg kt-spinner--focus" style="text-align:center;display:none" id="loaderDiv">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="BtnCerrar">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="btnCrearProgInvt">
+            Crear
+        </button>
+    </div>
+    <div id="progress" class="modal">
+        <div class="center" style="position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">
+            <div class="kt-section__content kt-section__content--border">
+                <div class="spinner-grow text-primary" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-secondary" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-success" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-danger" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-warning" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-light" role="status"> <span class="sr-only">Loading...</span> </div>
+            </div>
+            <div>
+                <br />
+                <h5>Consulta en proceso..</h5>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    $("#BtnExcelUbic").click(function () {
+
+        var data = new FormData();
+        var files = $("#file").get(0).files;
+
+        if (files.length > 0)
+        {
+            data.append("HelpSectionImages", files[0]);
+        }
+
+        else {
+            common.showNotification('warning', 'Please select file to upload.', 'top', 'right');
+            alert('Please select file to upload.');
+            return false;
+        }
+        var extension = $("#file").val().split('.').pop().toUpperCase();
+        //alert(extension);
+        if (extension != "XLS") {
+            common.showNotification('Alerta', 'El Archivo seleccionado no cumple con el Formato establecido.', 'top', 'right');
+            alert('El Archivo seleccionado no cumple con el Formato establecido.');
+            return false;
+        }
+        $('#progress').show();
+        var button = $(this).find('input[type="button"]');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+        $.ajax({
+            url: "@Url.Action("VP_ListarUbicacionCeldas_Excel", "Favo")",
+            type: "POST",
+            processData: false,
+            data: data,
+            //dataType: 'json',
+            contentType: false,
+            success: function (data) {
+                $("#DivListubic").html(data);
+                setTimeout(function () {
+                    button.attr('disabled', 'disabled');
+                }, 0);
+                $("#file").val('');
+                $('#progress').hide();
+            },
+            error: function () {
+                console.log("fallo");
+            }
+
+        });
+    });
+    $("#TipoInventario").change(function () {
+        var oTipoInventario = document.getElementById("TipoInventario").value;
+        var x = document.getElementById("myDivExcel");
+        var oubic = document.getElementById("DivListubic");
+        if (oTipoInventario == 1) {           
+
+            $('#progress').show();
+            var button = $(this).find('input[type="button"]');
+            setTimeout(function () {
+            button.removeAttr('disabled');
+            }, 1);
+
+            var url = "@Url.Action("VP_ListarUbicacionCeldas", "Favo")";
+            $.get(url).done(function (data) {
+            $("#DivListubic").html(data);
+            setTimeout(function () {
+            button.attr('disabled', 'disabled');
+            }, 0);
+            $('#progress').hide();
+            });
+            oubic.style.display = "block";
+            x.style.display = "block";
+        }
+        else {
+            x.style.display = "none";
+            oubic.style.display = "none";            
+        }
+    });
+    $("#btnCrearProgInvt").click(function () {
+        var oTipoInventario = document.getElementById("TipoInventario").value;
+        var oMensaje = "";
+        var oCantSelect = 0;
+
+        $('#kt_table_1T').find('tr').each(function () {
+            var row = $(this);
+            if (row.find('input[type="checkbox"]').is(':checked')) {
+                oCantSelect++;
+            }
+        });
+
+        if (oCantSelect == 0 & oTipoInventario != 1) {
+            oMensaje = "No hay Ubicaciones seleccionadas para el inventario.";
+        }
+
+
+        if (oTipoInventario == "") {
+            oMensaje = "Debe seleccionar el tipo de inventario.";
+        }
+
+        if (oMensaje != "") {
+            swal({
+                type: 'info',
+                title: 'Validación',
+                text: oMensaje,
+                showConfirmButton: true,
+            });
+        }
+        else {
+
+             $("#loaderDiv").show();
+
+        var button = $(this).find('input[type="submit"]');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+        var datax = $("#SubmitFormx").serialize();
+        $.ajax({
+            url: '/Favo/RegistrarProgInv',
+            type: 'post',
+            data: datax,
+            dataType: 'json',
+            success: function (result) {
+                $("#loaderDiv").hide();
+                $("#btnCrearProgInvt").show();
+                if (result.EnableSuccess == true) {
+                    $("#ModalCrear").modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                    BuscarProgInv();
+                    swal({
+                    //position: 'top-Center',
+                    type: 'success',
+                    title: result.SuccessMsg,
+                    showConfirmButton: true,
+                    timer: 4000
+                    });
+                    $('#progress').hide();
+
+                }
+                else {
+                    swal({
+                        //position: 'top-right',
+                        type: 'error',
+                        title: 'No Creado',
+                        text: result.SuccessMsg,
+                        showConfirmButton: true,
+                    });
+                }
+
+            },
+            error: function () {
+                console.log("fallo");
+                swal({
+                    position: 'top-right',
+                    type: 'error',
+                    title: result.SuccessMsg,
+                    showConfirmButton: true,
+                    //timer: 3000
+                });
+            }
+        });
+
+        }
+    });
+</script>

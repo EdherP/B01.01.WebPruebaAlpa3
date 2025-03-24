@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WMS_Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/WcfService_WMS" />
+      <xs:element name="GetData">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="value" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDataResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetDataResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Post">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="tr" nillable="true" type="q1:TransactionRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PostResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="PostResult" nillable="true" type="q2:TransactionResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Put">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="tr" nillable="true" type="q3:TransactionRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PutResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="PutResult" nillable="true" type="q4:TransactionResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Delete">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="tr" nillable="true" type="q5:TransactionRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="DeleteResult" nillable="true" type="q6:TransactionResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Get">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="tr" nillable="true" type="q7:TransactionRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="GetResult" nillable="true" type="q8:TransactionResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FakeMethod">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="transactionTypet" type="q9:TransactionType" />
+            <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="to" type="q10:TransactionObject" />
+            <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="oParam_EntradaMercanciaCompra_SAP" nillable="true" type="q11:Param_EntradaMercanciaCompra_SAP" />
+            <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="oParam_transferenciaStock_SAP" nillable="true" type="q12:Param_transferenciaStock_SAP" />
+            <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="oParam_CanceltransferenciaStock_SAP" nillable="true" type="q13:Param_CanceltransferenciaStock_SAP" />
+            <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="oParam_SalidaMercancia_SAP" nillable="true" type="q14:Param_SalidaMercancia_SAP" />
+            <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="oParam_EntradaMercancia_SAP" nillable="true" type="q15:Param_EntradaMercancia_SAP" />
+            <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="oParam_UpdateOrdenFabricacion_SAP" nillable="true" type="q16:Param_UpdateOrdenFabricacion_SAP" />
+            <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="oParam_OrdenFab_SM_EM" nillable="true" type="q17:Param_OrdenFab_SM_EM" />
+            <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="oParam_CambioloteSerie_CAB_SAP" nillable="true" type="q18:Param_CambioloteSerie_CAB_SAP" />
+            <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/WcfService_WMS" minOccurs="0" name="oParam_CambioloteSerie_DET_SAP" nillable="true" type="q19:Param_CambioloteSerie_DET_SAP" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FakeMethodResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WcfService_WMS" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfService_WMS" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="TransactionRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AppToken" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="JsonData" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TransObj" type="tns:TransactionObject" />
+          <xs:element minOccurs="0" name="TransType" type="tns:TransactionType" />
+          <xs:element minOccurs="0" name="UsrId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UsrPwd" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TransactionRequest" nillable="true" type="tns:TransactionRequest" />
+      <xs:simpleType name="TransactionObject">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Datos Iniciales Usuario" />
+          <xs:enumeration value="Registra Entrada Mercancia Compra SAP" />
+          <xs:enumeration value="Registra transferencia Stock SAP" />
+          <xs:enumeration value="Registra Cancelación de transferencia Stock SAP" />
+          <xs:enumeration value="Registra OrdenFabricacion_SM_EM_SAP" />
+          <xs:enumeration value="Registra Entrada Mercancia SAP" />
+          <xs:enumeration value="Actualizar OrdenFabricacionSAP" />
+          <xs:enumeration value="Registra Cambio LoteSerie_SM_EM_SAP" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="TransactionObject" nillable="true" type="tns:TransactionObject" />
+      <xs:simpleType name="TransactionType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Get" />
+          <xs:enumeration value="Post" />
+          <xs:enumeration value="Put" />
+          <xs:enumeration value="Delete" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="TransactionType" nillable="true" type="tns:TransactionType" />
+      <xs:complexType name="TransactionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ErrorId" type="xs:int" />
+          <xs:element minOccurs="0" name="ErrorMsg" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="JsonResponse" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TransId" type="xs:int" />
+          <xs:element minOccurs="0" name="TransObj" type="tns:TransactionObject" />
+          <xs:element minOccurs="0" name="TransType" type="tns:TransactionType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TransactionResponse" nillable="true" type="tns:TransactionResponse" />
+      <xs:complexType name="Param_EntradaMercanciaCompra_SAP">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AutImportacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CLASE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ClaveSAP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodResponsableAlm" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodUsuario" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CorrelGRemitente" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CorrelGTransportista" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FechaCont" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FechaDoc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LicConductor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NroDocumento" type="xs:int" />
+          <xs:element minOccurs="0" name="ONU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PlacaVehiculo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RUC_Transportista" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SerieGRemitente" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SerieGTransportista" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TIPOCARGA" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UsuarioSAP" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Param_EntradaMercanciaCompra_SAP" nillable="true" type="tns:Param_EntradaMercanciaCompra_SAP" />
+      <xs:complexType name="Param_transferenciaStock_SAP">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AlmDestino" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ClaveSAP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodUsuario" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DocNumEM" type="xs:int" />
+          <xs:element minOccurs="0" name="DocentryEM" type="xs:int" />
+          <xs:element minOccurs="0" name="FechaDoc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_idtx" type="xs:int" />
+          <xs:element minOccurs="0" name="UsuarioSAP" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Param_transferenciaStock_SAP" nillable="true" type="tns:Param_transferenciaStock_SAP" />
+      <xs:complexType name="Param_CanceltransferenciaStock_SAP">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ClaveSAP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Docentry" type="xs:int" />
+          <xs:element minOccurs="0" name="FechaDoc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UsuarioSAP" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Param_CanceltransferenciaStock_SAP" nillable="true" type="tns:Param_CanceltransferenciaStock_SAP" />
+      <xs:complexType name="Param_SalidaMercancia_SAP">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ClaveSAP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodUsuario" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MontoGasto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="NroDocumento" type="xs:int" />
+          <xs:element minOccurs="0" name="UsuarioSAP" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Param_SalidaMercancia_SAP" nillable="true" type="tns:Param_SalidaMercancia_SAP" />
+      <xs:complexType name="Param_EntradaMercancia_SAP">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ClaveSAP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodUsuario" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NroDocumento" type="xs:int" />
+          <xs:element minOccurs="0" name="U_FechaAdmision" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_FechaFabricacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_FechaVencimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_LoteSerie" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UsuarioSAP" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Param_EntradaMercancia_SAP" nillable="true" type="tns:Param_EntradaMercancia_SAP" />
+      <xs:complexType name="Param_UpdateOrdenFabricacion_SAP">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ClaveSAP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Docentry" type="xs:int" />
+          <xs:element minOccurs="0" name="LineSAP" type="xs:int" />
+          <xs:element minOccurs="0" name="MontoGasto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TipoUpdate" type="xs:int" />
+          <xs:element minOccurs="0" name="UsuarioSAP" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Param_UpdateOrdenFabricacion_SAP" nillable="true" type="tns:Param_UpdateOrdenFabricacion_SAP" />
+      <xs:complexType name="Param_OrdenFab_SM_EM">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ClaveSAP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodUsuario" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MontoGasto" type="xs:decimal" />
+          <xs:element minOccurs="0" name="NroDocumento" type="xs:int" />
+          <xs:element minOccurs="0" name="U_FechaAdmision" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_FechaFabricacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_FechaVencimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_LoteSerie" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UsuarioSAP" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Param_OrdenFab_SM_EM" nillable="true" type="tns:Param_OrdenFab_SM_EM" />
+      <xs:complexType name="Param_CambioloteSerie_CAB_SAP">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ClaveSAP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodUsuario" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_Comentario" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_FecContab" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_FecDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UsuarioSAP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="XParam_CambioloteSerie_DET_SAP" nillable="true" type="tns:ArrayOfParam_CambioloteSerie_DET_SAP" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Param_CambioloteSerie_CAB_SAP" nillable="true" type="tns:Param_CambioloteSerie_CAB_SAP" />
+      <xs:complexType name="ArrayOfParam_CambioloteSerie_DET_SAP">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Param_CambioloteSerie_DET_SAP" nillable="true" type="tns:Param_CambioloteSerie_DET_SAP" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfParam_CambioloteSerie_DET_SAP" nillable="true" type="tns:ArrayOfParam_CambioloteSerie_DET_SAP" />
+      <xs:complexType name="Param_CambioloteSerie_DET_SAP">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Nro" type="xs:int" />
+          <xs:element minOccurs="0" name="Serie_SysSerial" type="xs:int" />
+          <xs:element minOccurs="0" name="U_CContable" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_CCosto" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_CantAgregada" type="xs:decimal" />
+          <xs:element minOccurs="0" name="U_CodALmacen" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_CodProducto" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_Costo" type="xs:double" />
+          <xs:element minOccurs="0" name="U_Descripcion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_DocNumFR" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_FechaFab" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_FechaIngreso" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_FechaVcto" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_GestionadoPor" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_LoteSerie_Destino" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_LoteSerie_Origen" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="U_Stock" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Param_CambioloteSerie_DET_SAP" nillable="true" type="tns:Param_CambioloteSerie_DET_SAP" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IWMS_Service_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IWMS_Service_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWMS_Service_Post_InputMessage">
+    <wsdl:part name="parameters" element="tns:Post" />
+  </wsdl:message>
+  <wsdl:message name="IWMS_Service_Post_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PostResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWMS_Service_Put_InputMessage">
+    <wsdl:part name="parameters" element="tns:Put" />
+  </wsdl:message>
+  <wsdl:message name="IWMS_Service_Put_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWMS_Service_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="IWMS_Service_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWMS_Service_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="IWMS_Service_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWMS_Service_FakeMethod_InputMessage">
+    <wsdl:part name="parameters" element="tns:FakeMethod" />
+  </wsdl:message>
+  <wsdl:message name="IWMS_Service_FakeMethod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FakeMethodResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IWMS_Service">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWMS_Service/GetData" message="tns:IWMS_Service_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWMS_Service/GetDataResponse" message="tns:IWMS_Service_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Post">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWMS_Service/Post" message="tns:IWMS_Service_Post_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWMS_Service/PostResponse" message="tns:IWMS_Service_Post_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Put">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWMS_Service/Put" message="tns:IWMS_Service_Put_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWMS_Service/PutResponse" message="tns:IWMS_Service_Put_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWMS_Service/Delete" message="tns:IWMS_Service_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWMS_Service/DeleteResponse" message="tns:IWMS_Service_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWMS_Service/Get" message="tns:IWMS_Service_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWMS_Service/GetResponse" message="tns:IWMS_Service_Get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FakeMethod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWMS_Service/FakeMethod" message="tns:IWMS_Service_FakeMethod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWMS_Service/FakeMethodResponse" message="tns:IWMS_Service_FakeMethod_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IWMS_Service" type="tns:IWMS_Service">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/IWMS_Service/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Post">
+      <soap:operation soapAction="http://tempuri.org/IWMS_Service/Post" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Put">
+      <soap:operation soapAction="http://tempuri.org/IWMS_Service/Put" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/IWMS_Service/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/IWMS_Service/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FakeMethod">
+      <soap:operation soapAction="http://tempuri.org/IWMS_Service/FakeMethod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WMS_Service">
+    <wsdl:port name="BasicHttpBinding_IWMS_Service" binding="tns:BasicHttpBinding_IWMS_Service">
+      <soap:address location="http://161.132.213.174:8085/WMS_Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

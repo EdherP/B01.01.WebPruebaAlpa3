@@ -1,0 +1,219 @@
+﻿@using Web_ALPA.Models.Entidad
+@model List<PersonalAsistencia>
+<html>
+<body>
+    <div>
+        <table class="table table-striped table-hover" id="kt_table7">
+
+            <thead>
+                <tr role="row">
+                    <th class="text-dark">#</th>
+                    <th class="text-dark">Empresa</th>
+                    <th class="text-dark">Tipo</th>
+                    <th class="text-dark">Doc.Identidad</th>
+                    <th class="text-dark">Personal</th>
+                    <th class="text-dark">F.ingreso</th>
+                    <th class="text-dark">H.Ingreso</th>
+                    <th class="text-dark">F.Salida</th>
+                    <th class="text-dark">H.Salida</th>
+                    <th class="text-dark">Salida</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        int @Code = Convert.ToInt32(Model[i].U_NroDocumento);
+                        string @Personal = Model[i].U_ApellidoNombre;
+                        bool @Recibellave = Convert.ToBoolean(Model[i].U_EntregaLlave);
+                        <tr>
+                            <td>
+                                @Html.HiddenFor(x => Model[i].Nro)
+                                @Html.DisplayFor(x => Model[i].Nro, Model[i].Nro)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(x => Model[i].U_Empresa)
+                                @Html.DisplayFor(x => Model[i].U_Empresa, Model[i].U_Empresa)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(x => Model[i].U_ConceptoIngreso)
+                                @Html.DisplayFor(x => Model[i].U_ConceptoIngreso, Model[i].U_ConceptoIngreso)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].U_DocIdentidad)
+                                @Html.DisplayFor(x => Model[i].U_DocIdentidad, Model[i].U_DocIdentidad)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(x => Model[i].U_ApellidoNombre)
+                                @Html.DisplayFor(x => Model[i].U_ApellidoNombre, Model[i].U_ApellidoNombre)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(x => Model[i].FechaIngreso)
+                                @Html.DisplayFor(x => Model[i].FechaIngreso, Model[i].FechaIngreso)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].Hora_Ingreso)
+                                @Html.DisplayFor(x => Model[i].Hora_Ingreso, Model[i].Hora_Ingreso)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(x => Model[i].FechaSalida)
+                                @Html.DisplayFor(x => Model[i].FechaSalida, Model[i].FechaSalida)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].Hora_Salida)
+                                @Html.DisplayFor(x => Model[i].Hora_Salida, Model[i].Hora_Salida)
+                            </td>
+
+                            <td>
+                                @if (Model[i].U_Salida == false)
+                                {
+                                    <a href="#ModalRegSalida" class="btnVerRegSalida" id="btnVerRegSalida" data-toggle="modal" data-Code="@Code" data-Personal="@Personal" data-Recllave="@Recibellave">
+                                        <span class="kt-badge kt-badge--danger kt-badge--dot"></span><span class="kt-font-bold kt-font-danger"> Pendiente </span>
+                                    </a>
+
+                                }
+                                @if (Model[i].U_Salida == true)
+                                {
+                                    <span class="kt-badge kt-badge--accent kt-badge--dot"></span><span class="kt-font-bold kt-font-accent"> Registrado </span>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal fade" id="ModalRegSalida" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLongTitle">
+                        Registrar Salida
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form class="kt-form">
+                        <div class="kt-portlet__body">
+                            <fieldset id="SubmitFormTx">
+                                <div style="display:none">
+                                    @Html.TextBox("oNroDocumento", "", new { @class = "form-control", @id = "oNroDocumento", @name = "oNroDocumento" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Personal</label>
+                                    @Html.TextBox("oPersonalx", null, "", new { @class = "form-control", @disabled = "disabled", @name = "oPersonalx" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Recibio llave oficina</label>
+                                    @Html.TextBox("oRecibiollavex", "--", "", new { @class = "form-control", @disabled = "disabled", @name = "oRecibiollavex" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Devuelve llave oficina</label>
+                                    @Html.DropDownList("oDevuelvellavex", ViewBag.ListarEstadodev as SelectList, "", new { @class = "form-control", @name = "oDevuelvellavex" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Observación</label>
+                                    @Html.TextArea("oObservacionSalidax", new { @class = "form-control", @name = "oObservacionSalidax" })
+                                </div>
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btnRegistarSalida">
+                        Registrar Salida
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div> 
+</body>
+</html>
+<script>
+    $('.btnVerRegSalida').click(function (eve) {
+        var oLlave = $(this).attr("data-Recllave");
+        if (oLlave == true) {
+            document.getElementById("oRecibiollavex").value = "Recibio llave";
+        }
+        document.getElementById("oNroDocumento").value = $(this).attr("data-Code");
+        document.getElementById("oPersonalx").value = $(this).attr("data-Personal");
+    });
+    $("#btnRegistarSalida").click(function () {
+        var button = $(this).find('input[type="submit"]');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+        $('#progress').show();
+        var datax = $("#SubmitFormTx").serialize();
+        $.ajax({
+            url: '/IngresosAlpa/ActualizarPersonalAsistencia_Salida',
+            type: 'post',
+            data: datax,
+            dataType: 'json',
+            success: function (result) {
+                $('#progress').hide();
+                if (result.EnableSuccess == true) {
+                    $("#ModalRegSalida").modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                    //swal({
+                    //    position: 'top-Rigth',
+                    //    type: 'success',
+                    //    title: result.SuccessMsg,
+                    //    /*showConfirmButton: true,*/
+                    //    timer: 2500
+                    //});
+                    ListarIngresoSalida();
+                }
+                else {
+                    swal({
+                        //position: 'top-right',
+                        type: 'error',
+                        title: 'No Registrado',
+                        text: result.SuccessMsg,
+                        showConfirmButton: true,
+                    });
+                }
+
+            },
+        });
+    });
+    $(document).ready(function () {
+        // DataTable
+        var table = $('#kt_table7').DataTable({
+            scrollY: '60vh',
+            scrollCollapse: true,
+            scrollX: true,
+            paging: false,
+            responsive: false,
+            //autoWidth: true,
+            //"processing": true,
+            //"serverSide": true,
+            // Pagination settings
+            dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
+            <'row'<'col-sm-12'tr>>
+            <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+
+            buttons: [
+                // 'copyHtml5',
+                //'excelHtml5',
+            ],
+            filterable: false,
+            pagination: false,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+        });
+    });
+</script>

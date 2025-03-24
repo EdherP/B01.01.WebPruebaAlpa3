@@ -1,0 +1,107 @@
+﻿@using Web_ALPA.Data
+@model List<DRIVIN_Listar_Direcciones_Result>
+
+<html>
+<body>
+
+    <div>
+        <table class="table table-striped table-hover" id="kt_table3">
+
+            <thead>
+                <tr role="row">
+                    <th class="text-dark">#</th>
+                    <th class="text-dark">Código Drivin</th>
+                    <th class="text-dark">Codigo Cliente</th>
+                    <th class="text-dark">Cliente</th>
+                    <th class="text-dark">Ciudad</th>
+                    <th class="text-dark">Distrito</th>
+                    <th class="text-dark">Dirección</th>
+                    <th class="text-dark">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        string @Code = Model[i].id_direccion_mxt;
+                        <tr>
+                            <td>
+                                @Html.HiddenFor(x => Model[i].Nro)
+                                @Html.DisplayFor(x => Model[i].Nro, Model[i].Nro)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].id_direccion_mxt)
+                                @Html.DisplayFor(x => Model[i].id_direccion_mxt, Model[i].id_direccion_mxt)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].cod_cliente_mxt)
+                                @Html.DisplayFor(x => Model[i].cod_cliente_mxt, Model[i].cod_cliente_mxt)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].customer_name)
+                                @Html.DisplayFor(x => Model[i].customer_name, Model[i].customer_name)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].city_mxt)
+                                @Html.DisplayFor(x => Model[i].city_mxt, Model[i].city_mxt)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].block_mxt)
+                                @Html.DisplayFor(x => Model[i].block_mxt, Model[i].block_mxt)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].direccion_mxt)
+                                @Html.DisplayFor(x => Model[i].direccion_mxt, Model[i].direccion_mxt)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].Estado)
+                                @Html.DisplayFor(x => Model[i].Estado, Model[i].Estado)
+                            </td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+<script>
+
+    $(document).ready(function () {
+        // DataTable
+        var table = $('#kt_table3').DataTable({
+            //scrollY: '60vh',
+            scrollCollapse: true,
+            scrollX: true,
+            paging: true,
+            //responsive: false,
+            //autoWidth: true,
+            //"processing": true,
+            //"serverSide": true,
+            // Pagination settings
+            dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
+            <'row'<'col-sm-12'tr>>
+            <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+
+            buttons: [
+                // 'copyHtml5',
+                //'excelHtml5',
+            ],
+            filterable: true,
+            pagination: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+        });
+    });
+</script>

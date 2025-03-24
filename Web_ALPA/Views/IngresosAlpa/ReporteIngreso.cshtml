@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "ReporteIngreso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                           Reporte Orden de Compra
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <a href="#" class="btn btn-danger kt-margin-r-10" data-toggle="modal" id="btnCrearUsu" title="Nuevo usuario">
+                            <i class="flaticon2-user"></i> <span class="kt-hidden-mobile">Nuevo</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="kt-portlet__body">
+
+                    <div id="ListUsuarios">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ModalCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" data-keyboard="false">
+            <div class="modal-dialog modal-lg" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div id="modal-contentCrear">
+                            Cargando...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end:: Content -->
+    </div>
+    <div id="progress" class="modal">
+        <div class="center" style="position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">
+            <div class="kt-section__content kt-section__content--border">
+                <div class="spinner-grow text-primary" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-secondary" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-success" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-danger" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-warning" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-light" role="status"> <span class="sr-only">Loading...</span> </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="../assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        $('#progress').show();
+        var url = "@Url.Action("VP_ListarOrdenCompra", "IngresosAlpa")";
+        $.get(url).done(function (data) {
+            $("#ListUsuarios").html(data);
+            $('#progress').hide();
+        });
+    });
+
+    $("#btnCrearUsu").click("click", function () {
+        window.location.href = "../Administracion/CrearUsuario";
+    });
+</script>

@@ -1,0 +1,143 @@
+﻿
+@{ ViewBag.Title = "Cliente Dirección";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="kt-portlet">
+                <div class="kt-portlet__body">
+                    <ul class="nav nav-tabs nav-tabs-line nav-tabs-line-success" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#kt_tabs_9_1" role="tab"><i class="la la-users"></i> Clientes</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_tabs_9_2" role="tab"><i class="la la-map-o"></i> Direcciones</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="kt_tabs_9_1" role="tabpanel">
+                            <form class="kt-form kt-form--label-right">
+
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">
+                                            Listado de clientes
+                                        </h3>
+                                    </div>
+                                    <div class="kt-portlet__head-toolbar">
+                                        <a href="#" class="btn btn-secondary kt-margin-r-10" id="BtnConsultarClientes" title="Consultar">
+                                            <i class="la la-search"></i> <span class="kt-hidden-mobile">Consultar</span>
+                                        </a>
+                                        @*<a href="#" class="btnCrearAyu btn btn-danger kt-margin-r-10" data-toggle="modal" id="btnCrearAyu" title="Sincronizar Drivin">
+                                            <i class="la la-exchange"></i> <span class="kt-hidden-mobile">Sincronizar Drivin</span>
+                                        </a>*@
+                                    </div>
+                                </div>
+                                <div class="kt-portlet__body">
+
+                                    <div id="DivListClientes">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane" id="kt_tabs_9_2" role="tabpanel">
+
+                            <form class="kt-form kt-form--label-right">
+
+
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">
+                                            Listado de direcciones
+                                        </h3>
+                                    </div>
+                                    <div class="kt-portlet__head-toolbar">
+                                        <a href="#" class="btn btn-secondary kt-margin-r-10" id="BtnConsultarDirecciones" title="Consultar">
+                                            <i class="la la-search"></i> <span class="kt-hidden-mobile">Consultar</span>
+                                        </a>
+                                        @*<a href="#" class="btnCrearCon btn btn-danger kt-margin-r-10" data-toggle="modal" id="btnCrearCon" title="Sincronizar Drivin">
+                                            <i class="la la-exchange"></i> <span class="kt-hidden-mobile">Sincronizar Drivin</span>
+                                        </a>*@
+                                    </div>
+                                </div>
+                                <div class="kt-portlet__body">
+
+                                    <div id="DivListDirecciones">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="progress" class="modal">
+            <div class="center" style="position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">
+                <div class="kt-section__content kt-section__content--border">
+                    <div class="spinner-grow text-primary" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-secondary" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-success" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-danger" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-warning" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-light" role="status"> <span class="sr-only">Loading...</span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+
+<script>
+    function BuscarClientes() {
+        $('#progress').show();
+        var button = $(this).find('input[type="button"]');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+
+        var url = "@Url.Action("VP_Drivin_Listar_Clientes", "Drivin")";
+        $.get(url).done(function (data) {
+            $("#DivListClientes").html(data);
+            setTimeout(function () {
+                button.attr('disabled', 'disabled');
+            }, 0);
+            $('#progress').hide();
+        });
+    }
+    $("#BtnConsultarClientes").click(function () {
+        BuscarClientes();
+    });
+
+
+    function BuscarDirecciones() {
+    $('#progress').show();
+        var button = $(this).find('input[type="button"]');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+
+        var url = "@Url.Action("VP_Drivin_Listar_Direcciones", "Drivin")";
+        $.get(url).done(function (data) {
+            $("#DivListDirecciones").html(data);
+            setTimeout(function () {
+                button.attr('disabled', 'disabled');
+            }, 0);
+            $('#progress').hide();
+        });
+    }
+    $("#BtnConsultarDirecciones").click(function () {
+        BuscarDirecciones();
+    });
+
+</script>

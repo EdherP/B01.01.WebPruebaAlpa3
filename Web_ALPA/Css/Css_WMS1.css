@@ -1,0 +1,361 @@
+﻿body {
+    background-color: #f8f8f8
+}
+
+#customers {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    /*white-space: nowrap;*/
+}
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 4px;
+        font-size: 11px;
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+
+    #customers th {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        text-align: left;
+        color: #ffffff;
+        background-color: #bdc332;
+        font-size: 13px;
+        font-weight: 200;
+    }
+
+    #customers tbody {
+        height: 200px;
+        overflow-y: auto;
+        width: 100%;
+    }
+
+    #customers thead tr th {
+        float: inherit;
+    }
+
+#Table7 {
+    overflow: scroll;
+    height: 200px;
+    width: 500px;
+}
+
+#customersFija {
+    border-spacing: 0;
+    display: flex; /*Se ajuste dinamicamente al tamano del dispositivo**/
+    max-height: 100%; /*El alto que necesitemos**/
+    table-layout: auto; /**Forzamos a que las filas tenga el mismo ancho**/
+    width: 100%; /*El ancho que necesitemos*/
+    border: 1px solid gray;
+}
+
+    #customersFija thead {
+        background-color: #f1eee9;
+        position: fixed !important; /*el thead va ser siempre estatico**/
+    }
+
+    #customersFija th {
+        border-bottom: 1px solid #c4c0c9;
+        border-right: 1px solid #c4c0c9;
+    }
+
+    #customersFija td, #customersFija th {
+        font-weight: 100;
+        margin: 0;
+        max-width: 5.5vw;
+        min-width: 5.5vw; /*Ancho por celda*/
+        word-wrap: break-word;
+        font-size: 11px;
+        height: 3.5vh !important; /*El mismo alto para todas las celdas**/
+        padding: 4px;
+        border-right: 1px solid #c4c0c9;
+    }
+
+    #customersFija tr:nth-child(even) {
+        background: none repeat scroll 0 0 #edebeb;
+    }
+
+#customers2 {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    #customers2 td, #customers2 th {
+        padding: 3px;
+        font-size: 12px
+    }
+
+    #customers2 th {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align: left;
+        color: #ffffff;
+        background-color: #9b94d9;
+        font-size: 14px;
+        font-weight: 100;
+    }
+
+
+
+#customers3 {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    #customers3 td, #customers3 th {
+        border: 1px solid #ddd;
+        padding: 4px;
+        font-size: 12px
+    }
+
+
+    #customers3 th {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align: inherit;
+        color: #ffffff;
+        background-color: #bdc332;
+        font-size: 14px;
+        font-weight: 100;
+    }
+
+
+
+
+
+.boton_1 {
+    position: center;
+    text-decoration: none;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    font-weight: 100;
+    font-size: 12px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 4px;
+    border: 1px solid;
+}
+
+    .boton_1:hover {
+        color: #1883ba;
+        background-color: #ffffff;
+    }
+
+.boton_2 {
+    text-decoration: none;
+    font-weight: 100;
+    font-size: 13px;
+    color: #ffffff;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: #617ff1;
+    border-radius: 4px;
+    border: 1px solid;
+}
+
+    .boton_2:hover {
+        color: #ffffff;
+        background-color: #3b1393;
+    }
+
+.rowx {
+    margin-right: -15px;
+    margin-left: -15px
+}
+
+.panelW {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05)
+}
+
+.panelW-body {
+    padding: 4px
+}
+
+
+.panelW-heading {
+    padding: 8px 5px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+    .panelW-heading > .dropdown .dropdown-toggle {
+        color: #121b51
+    }
+
+.panelW-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit
+}
+
+    .panelW-title > .small, .panel-title > .small > a, .panel-title > a, .panel-title > small, .panel-title > small > a {
+        color: inherit
+    }
+
+.panelW-footer {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px
+}
+
+
+.panelW-info {
+    border-color: #bce8f1
+}
+
+    .panelW-info > .panelW-heading {
+        color: #31708f;
+        background-color: #d9edf7;
+        border-color: #bce8f1
+    }
+
+        .panelW-info > .panelW-heading + .panelW-collapse > .panelW-body {
+            border-top-color: #bce8f1
+        }
+
+        .panelW-info > .panelW-heading .badge {
+            color: #d9edf7;
+            background-color: #31708f
+        }
+
+    .panelW-info > .panelW-footer + .panelW-collapse > .panelW-body {
+        border-bottom-color: #bce8f1
+    }
+
+.col-md-4W {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 25px;
+    padding-left: 25px
+}
+
+
+.form-controlW {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    color: #299ec4;
+    background-color: #fff5f5;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+@media screen and (prefers-reduced-motion:reduce) {
+    .form-controWl {
+        transition: none
+    }
+}
+
+.form-controlW::-ms-expand {
+    background-color: transparent;
+    border: 0
+}
+
+.form-controlW:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(0,123,255,.25)
+}
+
+.fixed_header {
+    font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+    clear: both;
+    /*display: flex;*/
+}
+
+    .fixed_header tbody {
+        overflow: auto;
+        /*height: 350px;*/
+    }
+
+    .fixed_header thead {
+        height: 20px;
+        float: inherit;
+        text-align: justify;
+        color: #ffffff;
+        background-color: #bdc332;
+    }
+
+    .fixed_header td {
+        padding: 2px;
+        border: 1px solid #ddd;
+        padding: 4px;
+        font-size: 11px;
+    }
+
+    .fixed_header th {
+        padding: 2px;
+        border: 1px solid #ddd;
+        padding: 4px;
+        font-size: 12px;
+    }
+
+.GridViewScrollHeader TH, .GridViewScrollHeader TD {
+    padding: 10px;
+    font-weight: normal;
+    white-space: nowrap;
+    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #F4F4F4;
+    color: #999999;
+}
+
+.GridViewScrollItem TD {
+    padding: 10px;
+    white-space: nowrap;
+    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #FFFFFF;
+    color: #444444;
+}
+
+.GridViewScrollItemFreeze TD {
+    padding: 10px;
+    white-space: nowrap;
+    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #FAFAFA;
+    color: #444444;
+}
+
+.GridViewScrollFooterFreeze TD {
+    padding: 10px;
+    white-space: nowrap;
+    border-right: 1px solid #e6e6e6;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #F4F4F4;
+    color: #444444;
+}

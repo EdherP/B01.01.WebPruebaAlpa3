@@ -1,0 +1,565 @@
+﻿
+@{ ViewBag.Title = "Drivin_Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<style>
+    .modal-contenido {
+        background-color: aqua;
+        width: 300px;
+        padding: 10px 20px;
+        margin: 20% auto;
+        position: relative;
+    }
+
+    .modalx {
+        background-color: rgba(0,0,0,.8);
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 1s;
+    }
+
+    #miModal:target {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .disabled-button {
+        pointer-events: none; /* Evita que se pueda hacer clic en el botón */
+        opacity: 0.5; /* Aplica una opacidad para indicar visualmente que está deshabilitado */
+    }
+
+    /* Ocultar la primera opción */
+    #oFormasEnvioDrivin2 option:first-child {
+        display: none;
+    }
+
+</style>
+
+<div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="kt-portlet">
+                <div class="kt-portlet__body">
+                    <ul class="nav nav-tabs nav-tabs-line nav-tabs-line-success" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#kt_tabs_9_1" role="tab"><i class="la la-users"></i> Pedidos</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="kt_tabs_9_1" role="tabpanel">
+                            <form class="kt-form kt-form--label-right">
+
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">
+                                            Listado de Pedidos
+                                        </h3>
+                                    </div>
+                                    <div class="kt-portlet__head-toolbar">
+                                        <a href="#" class="btn btn-secondary kt-margin-r-10" id="BtnConsultarPedidos" title="Consultar">
+                                            <i class="la la-search"></i> <span class="kt-hidden-mobile">Consultar</span>
+                                        </a>
+                                        @*<a href="#" class="btnCrearPlacaIn btn btn-dark kt-margin-r-10" data-toggle="modal" id="btnCrearPlacaIn" title="Agregar Placa">
+                                            <i class="la la-plus"></i> <span class="kt-hidden-mobile">Actualizar Guia</span>
+                                        </a>*@
+                                        <a href="#" class="btnCrearEmp btn btn-dark kt-margin-r-10" data-toggle="modal" id="btnCrearEmp" title="Agregar Placa">
+                                            <i class="la la-plus"></i> <span class="kt-hidden-mobile">Actualizar Datos</span>
+                                        </a>
+
+                                        <a href="#" class="BtnRegistrarDrivin btn btn-danger kt-margin-r-10" id="BtnRegistrarDrivin" title="Sincronizar Drivin">
+                                            <i class="la la-exchange"></i> <span class="kt-hidden-mobile">Sincronizar Drivin</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="kt-portlet__body">
+                                    <div class="kt-portlet__body">
+                                        <fieldset id="SubmitFormx3">
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-2">
+                                                    <label>
+                                                        <strong>Almacén</strong>
+                                                    </label>
+                                                    @*<input class="form-control form-control-sm" id="oEstadoDrivin" type="checkbox" name="oEstadoDrivin" />*@
+                                                    @Html.DropDownList("oAlmacen", new SelectList(new List<SelectListItem>
+                                                    {
+                                                        new SelectListItem { Value = "LURIN", Text = "LURIN" },
+                                                        new SelectListItem { Value = "CHILCA", Text = "CHILCA" },
+                                                    }, "Value", "Text"),
+                                                        new { @class = "form-control form-control-sm", @id = "oAlmacen" })
+                                                </div>
+
+                                                <div class="col-sm-2">
+                                                    <label><strong>Desde</strong></label>
+                                                    <input class="form-control form-control-sm" id="oFechaDesde" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" name="oFechaDesde" required />
+                                                </div>
+
+                                                <div class="col-sm-2">
+                                                    <label><strong>Hasta</strong></label>
+                                                    <input class="form-control form-control-sm" id="oFechaHasta" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" name="oFechaHasta" required />
+
+                                                </div>
+
+                                                <div class="col-sm-2">
+                                                    <label>
+                                                        <strong>Estado Drivin</strong>
+                                                    </label>
+                                                    @*<input class="form-control form-control-sm" id="oEstadoDrivin" type="checkbox" name="oEstadoDrivin" />*@
+                                                    @Html.DropDownList("oEstadoDrivin", new SelectList(new List<SelectListItem>
+                                                    {
+                                                        new SelectListItem { Value = "0", Text = "PENDIENTE" },
+                                                        new SelectListItem { Value = "1", Text = "ENVIADO" },
+                                                        new SelectListItem { Value = "2", Text = "EN PROCESO" }
+                                                    }, "Value", "Text"),
+                                                        new { @class = "form-control form-control-sm", @id = "oEstadoDrivin" })
+                                                </div>
+
+                                                <div class="col-sm-2">
+                                                    <label>
+                                                        <strong>  Formas de Envío</strong>
+                                                    </label>
+                                                    @Html.DropDownList("oFormasEnvioDrivin", new SelectList(new List<SelectListItem>
+                                                    {
+                                                        new SelectListItem { Value = "0", Text = "TODOS" },
+                                                        new SelectListItem { Value = "1", Text = "REPARTO ALPA" },
+                                                        new SelectListItem { Value = "2", Text = "REPARTO EN AGENCIA" },
+                                                        new SelectListItem { Value = "5", Text = "REPARTO MERCANTIL" }
+                                                    }, "Value", "Text"),
+                                                        new { @class = "form-control form-control-sm", @id = "oFormasEnvioDrivin" })
+                                                </div>
+
+                                                <div class="col-sm-2">
+                                                    <label><strong>Búsqueda Por:</strong></label>
+                                                    <input class="form-control form-control-sm" id="oBusquedaGeneral" type="text" name="oBusquedaGeneral" placeholder="Cliente-Negocio" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <div class="col-sm-4">
+                                                    <label><strong>Línea de Negocio</strong></label>
+                                                    @Html.DropDownList("oLineaNegocioDrivin", new SelectList(new List<SelectListItem>
+                                                    {
+                                                        new SelectListItem { Value = "CIANURO", Text = "CIANURO" },
+                                                        new SelectListItem { Value = "MINERIA", Text = "MINERIA" },
+                                                        new SelectListItem { Value = "LABORATORIO", Text = "LABORATORIO" },
+                                                        new SelectListItem { Value = "INDUSTRIA", Text = "INDUSTRIA" }
+                                                    }, "Value", "Text"),
+                                                    new { @class = "form-control kt_selectpicker", @id = "oLineaNegocioDrivin", multiple = "multiple" })
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <label><strong>Placa</strong></label>
+                                                    @Html.DropDownList(
+                                                    "oPlacaGeneral", ViewBag.ListarPlacaDrivin as SelectList, "Seleccionar",
+                                                    new
+                                                    {
+                                                        @class = "show-tick form-control",
+                                                        data_dropup_auto = "false",
+                                                         @name = "oPlacaGeneral",
+                                                        //@disabled = "disabled",
+                                                        @id = "oPlacaGeneral"
+                                                    })
+                                                </div>
+
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div >
+                                        <div id="DivListPedidos">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="ModalCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div id="modal-contentCrear">
+                                Cargando...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="progress" class="modal">
+            <div class="center" style="position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">
+                <div class="kt-section__content kt-section__content--border">
+                    <div class="spinner-grow text-primary" role="status">   <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-secondary" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-success" role="status">   <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-danger" role="status">    <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-warning" role="status">   <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-info" role="status">      <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-light" role="status">     <span class="sr-only">Loading...</span> </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="../assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+<script src="../assets/app/custom/general/components/forms/widgets/bootstrap-select.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    
+
+    $(document).ready(function () {
+        $("#oEstadoDrivin").change(function () {
+            var selectedValue = $(this).val();
+            // Comprueba si la opción seleccionada es "ENVIADO"
+            if (selectedValue === "1") {
+                $("#BtnRegistrarDrivin").addClass("disabled-button");
+            } else {
+                $("#BtnRegistrarDrivin").removeClass("disabled-button");
+            }
+        });
+
+        $('#oPlacaGeneral').selectpicker({
+            liveSearch: true,
+            maxOptions: 1,
+            dropupAuto: false
+        });
+        
+    });
+
+    function RegistrarDrivin_1() {
+        var datax = $("#SubmitFormx").serialize();
+
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+        $('#progress').show();
+        $.ajax({
+            url: '/Drivin/Registrar_Drivin_Pedidos_1',
+            type: 'post',
+            data: datax,
+            dataType: 'json',
+            success: function (result) {
+
+                if (result.EnableSuccess == true) {
+                    swal({
+                        type: 'success',
+                        title: result.SuccessTitle,
+                        text: result.SuccessMsg,
+                        showConfirmButton: false,
+                        timer: 1800
+                    });
+                    BuscarPedidos();
+                }
+                $('#progress').hide();
+                if (result.EnableSuccess == false) {
+
+                    swal({
+                        type: 'error',
+                        title: result.SuccessTitle,
+                        text: result.SuccessMsg,
+                        showConfirmButton: true,
+                    });
+
+                }
+            },
+        });
+    }
+    //$("#BtnRegistrarDrivin").click(function () {
+    //    RegistrarDrivin_1();
+    //});
+
+
+    /* Agregar Módulo */
+    $(".BtnRegistrarDrivin").click(function (eve) {
+        var oCantfec = 0;
+        var oCantPed = 0;
+        var oCantPlaca = 0;
+        var oCantGeneral = 0;
+        var oMsg = "";
+        var index = 0;
+        var index2 = 0;
+        var contador = 0;
+        var LineaNegocio = "";
+        var oCantDocumento = 0;
+        var oLinea = "";
+        var oCantTransportista = 0;
+
+        var oMsg = "";
+        if ($("input[type='checkbox'][id^='Checkbox1']:checked").length === 0) {
+            // Si ningún checkbox está seleccionado, muestra un mensaje de alerta
+            oMsg = "Debe seleccionar al menos un registro.";
+        }
+        if (oMsg != "") {
+            swal(
+                'Alerta!',
+                oMsg,
+            )
+        }
+
+        //Validamos fecha despacho
+        $('#kt_table2').find('tr').each(function () {
+            if (index > 0) {
+                var row = $(this);
+                //var Fec1 = row.find("td:eq(11)").text();
+                var Fec1 = row.find("input[name*='delivery_date']").val();
+                
+                if (row.find('input[type="checkbox"]').is(':checked')) {
+                    $('#kt_table2').find('tr').each(function () {
+                        if (index > 0) {
+                            var row2 = $(this);
+                            if (row2.find('input[type="checkbox"]').is(':checked')) {
+                                var Fec2 = row2.find("input[name*='delivery_date']").val();
+                                var Docentry = row2.find("input[name*='Docentry']").val();
+
+                                //var Fec2 = row2.find("td:eq(11)").text();                               
+                                //var Docentry = row2.find("td:eq(71)").text();
+                                
+                                if (Fec1 != Fec2) {
+                                    oCantfec++;
+                                }
+                                if (Docentry.trim() === "") {
+                                    oCantDocumento++;
+                                }
+                            }
+                        }
+                        index2++;
+                    });
+                }
+            }
+            index++;
+        });
+        
+        if (oCantfec > 0) {
+            oMsg = "Los registros seleccionados tienen fechas diferentes.";
+        }
+        if (oCantDocumento > 0) {
+            oMsg = "Documentos no se encuentran generados.";
+        }
+
+        //Validamos que sea un pedido origen por línea de negocio, placa individual y pedido origen
+        $('#kt_table2 tbody tr').each(function () {
+            var row = $(this);
+            var Ped1 = row.find("input[name*='pedido_origen']").val();
+            var LineaNegocio = row.find("input[name*='linea_negocio']").val();
+            var Placa1 = row.find("input[name*='placa_individual']").val();
+            //var PlacaGeneral2 = row.find("input[name*='placa']").val();
+            
+            //var Ped1 = row.find("td:eq(60)").text().trim();
+            //var LineaNegocio = row.find("td:eq(7)").text().trim();
+            //var Placa1 = row.find("td:eq(14)").text().trim();
+            //var PlacaGeneral = row.find("td:eq(15)").text().trim();
+            var PlacaGeneral = row.find("td:eq(8)").text().trim();
+            
+            oLinea = LineaNegocio;
+
+            if (LineaNegocio === "CIANURO" && row.find('input[type="checkbox"]').is(':checked')) {
+                var Placa1 = row.find("input[name*='placa_individual']").val();                
+                var codigotransportista1 = row.find("input[name*='licencia']").val();
+                //var Placa1 = row.find("td:eq(14)").text().trim();
+
+                $('#kt_table2 tbody tr').each(function () {
+                    var row2 = $(this);
+                    if (row2.index() !== row.index() && row2.find('input[type="checkbox"]').is(':checked')) {
+                        var Ped2 = row2.find("input[name*='pedido_origen']").val();
+                        var Placa2 = row2.find("input[name*='placa_individual']").val();
+                        var codigotransportista2 = row2.find("input[name*='licencia']").val();
+                        //var Ped2 = row2.find("td:eq(60)").text().trim();
+                        //var Placa2 = row2.find("td:eq(07)").text().trim();
+                        //Comentamos para que puedan asociar más de un pedido de cianuro
+                        /*if (Ped1 !== Ped2) {
+                            oCantPed++;
+                        }*/
+                        if (Placa1 === Placa2) {
+                            oCantPlaca++;
+                        }
+                        else if (codigotransportista1 === codigotransportista2) {
+                            oCantTransportista++;
+                        }
+                    }
+                    if (Placa2 === PlacaGeneral || Placa1 === PlacaGeneral) {
+                        oCantGeneral++;
+                    }                   
+                }
+
+                );
+                return false;
+            }
+        })
+
+        var VarLineaNegocio = oLinea;
+
+        if (VarLineaNegocio === "CIANURO") {
+            var campo1 = oCantPed;
+            var campo2 = oCantPlaca;
+            var campo3 = oCantGeneral;
+           
+            /*if (oCantPed > 0) {
+                oMsg = "Los registros seleccionados tienen Pedidos diferentes.";
+            } */       
+            if (oCantPlaca > 0) {
+                oMsg = "Los registros seleccionados tienen placas repetidas";
+            }
+            else if (oCantGeneral === 0) {
+                oMsg = "Los registros seleccionados la placa individual es diferente que la Placa Drivin";
+            }
+            else if (oCantTransportista > 0) {
+                oMsg = "El Conductor no puede repetirse";
+            }
+        }
+
+        if (oMsg != "") {
+            swal(
+                'Alerta!',
+                oMsg,
+            )
+        }
+        else {
+            $.get('/Drivin/VP_Sincronizar').done(function (data) {
+                $('#ModalCrear').modal('show');
+                $("#modal-contentCrear").html(data);
+            });
+        }
+    });
+
+    function BuscarPedidos() {
+        $('#progress').show();
+        var button = $(this).find('input[type="button"]');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+        var xAlmacen = $("#oAlmacen").val();
+        var xFechaDesde = $("#oFechaDesde").val();
+        var xFechaHasta = $("#oFechaHasta").val();
+        //var xEstadoDrivin = $("#oEstadoDrivin").prop("checked") ? 1 : 0;
+        var selectedValue = $("#oEstadoDrivin").val();
+        var xEstadoDrivin = selectedValue;/*(selectedValue === "0") ? 0 : 1;*/
+        var xFormasEnvioDrivin = $("#oFormasEnvioDrivin").val();
+        var xLineaNegocioDrivin = $("#oLineaNegocioDrivin").val();
+        var xLineaNegocioDrivin1 = xLineaNegocioDrivin.join(",");
+
+        var xBusquedaGeneral = $("#oBusquedaGeneral").val();
+        var xPlacaGeneral = $("#oPlacaGeneral").val();
+        
+        var datax = { oAlmacen: xAlmacen, oFechaDesde: xFechaDesde, oFechaHasta: xFechaHasta, oEstadoDrivin: xEstadoDrivin, oFormasEnvioDrivin: xFormasEnvioDrivin, oBusquedaGeneral: xBusquedaGeneral, oLineaNegocioDrivin: xLineaNegocioDrivin1, oPlacaGeneral: xPlacaGeneral };
+        
+        var url = "@Url.Action("VP_Drivin_Listar_Pedidos", "Drivin")";
+
+        $.get(url, datax).done(function (data) {
+            $("#DivListPedidos").html(data);
+            setTimeout(function () {
+                button.attr('disabled', 'disabled');
+            }, 0);
+            $('#progress').hide();
+        });
+    }
+    $("#BtnConsultarPedidos").click(function () {
+        BuscarPedidos();
+    });
+
+    function BuscarPedidosPost() {
+
+    $('#progress').show();
+        var button = $(this).find('input[type="button"]');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+
+        var url = "@Url.Action("VP_Drivin_Listar_PedidosPost", "Drivin")";
+        $.get(url).done(function (data) {
+            $("#DivListPedidos").html(data);
+            setTimeout(function () {
+                button.attr('disabled', 'disabled');
+            }, 0);
+            $('#progress').hide();
+        });
+    }
+    $("#BtnPostPedidos").click(function () {
+        BuscarPedidosPost();
+    });
+
+    $(".btnCrearEmp").click(function (eve) {
+        // Eliminar Filtro        
+        //var searchitem = $('input[type="search"]').val();
+        //var oMsg = "";
+        //if (searchitem != "") {
+        //    oMsg = "Debe Eliminar el filtro";
+        //    if (oMsg != "") {
+        //        swal(
+        //            'Alerta!',
+        //            oMsg,
+        //        );
+        //        return; // Detiene el proceso
+        //    } 
+        //}
+
+        var oMsg = "";
+        if ($("input[type='checkbox'][id^='Checkbox1']:checked").length === 0) {
+            // Si ningún checkbox está seleccionado, muestra un mensaje de alerta
+            oMsg = "Debe seleccionar al menos un registro.";
+        }
+        if (oMsg != "") {
+            swal(
+                'Alerta!',
+                oMsg,
+            )
+        }
+        else {            
+            $.get('/Drivin/VP_Crear_Placa').done(function (data) {
+                $('#ModalCrear').modal('show');
+                $("#modal-contentCrear").html(data);
+            });
+        }
+    });
+
+    $(".btnCrearPlacaIn").click(function (eve) {
+        var oMsg = "";
+        if ($("input[type='checkbox'][id^='Checkbox1']:checked").length === 0) {
+            // Si ningún checkbox está seleccionado, muestra un mensaje de alerta
+            oMsg = "Debe seleccionar al menos un registro.";
+        }
+        if (oMsg != "") {
+            swal(
+                'Alerta!',
+                oMsg,
+            )
+        }
+        else {
+            $.get('/Drivin/VP_Crear_Placa_Individual').done(function (data) {
+                $('#ModalCrear').modal('show');
+                $("#modal-contentCrear").html(data);
+            });
+        }
+    });
+
+
+    var valoresSeleccionados = []; // Un arreglo para almacenar los valores de los checkboxes seleccionados
+
+    $("input[type='checkbox']").on("change", function () {
+        if ($(this).is(":checked")) {
+            valoresSeleccionados.push($(this).val());
+
+        } else {
+            // Si se desmarca, elimina el valor del arreglo
+            var valor = $(this).val();
+            var index = valoresSeleccionados.indexOf(valor);
+            if (index !== -1) {
+                valoresSeleccionados.splice(index, 1);
+            }
+        }
+    });
+   
+
+</script>

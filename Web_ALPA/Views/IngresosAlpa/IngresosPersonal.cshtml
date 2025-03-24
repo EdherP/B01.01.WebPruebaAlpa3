@@ -1,0 +1,530 @@
+﻿
+@{
+    ViewBag.Title = "IngresosPersonal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body>
+    <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="kt-portlet">
+                    <div class="kt-portlet__body">
+                        <ul class="nav nav-tabs nav-tabs-line nav-tabs-line-success" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#kt_tabs_9_1" role="tab" id="tabs_9_1"><i class="la la-angle-down"></i> Ingreso Personal</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tabs_9_2" role="tab" id="tabs_9_2"><i class="la la-angle-down"></i> Registro I/S</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="kt_tabs_9_1" role="tabpanel">
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">
+                                            Registro de Ingreso del personal
+                                        </h3>
+                                    </div>
+                                    <div class="kt-portlet__head-toolbar">
+                                        <button class="btnLimpiarIng btn btn-secondary kt-margin-r-10" id="btnLimpiarIng" title="Limpiar datos">
+                                            <i class="la la-eraser"></i> <span class="kt-hidden-mobile">Limpiar datos</span>
+                                        </button>
+                                        <button class="btnRegIngreso btn btn-danger kt-margin-r-10" id="btnRegIngreso" title="Registrar ingreso">
+                                            <i class="flaticon2-checking"></i> <span class="kt-hidden-mobile">Registrar ingreso</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <form class="kt-form kt-form--label-right" id="frmDoc">
+                                    <div class="kt-portlet__body">
+                                        <div class="kt-section">
+                                            @*<div class="kt-align-right">
+                                                    <a href="#" class="btn btn-secondary kt-margin-r-10" id="BtnBuscarProgInvx" title="Refrescar">
+                                                        <i class="la la-refresh"></i> <span class="kt-hidden-mobile">Consultar</span>
+                                                    </a>
+                                                    <a href="#ModalCrear" class="btnCrearProgINV btn btn-danger kt-margin-r-10" data-toggle="modal" id="btnCrearProgINV" title="Nueva Programación">
+                                                        <i class="flaticon2-plus"></i> <span class="kt-hidden-mobile">Nuevo</span>
+                                                    </a>
+                                                style="display:none" id="DivAlert"
+                                                </div>*@
+                                            <div class="alert alert-outline-primary fade show" role="alert"   id="DivAlert">
+                                                <div class="alert-icon"><i class="flaticon-like"></i></div>
+                                                <div class="alert-text" id="TxtAlert"></div>
+                                                <div class="alert-close">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true"><i class="la la-close"></i></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <fieldset id="SubmitFormx1">
+                                                <div style="display:none">
+                                                    @Html.TextBox("oIDx", "", new { @class = "form-control", @id = "oIDx", @name = "oIDx" })
+                                                    @Html.TextBox("oCodEmpresax", "", new { @class = "form-control", @id = "oCodEmpresax", @name = "oCodEmpresax" })
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-4">
+                                                        <label>Código Pesonal</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oDocIng", "", new { @class = "form-control", @id = "oDocIng", @name = "oDocIng" })
+
+                                                            <div class="input-group-append">
+                                                                <div id="Divsearch">
+                                                                    <a href="#ModalCrear" class="btnVerPersonal btn btn-secondary" id="btnVerPersonal" data-toggle="modal"><i class="la la-search"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label>Concepto Ingreso</label>
+                                                        @Html.DropDownList("oConceptoingreso", ViewBag.ListarTipoIngreso as SelectList, "", new { @class = "form-control", @name = "oConceptoingreso" })
+
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label>Empresa</label>
+                                                        @Html.TextBox("oEmpresax", null, "", new { @class = "form-control", @disabled = "disabled", @name = "oEmpresax" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-lg-4">
+                                                        <label>Nombres</label>
+                                                        @Html.TextBox("oNombresx", null, "", new { @class = "form-control", @disabled = "disabled", @name = "oNombresx" })
+                                                    </div>
+
+                                                    <div class="col-lg-8">
+                                                        <label>Apellidos</label>
+                                                        @Html.TextBox("oApellidosx", null, "", new { @class = "form-control", @disabled = "disabled", @name = "oApellidosx" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-lg-4">
+                                                        <label>Cuestionario</label>
+                                                        @Html.TextBox("oCuestionariox", null, "", new { @class = "form-control", @disabled = "disabled", @name = "oCuestionariox" })
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label>Vacuna Covid</label>
+                                                        @Html.TextBox("oVacunadox", null, "", new { @class = "form-control", @disabled = "disabled", @name = "oVacunadox" })
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label>Documentos SCTR</label>
+                                                        @Html.TextBox("oSCTRx", null, "", new { @class = "form-control", @disabled = "disabled", @name = "oSCTRx" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-lg-4">
+                                                        <label>Inducción</label>
+                                                        @Html.TextBox("oInduccionx", null, "", new { @class = "form-control", @disabled = "disabled", @name = "oInduccionx" })
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label>Licencia de conducir</label>
+                                                        @Html.TextBox("oLicenciax", null, "", new { @class = "form-control", @disabled = "disabled", @name = "oLicenciax" })
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label>Vehículo</label>
+                                                        @Html.TextBox("oCodVehiculox", null, "", new { @class = "form-control", @name = "oCodVehiculox" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+
+                                                    <div class="col-lg-4">
+                                                        <div id="DivLNegra">
+                                                            <label>Lista negra</label>
+                                                            @Html.TextBox("oListaNegrax", null, "", new { @class = "form-control", @disabled = "disabled", @name = "oListaNegrax" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div id="DivSancionado">
+                                                            <label>Sancionado</label>
+                                                            @Html.TextBox("oSancionadox", null, "", new { @class = "form-control", @disabled = "disabled", @name = "oSancionadox" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" id="DivAutorizado">
+                                                    <div class="col-lg-4">
+                                                        <label>Autorizar Ingreso</label>
+                                                        @Html.DropDownList("oCodAutorizante", ViewBag.ListarAprobador as SelectList, "", new { @class = "form-control", @name = "oCodAutorizante" })
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label>Comentario de autorización</label>
+                                                        @Html.TextArea("oMotivoAutorizacion", new { @class = "form-control", @name = "oMotivoAutorizacion" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+
+                                                    <div class="col-lg-4">
+                                                        <label>Observación de Ingreso</label>
+                                                        @Html.TextArea("oObsIngreso", new { @class = "form-control", @disabled = "disabled", @name = "oObsIngreso" })
+                                                    </div>
+
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="kt_tabs_9_2" role="tabpanel">
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">
+                                            Listado Ingreso/Salida del personal.
+                                        </h3>
+                                    </div>
+                                    <div class="kt-portlet__head-toolbar">
+                                        <a href="#" class="BtnBuscarIS btn btn-secondary kt-margin-r-10" id="BtnBuscarIS" title="Consultar">
+                                            <i class="la la-refresh"></i> <span class="kt-hidden-mobile">Consultar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <form class="kt-form kt-form--label-right">
+                                    <div class="kt-portlet__body">
+                                        <fieldset id="SubmitFormx3">
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-2">
+                                                    <label>Desde</label>
+                                                    <input class="form-control form-control-sm" id="oFechaDesde" type="date" value=@ViewBag.oFechaDesde name="oFechaDesde" required />
+                                                </div>
+
+                                                <div class="col-sm-2">
+                                                    <label>Hasta</label>
+                                                    <input class="form-control form-control-sm" id="oFechaHasta" type="date" value=@ViewBag.oFechaHasta name="oFechaHasta" required />
+
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+                                        <div id="DivListIngreso">
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="ModalCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div id="modal-contentCrear">
+                                            Cargando...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="progress" class="modal">
+            <div class="center" style="position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">
+                <div class="kt-section__content kt-section__content--border">
+                    <div class="spinner-grow text-primary" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-secondary" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-success" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-danger" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-warning" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span> </div>
+                    <div class="spinner-grow text-light" role="status"> <span class="sr-only">Loading...</span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        //ListarIngresoSalida();
+        document.getElementById("btnRegIngreso").disabled = true;
+        document.getElementById("oDocIng").focus();
+        $('#DivAlert').hide(); 
+        $('#Divsearch').hide();
+        $('#DivAutorizado').hide();
+        $('#DivLNegra').hide();
+        $('#DivSancionado').hide();
+    });
+
+    $(".tabs_9_1").click(function (eve) {
+
+        document.getElementById("oDocIng").focus();
+    });
+    function ListarIngresoSalida() {
+        $('#progress').show();
+        var button = $(this).find('input[type="button"]');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+
+        var url = "@Url.Action("VP_ListarIngresoPersonal", "IngresosAlpa")";
+        var xFechaDesde = $("#oFechaDesde").val();
+        var xFechaHasta = $("#oFechaHasta").val();
+        var datax = { oFechaDesde: xFechaDesde, oFechaHasta: xFechaHasta};
+        $.get(url, datax).done(function (data) {
+            $("#DivListIngreso").html(data);
+            setTimeout(function () {
+                button.attr('disabled', 'disabled');
+            }, 0);
+            $('#progress').hide(); 
+            /*$('div.dataTables_filter input').focus();*/
+            
+        });
+    }
+
+    $(".BtnBuscarIS").click(function (eve) {
+        ListarIngresoSalida();
+    });
+
+    function LimpiarDatos() {
+        /*document.getElementById('frmDoc').reset();*/
+        document.getElementById("oIDx").value = 0;
+        document.getElementById('oDocIng').value = '';
+        document.getElementById("oCodEmpresax").value = "";
+        document.getElementById("oEmpresax").value = "";
+        document.getElementById("oNombresx").value = "";
+        document.getElementById("oApellidosx").value = "";
+        /*document.getElementById("oTipoDocx").value = "";*/
+        document.getElementById("oCuestionariox").value = "";
+        document.getElementById("oVacunadox").value = "";
+        document.getElementById("oSCTRx").value = "";
+        document.getElementById("oInduccionx").value = "";
+        document.getElementById("oLicenciax").value = "";
+        document.getElementById("oListaNegrax").value = "";
+        document.getElementById("oSancionadox").value = "";
+        document.getElementById("oObsIngreso").value = "";
+        document.getElementById("oMotivoAutorizacion").value = "";
+        
+        $('#Divsearch').hide(); 
+        $('#DivLNegra').hide();
+        $('#DivSancionado').hide(); 
+        $('#DivAlert').hide();
+        $('#DivAutorizado').hide();
+        /*document.getElementById("oDocIng").disabled = false;*/
+       /*     $('#oDocIng').removeAttr("disabled");*/
+        document.getElementById("oDocIng").disabled = false;
+        document.getElementById("btnVerPersonal").disabled = true;
+        document.getElementById("oDocIng").focus();
+        document.getElementById("btnRegIngreso").disabled = true;
+        document.getElementById("oObsIngreso").disabled = true;
+        //document.getElementById("oInduccionx").className = "form-control";
+        //document.getElementById("oSCTRx").className = "form-control";
+        //document.getElementById("oVacunadox").className = "form-control";
+        //document.getElementById("oCuestionariox").className = "form-control";
+
+    }
+
+    function BuscarPersonal() {
+        var xDocIng = document.getElementById("oDocIng").value;
+        var oCrear = true;
+        if (xDocIng.length == 8) {
+            var DocIng = $("#oDocIng").val();
+            var dataz = { oBusqueda: xDocIng };
+
+            $.ajax({
+                url: '/IngresosAlpa/ConsultarPersonal',
+                type: 'post',
+                data: dataz,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.EnableSuccess == true) {
+                        $('#Divsearch').show();
+                        document.getElementById("oDocIng").disabled = true;
+                       /* $('#oDocIng').attr("disabled", "disabled");*/
+                        document.getElementById("oCodEmpresax").value = result.CodEmpresa;
+                        document.getElementById("oEmpresax").value = result.Empresa;
+                        document.getElementById("oNombresx").value = result.Nombre;
+                        document.getElementById("oApellidosx").value = result.Apellido;
+                        /*document.getElementById("oTipoDocx").value = result.TipoDoc;*/
+                        document.getElementById("oObsIngreso").disabled = false;
+                        document.getElementById("oIDx").value = result.Code;
+
+                        if (result.Cuestionario == true) {
+
+                            if (result.VencCuestionario == true) {
+                                document.getElementById("oCuestionariox").className = "form-control is-invalid";
+                                document.getElementById("oCuestionariox").value = "VENCIDO";
+                                oCrear = false;
+                            }
+                            else {
+                                document.getElementById("oCuestionariox").className = "form-control is-valid";
+                                document.getElementById("oCuestionariox").value = "CONFORME";
+                            }
+
+                        }
+                        else {
+                            document.getElementById("oCuestionariox").className = "form-control is-invalid";
+                            document.getElementById("oCuestionariox").value = "PENDIENTE";
+                            oCrear = false;
+                        }
+
+                        if (result.Vacunado == true) {
+                            document.getElementById("oVacunadox").className = "form-control is-valid";
+                            document.getElementById("oVacunadox").value = "CONFORME";
+                        }
+                        else {
+                            document.getElementById("oVacunadox").className = "form-control is-invalid";
+                            document.getElementById("oVacunadox").value = "PENDIENTE";
+                            oCrear = false;
+                        }
+
+                        if (result.SCTR == true) {
+
+                            if (result.VencSCTR == true) {
+                                document.getElementById("oSCTRx").className = "form-control is-invalid";
+                                document.getElementById("oSCTRx").value = "VENCIDO";
+                                oCrear = false;
+                            }
+                            else {
+                                document.getElementById("oSCTRx").className = "form-control is-valid";
+                                document.getElementById("oSCTRx").value = "CONFORME";
+                            }
+                        }
+                        else {
+                            document.getElementById("oSCTRx").className = "form-control is-invalid";
+                            document.getElementById("oSCTRx").value = "PENDIENTE";
+                            oCrear = false;
+                        }
+
+                        if (result.Induccion == true) {
+                            document.getElementById("oInduccionx").className = "form-control is-valid";
+                            document.getElementById("oInduccionx").value = "CONFORME";
+                        }
+                        else {
+                            document.getElementById("oInduccionx").className = "form-control is-invalid";
+                            document.getElementById("oInduccionx").value = "PENDIENTE";
+                            oCrear = false;
+                        }
+
+                        if (result.Licencia == true) {
+
+                            if (result.VencLicencia == true) {
+                                document.getElementById("oLicenciax").value = "VENCIDO";
+                                oCrear = false;
+                            }
+                            else {
+                                document.getElementById("oLicenciax").value = "VIGENTE";
+                            }
+                        }
+                        else {
+                            document.getElementById("oLicenciax").value = "NO REGISTRADO";
+                        }
+
+                        if (result.ListaNegra == true) { 
+                            $('#DivLNegra').show();
+                            document.getElementById("oListaNegrax").className = "form-control is-invalid";
+                            document.getElementById("oListaNegrax").value = "INHABILITADO";
+                        }
+                        else {
+
+                            document.getElementById("oListaNegrax").value = "HABILITADO";
+                        }
+
+                        if (result.Sancionado == true) {                           
+                            $('#DivSancionado').show();
+                            if (result.VencSancionado == true) {
+                                document.getElementById("oSancionadox").className = "form-control is-valid";
+                                document.getElementById("oSancionadox").value = "HABILITADO";
+                            }
+                            else {
+                                document.getElementById("oSancionadox").className = "form-control is-invalid";
+                                document.getElementById("oSancionadox").value = "INHABILITADO";
+                                oCrear = false;
+                            }
+                        }
+                        else {
+                            document.getElementById("oSancionadox").value = "HABILITADO";
+                        }
+
+                        if (oCrear == true) {
+                            document.getElementById("btnRegIngreso").disabled = false;
+                        }
+                        else {
+                            $('#DivAutorizado').show();
+                        }
+                    }
+                },
+                error: function () {
+                    console.log("fallo");
+                    swal({
+                        position: 'top-right',
+                        type: 'error',
+                        title: result.SuccessMsg,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            });
+        }
+    }
+
+    $("#oDocIng").change(function () {
+        $('#DivAlert').hide();
+        BuscarPersonal();
+    });
+
+    $("#oCodAutorizante").change(function () {
+        var oCodAut = document.getElementById("oCodAutorizante").value;
+       /* alert(oCodAut);*/
+        if (oCodAut != "") {
+            document.getElementById("btnRegIngreso").disabled = false;
+        }
+    });
+
+    $(".btnVerPersonal").click(function (eve) {
+
+        var XCod = document.getElementById("oIDx").value;
+        var datax = { oCodPer: XCod };
+        $.get('/IngresosAlpa/VP_Crear_Personal', datax).done(function (data) {
+            $("#modal-contentCrear").html(data);
+        });
+    });
+
+    $("#btnLimpiarIng").click(function (eve) {
+        LimpiarDatos();
+
+    });
+
+    $("#btnRegIngreso").click(function () {
+        var oNomApe = 'INGRESO REGISTRADO - ' + document.getElementById("oNombresx").value + ' ' + document.getElementById("oApellidosx").value;
+
+        var button = $(this).find('input[type="submit"]');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+        $('#progress').show();
+        var datax = $("#SubmitFormx1").serialize();
+        $.ajax({
+            url: '/IngresosAlpa/RegistrarPersonalAsistencia',
+            type: 'post',
+            data: datax,
+            dataType: 'json',
+            success: function (result) {
+                $('#progress').hide();
+                if (result.EnableSuccess == true) { 
+                    LimpiarDatos();
+                    document.getElementById("TxtAlert").innerHTML = oNomApe ; 
+                    $('#DivAlert').show();
+                }
+                else {
+                    swal({
+                        //position: 'top-right',
+                        type: 'error',
+                        title: 'No Registrado',
+                        text: result.SuccessMsg,
+                        showConfirmButton: true,
+                    });
+                }
+
+            },
+        });
+    });
+</script>

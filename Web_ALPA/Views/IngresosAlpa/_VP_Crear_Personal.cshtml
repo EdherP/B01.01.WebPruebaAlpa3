@@ -1,0 +1,546 @@
+﻿
+<body>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+            @ViewBag.oTitulo
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body">
+        <form form id="form" class="kt-form">
+            <fieldset id="SubmitFormx">
+                <div>
+                    <div class="form-group" style="display:none">
+                        @Html.TextBox("oIdTx", ViewBag.oIdTx as string, "", new { @class = "form-control", @name = "oIdTx" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Tipo de documento (*)</label>
+                            @Html.DropDownList("oTipoDocumento", ViewBag.ListarTipo as SelectList, "Seleccionar",
+                            new { @class = "form-control", @name = "oTipoDocumento", @disabled = "disabled" })
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>Numero de Documento (*)</label>
+                            @Html.TextBox("oDocIdentidad", ViewBag.oDocIdentidad as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oDocIdentidad", @autocomplete = "off", @requerid = "requerid", @id = "oDocIdentidad" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Nombres (*)</label>
+                            @Html.TextBox("oNombre", ViewBag.oNombre as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oNombre", @autocomplete = "off", @requerid = "requerid", @id = "oNombre" })
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>Apellidos (*)</label>
+                            @Html.TextBox("oApellidos", ViewBag.oApellidos as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oApellidos", @autocomplete = "off", @requerid = "requerid", @id = "oApellidos" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Codigo de Empresa (*)</label>
+                            @Html.DropDownList("oCodEmpresa", ViewBag.ListarEmpresa as SelectList, "Seleccionar",
+                           new { @class = "form-control", @name = "oCodEmpresa", @disabled = "disabled" })
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Email (*)</label>
+                            @Html.TextBox("oEmail", ViewBag.oEmail as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oEmail", @autocomplete = "off", @requerid = "requerid", @id = "oEmail", @MaxLengthAttributeAdapter = 11 })
+                        </div>
+
+                    </div>
+
+                    <div id="DivSancion" style="display:none">
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <div class="kt-checkbox-inline">
+                                    <label class="kt-checkbox kt-checkbox--brand">
+                                        @if (ViewBag.oActivoSancionado == true)
+                                        {<input type="checkbox" id="oSancionado" name="oSancionado" checked="checked" disabled="disabled">}
+                                        else
+                                        {<input type="checkbox" id="oSancionado" name="oSancionado" disabled="disabled">}
+                                        Sanción <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Fecha de Emisión</label>
+                                <input class="form-control form-control-sm" id="oFechaSancionInicio" type="date" value=@ViewBag.oFechaSancionInicio name="oFechaSancionInicio" required />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Fecha de caducidad</label>
+                                <input class="form-control form-control-sm" id="oFechaSancionFin" type="date" value=@ViewBag.oFechaSancionFin name="oFechaSancionFin" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="DivListNegra" style="display:none">
+
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <div class="kt-checkbox-inline">
+                                    <label class="kt-checkbox kt-checkbox--brand">
+
+                                        @if (ViewBag.oActivoListaNegra == true)
+                                        {<input type="checkbox" id="oListaNegra" name="oListaNegra" checked="checked" disabled="disabled">}
+                                        else
+                                        {<input type="checkbox" id="oListaNegra" name="oListaNegra" disabled="disabled">}
+                                        Lista Negra <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Motivo Lista negra (*)</label>
+                                @Html.TextBox("oMotivoListaNegra", ViewBag.oMotivoListaNegra as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oMotivoListaNegra", @autocomplete = "off", @requerid = "requerid", @id = "oMotivoListaNegra" })
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Fecha de Lista Negra Emisión</label>
+                                <input class="form-control form-control-sm" id="oFechaListaNegra" type="date" value=@ViewBag.oFechaListaNegra name="oFechaListaNegra" required />
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+
+                        Requisitos de Ingreso:
+                    </h5>
+                    <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+                    <div class="form-group row">
+
+                        <div class="col-lg-6">
+                            <div class="kt-checkbox-inline">
+                                <label class="kt-checkbox kt-checkbox--brand">
+
+                                    @if (ViewBag.oInduccion == true)
+                                    {<input type="checkbox" id="oInduccion" name="oInduccion" checked="checked" disabled="disabled">}
+                                    else
+                                    {<input type="checkbox" id="oInduccion" name="oInduccion" disabled="disabled">}
+                                    Inducción <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-lg-6">
+                            <div class="kt-checkbox-inline">
+                                <label class="kt-checkbox kt-checkbox--brand">
+
+                                    @if (ViewBag.oActivoCuestionario == true)
+                                    {<input type="checkbox" id="oCuestionario" name="oCuestionario" checked="checked" disabled="disabled">}
+                                    else
+                                    {<input type="checkbox" id="oCuestionario" name="oCuestionario" disabled="disabled">}
+                                    Cuestionario <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-lg-6">
+                            <label>Fecha de Cuestionario Emisión</label>
+                            <input class="form-control form-control-sm" id="oFechaCuestionarioInicio" type="date" value=@ViewBag.oFechaCuestionarioInicio name="oFechaCuestionarioInicio" />
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>Fecha de Cuestionario caducidad</label>
+                            <input class="form-control form-control-sm" id="oFechaCuestionarioFin" type="date" value=@ViewBag.oFechaCuestionarioFin name="oFechaCuestionarioFin" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <div class="kt-checkbox-inline">
+                                <label class="kt-checkbox kt-checkbox--brand">
+
+                                    @if (ViewBag.oActivoVacuna == true)
+                                    {<input type="checkbox" id="oVacunacion" name="oVacunacion" checked="checked" disabled="disabled">}
+                                    else
+                                    {<input type="checkbox" id="oVacunacion" name="oVacunacion" disabled="disabled">}
+                                    Vacunación Covid 19 <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label>#Dosis</label>
+                            @Html.TextBox("oNroDosis", ViewBag.oNroDosis as string, "", new { @class = "form-control validanumericos", @disabled = "disabled", @name = "oNroDosis", @id = "oNroDosis", @type = "number", @min = 0, @max = "4" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <div class="kt-checkbox-inline">
+                                <label class="kt-checkbox kt-checkbox--brand">
+
+                                    @if (ViewBag.oActivoSCTR == true)
+                                    {<input type="checkbox" id="oSCTR" name="oSCTR" checked="checked" disabled="disabled">}
+                                    else
+                                    {<input type="checkbox" id="oSCTR" name="oSCTR" disabled="disabled">}
+                                    Documento SCTR <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+
+                        <div class="col-lg-6">
+                            <label>Fecha de Emisión</label>
+                            <input class="form-control form-control-sm" id="oFechaSCTRInicio" type="date" value=@ViewBag.oFechaSCTRInicio format="{0:yyyy-MM-dd}" name="oFechaSCTRInicio" required />
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>Fecha de caducidad</label>
+                            <input class="form-control form-control-sm" id="oFechaSCTRFin" type="date" value=@ViewBag.oFechaSCTRFin format="{0:yyyy-MM-dd}" name="oFechaSCTRFin" required />
+                        </div>
+                    </div>
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        Requisitos de Movilidad:
+                    </h5>
+                    <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <div class="kt-checkbox-inline">
+                                <label class="kt-checkbox kt-checkbox--brand">
+
+                                    @if (ViewBag.oActivoLicenciaConducir == true)
+                                    {<input type="checkbox" id="oLicenciaConducir" name="oLicenciaConducir" checked="checked" disabled="disabled">}
+                                    else
+                                    {<input type="checkbox" id="oLicenciaConducir" name="oLicenciaConducir" disabled="disabled">}
+                                    Licencia de conducir <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Fecha de Emisión</label>
+                            <input class="form-control form-control-sm" id="oFechaLicenciaInicio" type="date" value=@ViewBag.oFechaLicenciaInicio format="{0:yyyy-MM-dd}" name="oFechaLicenciaInicio" required />
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>Fecha de caducidad</label>
+                            <input class="form-control form-control-sm" id="oFechaLicenciaFin" type="date" value=@ViewBag.oFechaLicenciaFin format="{0:yyyy-MM-dd}" name="oFechaLicenciaFin" required />
+                        </div>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="kt-spinner kt-spinner--v2 kt-spinner--lg kt-spinner--focus" style="text-align:center;display:none" id="loaderDiv">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="BtnCerrar">Cerrar</button>
+        <button type="button" class="btnRegistrarPer btn btn-primary" id="btnRegistrarPer"></button>
+    </div>
+</body>
+
+<script>
+
+    $(document).ready(function () {
+
+        var TipoForm = '@ViewBag.oTipoForm';
+        var Div1 = document.getElementById("DivSancion");
+        var Div2 = document.getElementById("DivListNegra");
+        if (TipoForm == 'A') {
+            document.getElementById("btnRegistrarPer").innerHTML = 'Registrar';
+            document.getElementById("oDocIdentidad").disabled = false;
+            document.getElementById("oInduccion").disabled = false;
+            document.getElementById("oCuestionario").disabled = false;
+            document.getElementById("oVacunacion").disabled = false;
+            document.getElementById("oNroDosis").disabled = true;
+            document.getElementById("oSCTR").disabled = false;
+            document.getElementById("oLicenciaConducir").disabled = false;
+            document.getElementById("oTipoDocumento").disabled = false;
+            document.getElementById("oDocIdentidad").disabled = false;
+            document.getElementById("oNombre").disabled = false;
+            document.getElementById("oApellidos").disabled = false;
+            document.getElementById("oCodEmpresa").disabled = false;
+            document.getElementById("oFechaCuestionarioInicio").disabled = true;
+            document.getElementById("oFechaCuestionarioFin").disabled = true;
+            document.getElementById("oFechaSCTRInicio").disabled = true;
+            document.getElementById("oFechaSCTRFin").disabled = true;
+            document.getElementById("oFechaLicenciaInicio").disabled = true;
+            document.getElementById("oFechaLicenciaFin").disabled = true;
+            document.getElementById("oEmail").disabled = false;
+            document.getElementById("oListaNegra").disabled = false;
+            document.getElementById("oMotivoListaNegra").disabled = false;
+            document.getElementById("oFechaListaNegra").disabled = false;
+            document.getElementById("oSancionado").disabled = false;
+            document.getElementById("oFechaSancionInicio").disabled = false;
+            document.getElementById("oFechaSancionFin").disabled = false;
+
+        }
+        else {
+
+            document.getElementById("btnRegistrarPer").innerHTML = 'Editar';
+            document.getElementById("oInduccion").disabled = false;
+            document.getElementById("oCuestionario").disabled = false;
+            document.getElementById("oVacunacion").disabled = false;
+            document.getElementById("oNroDosis").disabled = false;
+            document.getElementById("oSCTR").disabled = false;
+            document.getElementById("oLicenciaConducir").disabled = false;
+            document.getElementById("oNombre").disabled = false;
+            document.getElementById("oApellidos").disabled = false;
+            document.getElementById("oCodEmpresa").disabled = false;
+            document.getElementById("oFechaCuestionarioInicio").disabled = false;
+            document.getElementById("oFechaCuestionarioFin").disabled = false;
+            document.getElementById("oFechaSCTRInicio").disabled = false;
+            document.getElementById("oFechaSCTRFin").disabled = false;
+            document.getElementById("oFechaLicenciaInicio").disabled = false;
+            document.getElementById("oFechaLicenciaFin").disabled = false;
+            document.getElementById("oEmail").disabled = false;
+            document.getElementById("oListaNegra").disabled = false;
+            document.getElementById("oMotivoListaNegra").disabled = false;
+            document.getElementById("oFechaListaNegra").disabled = false;
+            document.getElementById("oSancionado").disabled = false;
+            document.getElementById("oFechaSancionInicio").disabled = false;
+            document.getElementById("oFechaSancionFin").disabled = false;
+            Div1.style.display = "block";
+            Div2.style.display = "block";
+
+        }
+    });
+
+
+    $(function () {
+        $('.validanumericos').keypress(function (e) {
+            if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                return false;
+        })
+            .on("cut copy paste", function (e) {
+                e.preventDefault();
+            });
+    });
+
+    //function activar() {
+    //    switch (dato) {
+    //        case "sancionado":
+    //            if (document.getElementById('oSancionado').checked) { document.getElementById("DivListNegra").style.display = "block"; }
+    //            else { document.getElementById("DivListNegra").style.display = "none"; }
+    //            breack;
+    //        default:
+    //    }
+
+    //}
+
+    function ValidarForm() {
+        var Rpta = "";
+        var codEmpresa = document.getElementById("oCodEmpresa").value; var Sancionado = document.getElementById("oSancionado").value;
+        var FechaSancionInicio = document.getElementById("oFechaSancionInicio").value; var FechaSancionFin = document.getElementById("oFechaSancionFin").value;
+        var Cuestionario = document.getElementById("oFechaSancionFin").value; var Vacunacion = document.getElementById("oFechaSancionFin").value;
+        var SCTR = document.getElementById("oFechaSancionFin").value; var SOAT = document.getElementById("oFechaSancionFin").value;
+        var LicenciaConducir = document.getElementById("oFechaSancionFin").value; var RevisionTecnica = document.getElementById("oFechaSancionFin").value;
+        var FechaCuestionarioInicio = document.getElementById("oFechaCuestionarioInicio").value;
+        var FechaCuestionarioFin = document.getElementById("oFechaCuestionarioFin").value;
+        var FechaSCTRInicio = document.getElementById("oFechaSCTRInicio").value;
+        var FechaSCTRFin = document.getElementById("oFechaSCTRFin").value;
+        var FechaLicenciaInicio = document.getElementById("oFechaLicenciaInicio").value;
+        var FechaLicenciaFin = document.getElementById("oFechaLicenciaFin").value;
+        var NroDosis = document.getElementById("oNroDosis").value;
+
+        //var DifCuestionario = FechaCuestionarioFin.diff(FechaCuestionarioInicio, 'days');
+      
+        
+        if (FechaCuestionarioInicio != "" & FechaCuestionarioFin != "") {
+            var fecha1 = moment(FechaCuestionarioInicio);
+            var fecha2 = moment(FechaCuestionarioFin);
+            var fechax = fecha2.diff(fecha1, 'days');
+            if (fechax > 8) {
+                Rpta = "La fecha de vencimiento del cuestionario no puede diferir en mas de 8 dias.";
+            }
+        }
+        if (document.getElementById("oNombre").value == "" || document.getElementById("oApellidos").value == "") {
+            Rpta = "Debe ingresar el nombre y apellido.";
+        }
+        if (codEmpresa == "") {
+            Rpta = "Debe seleccionar la Empresa.";
+        }
+        if (Sancionado) {
+            if (FechaSancionInicio == null) { Rpta = "Debe seleccionar fecha de inicio de sanción."; }
+            if (FechaSancionFin == null) { Rpta = "Debe seleccionar fecha de fin de sanción."; }
+            if (FechaSancionInicio > FechaSancionFin) { Rpta = "La fecha de fin debe ser mayor a la de inicio."; }
+        }
+        if (Vacunacion) {
+            if (NroDosis == null) { Rpta = "Debe registrar la cantidad de dosis."; }
+        }
+        if (SCTR) {
+            if (FechaSCTRInicio == null) { Rpta = "Debe seleccionar fecha de inicio de SCTR."; }
+            if (FechaSCTRFin == null) { Rpta = "Debe seleccionar fecha de fin de SCTR."; }
+            if (FechaSCTRFin > FechaSCTRFin) { Rpta = "La fecha de fin debe ser mayor a la de inicio."; }
+        }
+        if (Cuestionario) {
+            if (FechaCuestionarioInicio == null) { Rpta = "Debe seleccionar fecha de inicio de Cuestionario."; }
+            if (FechaCuestionarioFin == null) { Rpta = "Debe seleccionar fecha de fin de Cuestionario."; }
+            if (FechaCuestionarioInicio > FechaCuestionarioFin) { Rpta = "La fecha de fin debe ser mayor a la de inicio."; }
+        }
+
+        if (LicenciaConducir) {
+            if (FechaLicenciaInicio == null) { Rpta = "Debe seleccionar fecha de inicio de Licencia."; }
+            if (FechaLicenciaFin == null) { Rpta = "Debe seleccionar fecha de fin de Licencia."; }
+            if (FechaLicenciaInicio > FechaLicenciaFin) { Rpta = "La fecha de fin debe ser mayor a la de inicio."; }
+        }
+
+
+            return Rpta;
+
+    }
+
+    $('.btnRegistrarPer').click("click", function () {
+
+        var TipoForm = '@ViewBag.oTipoForm';
+        var oMensaje = "";
+        var oUrl = "";
+
+        if (TipoForm == "A") {
+            oUrl = '/IngresosAlpa/RegistrarPersonal';
+        }
+        else {
+            oUrl = '/IngresosAlpa/ActualizarPersonal';
+        }
+
+        oMensaje = ValidarForm();
+        if (oMensaje != "") {
+            swal({
+                type: 'info',
+                title: 'Validación',
+                text: oMensaje,
+                showConfirmButton: true,
+            });
+        }
+        else {
+
+            $("#loaderDiv").show();
+            var button = $(this).find('input[type="submit"]');
+            setTimeout(function () {
+                button.removeAttr('disabled');
+            }, 1);
+            var datax = $("#SubmitFormx").serialize();
+            $.ajax({
+                url: oUrl,
+                type: 'post',
+                data: datax,
+                dataType: 'json',
+                success: function (result) {
+                    $("#loaderDiv").hide();
+                    $("#btnCrearPer").show();
+                    if (result.EnableSuccess == true) {
+                        $("#ModalCrear").modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                        swal({
+                            //position: 'top-Center',
+                            type: 'success',
+                            title: result.SuccessMsg,
+                            showConfirmButton: true,
+                            timer: 4000
+                        });
+                        $('#progress').hide();
+                        BuscarPersonal();
+                    }
+                    else {
+                        swal({
+                            //position: 'top-right',
+                            type: 'error',
+                            title: 'No Creado',
+                            text: result.SuccessMsg,
+                            showConfirmButton: true,
+                        });
+                    }
+
+                },
+                error: function () {
+                    console.log("fallo");
+                    swal({
+                        position: 'top-right',
+                        type: 'error',
+                        title: result.SuccessMsg,
+                        showConfirmButton: true,
+                        //timer: 3000
+                    });
+                }
+            });
+
+        }
+    });
+
+    $("#oCuestionario").change(function () {
+        if (oCuestionario.checked) {
+            document.getElementById("oFechaCuestionarioInicio").disabled = false;
+            document.getElementById("oFechaCuestionarioFin").disabled = false;
+
+        }
+        else {
+            document.getElementById("oFechaCuestionarioInicio").disabled = true;
+            document.getElementById("oFechaCuestionarioFin").disabled = true;
+        }
+
+    });
+    $("#oVacunacion").change(function () {
+        if (oVacunacion.checked) {
+            document.getElementById("oNroDosis").disabled = false;
+
+        }
+        else {
+            document.getElementById("oNroDosis").disabled = true;
+        }
+
+    });
+    $("#oSCTR").change(function () {
+        if (oSCTR.checked) {
+            document.getElementById("oFechaSCTRInicio").disabled = false;
+            document.getElementById("oFechaSCTRFin").disabled = false;
+
+        }
+        else {
+            document.getElementById("oFechaSCTRInicio").disabled = true;
+            document.getElementById("oFechaSCTRFin").disabled = true;
+        }
+
+    });
+
+    $("#oLicenciaConducir").change(function () {
+        if (oLicenciaConducir.checked) {
+            document.getElementById("oFechaLicenciaInicio").disabled = false;
+            document.getElementById("oFechaLicenciaFin").disabled = false;
+
+        }
+        else {
+            document.getElementById("oFechaLicenciaInicio").disabled = true;
+            document.getElementById("oFechaLicenciaFin").disabled = true;
+        }
+
+    });
+
+    $("#oDocIdentidad").change(function () {
+        var xDNI = document.getElementById("oDocIdentidad").value;
+        if (xDNI.length == 8) {
+            var datax = { oConsulta: "DNI", oNroDoc: xDNI };
+            var oUrl = "@Url.Action("ValidarDocIdentidad", "IngresosAlpa")";
+            $.ajax({
+                url: oUrl, type: 'post', data: datax, dataType: 'json', success: function (result) {
+                    if (result.EnableSuccess == true) {
+                        document.getElementById("oNombre").value = result.xNombres;
+                        document.getElementById("oApellidos").value = result.xApellidos;
+                        document.getElementById("oCodEmpresa").focus();
+                    }
+                    else {
+                        document.getElementById("oNombre").disabled = false;
+                        document.getElementById("oNombre").value = '';
+                        document.getElementById("oApellidos").disabled = false;
+                        document.getElementById("oApellidos").value = '';
+                    }
+                },
+            });
+        }
+    });
+
+</script>
+

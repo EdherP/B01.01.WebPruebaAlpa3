@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Permisos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <br />
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Administración de Permisos
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <a href="#" class="btn btn-secondary kt-margin-r-10" id="BtnActualizarPerm" title="Guardar cambios">
+                            <i class="la la-save"></i> <span class="kt-hidden-mobile">Guardar</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="kt-portlet__body">
+
+                    <div class="form-group row">
+
+                        <div class="col-lg-4">
+                            <label>Roles</label>
+                            @Html.DropDownList("oRol", ViewBag.ListaRoles as SelectList, "", new { @class = "form-control form-control-sm", @name = "oRol" })
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Usuarios</label>
+                            @Html.DropDownList("oUsuario", ViewBag.ListaUsuarios as SelectList, "", new { @class = "form-control form-control-sm", @name = "oUsuario" })
+                        </div>
+                    </div>
+
+                    <div id="dvListPermisos">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end:: Content -->
+    </div>
+    <div id="progress" class="modal">
+        <div class="center" style="position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">
+            <div class="kt-section__content kt-section__content--border">
+                <div class="spinner-grow text-primary" role="status"></div>
+                <div class="spinner-grow text-secondary" role="status"></div>
+                <div class="spinner-grow text-success" role="status"></div>
+                <div class="spinner-grow text-danger" role="status"></div>
+                <div class="spinner-grow text-warning" role="status"></div>
+                <div class="spinner-grow text-info" role="status"></div>
+                <div class="spinner-grow text-light" role="status"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="../assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+       ListarDet();
+    });
+
+    function ListarDet() {
+        $('#progress').show();
+        var url = "@Url.Action("VP_ListarPermisos", "Administracion")";
+        $.get(url).done(function (data) {
+            $("#dvListPermisos").html(data);
+            $('#progress').hide();
+        });
+    }
+
+    $("#oUsuario").change(function () {
+        var xUsu = document.getElementById("oUsuario").value;
+        var datax = { UserID: xUsu };
+        $('#progress').show();
+        $.get('/Administracion/VP_ListarPermisos', datax).done(function (data) {
+            $("#dvListPermisos").html(data);
+        });
+        document.getElementById("oRol").value = "";
+        $('#progress').hide();
+    })
+
+    $("#oRol").change(function () {
+        var xRol = document.getElementById("oRol").value;
+        var datax = { RoleID: xRol };
+        $('#progress').show();
+        $.get('/Administracion/VP_ListarPermisos', datax).done(function (data) {
+            $("#dvListPermisos").html(data);
+        });
+        document.getElementById("oUsuario").value = "";
+        $('#progress').hide();
+    })
+
+</script>
+
+
+
+
+

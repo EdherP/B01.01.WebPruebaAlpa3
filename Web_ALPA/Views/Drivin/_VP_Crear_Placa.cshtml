@@ -1,0 +1,250 @@
+﻿<body>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+            @ViewBag.oTitulo
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body">
+        <form form id="form" class="kt-form">
+            <fieldset id="SubmitFormx">
+                <div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Ingrese Placa (*)</label>
+                            @*@Html.TextBox("oCodEmpresa", ViewBag.oCodEmpresa as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oCodEmpresa", @autocomplete = "off", @requerid = "requerid", @id = "oCodEmpresa" })*@
+                            @*@Html.DropDownList("oCodEmpresa", (SelectList)ViewBag.ListaEmpresas, new { @class = "form-control", @id = "oCodEmpresa" })*@
+                            @*@Html.DropDownList("oCodEmpresa", new SelectList(new List<string> { "VEH-100", "VEH-200", "VEH-300", "VEH-400" }, "VEH-100"), new { @class = "form-control", @id = "oCodEmpresa" })*@
+                            @Html.DropDownList(
+                           "oCodPlaca", ViewBag.ListarPlacaDrivin as SelectList, "Seleccionar",
+                            new
+                            {
+                                @class = "show-tick form-control",
+                                @name = "oCodPlaca",
+                                //@disabled = "disabled",
+                                @id = "oCodPlaca"
+                            })
+                        </div>
+                        <div class="col-lg-6" style="display:none">
+                            <label>RUC (*)</label>
+                            @Html.TextBox("oRUC", ViewBag.oRUC as string, "", new { @class = "form-control validanumericos2", @disabled = "disabled", @name = "oRUC", @autocomplete = "off", @requerid = "requerid", @id = "oRUC", @maxlength = 11 })
+                        </div>
+                        <div class="col-lg-3">
+                            <label>Tiempo Servicio</label>
+                            @Html.TextBox("oTiempoServicio", ViewBag.oTiempoServicio as string ?? "60", "", new { @class = "form-control validanumericos2", @name = "oTiempoServicio", @autocomplete = "off", @requerid = "requerid", @id = "oTiempoServicio", @maxlength = 5, })
+                        </div>
+                        <div class="col-lg-3">
+                            <label>Convoy</label>
+                            @Html.DropDownList("oConvoy", new SelectList(new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Seleccionar", Value = "" },
+                                new SelectListItem { Text = "1", Value = "1" },
+                                new SelectListItem { Text = "2", Value = "2" },
+                                new SelectListItem { Text = "3", Value = "3" },
+                                new SelectListItem { Text = "4", Value = "4" },
+                                new SelectListItem { Text = "5", Value = "5" },
+                                new SelectListItem { Text = "6", Value = "6" }
+                            }, "Value", "Text"), new { @class = "form-control", @id = "oConvoy" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label>Inicio Ventana</label>
+                            <input class="form-control form-control-sm" id="oHoraMinutoInicio" type="time" value="@DateTime.Now.ToString("00:00")" name="oHoraMinutoInicio" required />
+                        </div>
+                        <div class="col-lg-3">
+                            <label>Fin Ventana</label>
+                            <input class="form-control form-control-sm" id="oHoraMinutoFin" type="time" value="@DateTime.Now.ToString("00:00")" name="oHoraMinutoFin" required />
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Fecha Entrega Final</label>
+                            <input class="form-control form-control-sm" id="oFechaDespacho" type="date" value="" @*value="@DateTime.Now.ToString("yyyy-MM-dd")"*@ name="oFechaDespacho" required />
+                        </div>
+                    </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="kt-spinner kt-spinner--v2 kt-spinner--lg kt-spinner--focus" style="text-align:center;display:none" id="loaderDiv">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="BtnCerrar">Cerrar</button>
+        <button type="button" class="btnRegistrarEmp btn btn-primary" id="btnRegistrarEmp"></button>
+    </div>
+</body>
+@*<script src="../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <script src="../assets/app/bundle/app.bundle.js" type="text/javascript"></script>*@
+<script>
+    $('#oCodPlaca').selectpicker({
+        liveSearch: true,
+        maxOptions: 1
+    });
+
+    $(document).ready(function () {
+
+        var TipoForm = '@ViewBag.oTipoForm';
+        var x = document.getElementById("divActivoEmp");
+
+        if (TipoForm == 'A') {
+            document.getElementById("btnRegistrarEmp").innerHTML = 'Registrar';
+            document.getElementById("oCodPlaca").disabled = false;
+            document.getElementById("oRUC").disabled = false;
+        }
+        else {
+            document.getElementById("btnRegistrarEmp").innerHTML = 'Editar';
+            document.getElementById("oCodPlaca").disabled = true;
+            document.getElementById("oEmpresa").disabled = false;
+        }
+    });
+
+    $(function () {
+        $('.validanumericos').keypress(function (e) {
+            if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                return false;
+        })
+            .on("cut copy paste", function (e) {
+                e.preventDefault();
+            });
+    });
+
+    $(function () {
+        $('.validanumericos2').keypress(function (e) {
+            if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                return false;
+        })
+    });
+
+    $('.btnRegistrarEmp').click("click", function () {
+
+        var TipoForm = '@ViewBag.oTipoForm';
+        var oMensaje = "";
+        var oUrl = "";
+
+        if (TipoForm == "A") {
+            oUrl = '/Drivin/RegistrarPlaca';
+        }
+        else {
+
+            oUrl = '/IngresosAlpa/ActualizarEmpresa';
+        }
+
+        if (document.getElementById("oCodPlaca").value == "" &&
+            document.getElementById("oTiempoServicio").value == "" &&
+            document.getElementById("oHoraMinutoInicio").value == "00:00" &&
+            document.getElementById("oHoraMinutoFin").value == "00:00" &&
+            document.getElementById("oFechaDespacho").value == "" &&
+            document.getElementById("oConvoy").value == ""
+        )
+        {
+            oMensaje = "Debe ingresar los datos obligatorios (*)";
+        }
+
+        var inicio = document.getElementById("oHoraMinutoInicio").value;
+        var fin = document.getElementById("oHoraMinutoFin").value;
+
+        if (inicio === "00:00" && fin === "00:00") {
+            oMensaje = "";
+        } else if (inicio === fin) {
+            oMensaje = "Las horas de inicio y fin no deben ser iguales.";
+        }
+
+
+        if (oMensaje != "") {
+            swal({
+                type: 'info',
+                title: 'Validación',
+                text: oMensaje,
+                showConfirmButton: true,
+            });
+        }
+        else {
+
+            $("#loaderDiv").show();
+            var button = $(this).find('input[type="submit"]');
+            setTimeout(function () {
+                button.removeAttr('disabled');
+            }, 1);
+
+            /* ****************++ ************* */
+            var datax = new FormData();
+
+            datax.append("oRUC", document.getElementById("oRUC").value);
+            datax.append("oCodPlaca", document.getElementById("oCodPlaca").value);
+            datax.append("oTiempoServicio", document.getElementById("oTiempoServicio").value);
+            datax.append("oHoraMinutoInicio", document.getElementById("oHoraMinutoInicio").value);
+            datax.append("oHoraMinutoFin", document.getElementById("oHoraMinutoFin").value);
+            datax.append("oFechaDespacho", document.getElementById("oFechaDespacho").value);
+            datax.append("oConvoy", document.getElementById("oConvoy").value);
+            
+            // Recorre todos los checkboxes seleccionados
+            $("input[type='checkbox'][id^='Checkbox1']:checked").each(function () {
+                var checkboxId = $(this).attr("id");
+                var itemId = checkboxId.replace("Checkbox1", "");
+                
+                var row = $(this).closest('tr');
+                var Docentry = row.find("input[name*='Docentry']").val();
+                var Reference = row.find("input[name*='reference']").val();
+
+                //var Reference = $(this).closest("tr").find("td:eq(27)").text().trim();
+                //var Docentry = $(this).closest("tr").find("td:eq(71)").text().trim();
+                // Agrega los valores al FormData
+                datax.append("checkboxesSeleccionados[]", itemId);
+                datax.append("Docentry[]", Docentry);
+                datax.append("Reference[]", Reference);
+            });
+            /* ****************++ ************* */
+
+            //
+            $.ajax({
+                url: oUrl,
+                type: "post",
+                processData: false,
+                data: datax,
+                //dataType: 'json',
+                contentType: false,
+                success: function (result) {
+                    $("#loaderDiv").hide();
+                    $("#btnCrearEmp").show();
+                    if (result.EnableSuccess == true) {
+                        $("#ModalCrear").modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                        swal({
+                            //position: 'top-Center',
+                            type: 'success',
+                            title: result.SuccessMsg,
+                            showConfirmButton: true,
+                            timer: 8000
+                        });
+                        $('#progress').hide();
+                        BuscarPedidos();
+                    }
+                    else {
+                        swal({
+                            //position: 'top-right',
+                            type: 'error',
+                            title: 'No Creado',
+                            text: result.SuccessMsg,
+                            showConfirmButton: true,
+                        });
+                    }
+
+                },
+                error: function () {
+                    console.log("fallo");
+                    swal({
+                        position: 'top-right',
+                        type: 'error',
+                        title: result.SuccessMsg,
+                        showConfirmButton: true,
+                        //timer: 3000
+                    });
+                }
+            });
+
+        }
+    });
+
+</script>
+

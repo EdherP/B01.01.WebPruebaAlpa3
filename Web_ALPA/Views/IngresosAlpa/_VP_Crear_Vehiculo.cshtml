@@ -1,0 +1,255 @@
+﻿
+<body>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+            @ViewBag.oTitulo
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body">
+        <form form id="form" class="kt-form">
+            <fieldset id="SubmitFormx">
+                <div>
+                    <div class="form-group" style="display:none">
+                        @Html.TextBox("oIdTx", ViewBag.oCode as string, "", new { @class = "form-control", @name = "oIdTx" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Codigo de Empresa (*)</label>
+                            @Html.DropDownList("oCodEmpresa", ViewBag.ListarEmpresa as SelectList, "Seleccionar",
+                           new { @class = "form-control", @name = "oCodEmpresa", @disabled = "disabled" })
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Placa (*)</label>
+                            @Html.TextBox("oPlaca", ViewBag.oCodEmpresa as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oPlaca", @autocomplete = "off", @requerid = "requerid", @id = "oPlaca" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Marca (*)</label>
+                            @Html.TextBox("oMarca", ViewBag.oEmpresa as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oMarca", @autocomplete = "off", @requerid = "requerid", @id = "oMarca" })
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Año (*)</label>
+                            @Html.TextBox("oAnio", ViewBag.oRUC as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oAnio", @autocomplete = "off", @requerid = "requerid", @id = "oAnio" , @maxlength = 4})
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <label>Revisión Tecnica</label>
+                            <div></div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="oCustomFile1">
+                                <label class="custom-file-label"> @ViewBag.oRutaRevTecnica</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <label>SOAT</label>
+                            <div></div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="oCustomFile2">
+                                <label class="custom-file-label"> @ViewBag.oRutaSOAT</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <label>Tarjeta de Propiedad</label>
+                            <div></div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="oCustomFile3">
+                                <label class="custom-file-label"> @ViewBag.oRutaTarjPropiedad</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="kt-spinner kt-spinner--v2 kt-spinner--lg kt-spinner--focus" style="text-align:center;display:none" id="loaderDiv">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="BtnCerrar">Cerrar</button>
+        <button type="button" class="btnRegistrarVeh btn btn-primary" id="btnRegistrarVeh"></button>
+    </div>
+</body>
+@*<script src="../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+<script src="../assets/app/bundle/app.bundle.js" type="text/javascript"></script>*@
+
+<script>
+
+    $(document).ready(function () {
+        var TipoForm = '@ViewBag.oTipoForm';
+
+        if (TipoForm == 'A') {
+            document.getElementById("btnRegistrarVeh").innerHTML = 'Registrar';
+            document.getElementById("oCodEmpresa").disabled = false;
+            document.getElementById("oPlaca").disabled = false;
+            document.getElementById("oMarca").disabled = false;
+            document.getElementById("oAnio").disabled = false;
+        }
+        else {
+            document.getElementById("btnRegistrarVeh").innerHTML = 'Editar';
+            document.getElementById("oCodEmpresa").disabled = false;
+            document.getElementById("oMarca").disabled = false;
+            document.getElementById("oAnio").disabled = false;
+
+        }
+    });
+
+
+    $(function () {
+        $('.validanumericos').keypress(function (e) {
+            if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                return false;
+        })
+            .on("cut copy paste", function (e) {
+                e.preventDefault();
+            });
+    });
+
+    $("#oCustomFile1").change(function () {
+        var extension = $("#oCustomFile1").val().split('.').pop().toUpperCase();
+        if (extension != "PDF") {
+            swal({
+                type: 'error',
+                title: 'Formato incorrecto',
+                text: 'seleccione un documento en pdf.',
+                showConfirmButton: true,
+            });
+            $("#oCustomFile1").val('');
+        }
+    });
+    $("#oCustomFile2").change(function () {
+        var extension = $("#oCustomFile2").val().split('.').pop().toUpperCase();
+        if (extension != "PDF") {
+            swal({
+                type: 'error',
+                title: 'Formato incorrecto',
+                text: 'seleccione un documento en pdf.',
+                showConfirmButton: true,
+            });
+            $("#oCustomFile2").val('');
+        }
+    });
+    $("#oCustomFile3").change(function () {
+        var extension = $("#oCustomFile3").val().split('.').pop().toUpperCase();
+        if (extension != "PDF") {
+            swal({
+                type: 'error',
+                title: 'Formato incorrecto',
+                text: 'seleccione un documento en pdf.',
+                showConfirmButton: true,
+            });
+            $("#oCustomFile3").val('');
+        }
+    });
+
+    $('.btnRegistrarVeh').click("click", function () {
+
+        var TipoForm = '@ViewBag.oTipoForm';
+        var oMensaje = "";
+        var oUrl = "";
+        if (TipoForm == "A") {
+            oUrl = '/IngresosAlpa/RegistrarVehiculo';
+            
+        }
+        else {
+            oUrl = '/IngresosAlpa/ActualizarVehiculo';
+        }
+
+        if (document.getElementById("oPlaca").value == "" || document.getElementById("oMarca").value == "" || document.getElementById("oAnio").value == "") {
+            oMensaje = "Debe ingresar los datos obligatorios (*)";
+        }
+
+        if (oMensaje != "") {
+            swal({
+                type: 'info',
+                title: 'Validación',
+                text: oMensaje,
+                showConfirmButton: true,
+            });
+        }
+        else {
+
+            $("#loaderDiv").show();
+            var button = $(this).find('input[type="submit"]');
+            setTimeout(function () {
+                button.removeAttr('disabled');
+            }, 1);
+
+            var datax = new FormData();
+            var files1 = $("#oCustomFile1").get(0).files;
+            var files2 = $("#oCustomFile2").get(0).files;
+            var files3 = $("#oCustomFile3").get(0).files;
+            if (files1.length == 1) {
+                datax.append("oCustomFile1", files1[0]);
+            }
+            if (files2.length == 1) {
+                datax.append("oCustomFile2", files2[0]);
+            }
+            if (files3.length == 1) {
+                datax.append("oCustomFile3", files3[0]);
+            }
+            
+            datax.append("oCodEmpresa", document.getElementById("oCodEmpresa").value);
+            datax.append("oPlaca", document.getElementById("oPlaca").value);
+            datax.append("oMarca", document.getElementById("oMarca").value);
+            datax.append("oAnio", document.getElementById("oAnio").value);
+            datax.append("oIdTx", document.getElementById("oIdTx").value);
+            $.ajax({
+                url: oUrl,
+                type: 'post',
+                processData: false,
+                data: datax,
+                //dataType: 'json',
+                contentType: false,
+                success: function (result) {
+                    $("#loaderDiv").hide();
+                    $("#btnCrearVeh").show();
+                    if (result.EnableSuccess == true) {
+                        $("#ModalCrear").modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                        swal({
+                            //position: 'top-Center',
+                            type: 'success',
+                            title: result.SuccessMsg,
+                            showConfirmButton: true,
+                            timer: 4000
+                        });
+                        BuscarVehiculos();
+                    }
+                    else {
+                        swal({
+                            //position: 'top-right',
+                            type: 'error',
+                            title: 'No Creado',
+                            text: result.SuccessMsg,
+                            showConfirmButton: true,
+                        });
+                    }
+
+                },
+                error: function () {
+                    console.log("fallo");
+                    swal({
+                        position: 'top-right',
+                        type: 'error',
+                        title: result.SuccessMsg,
+                        showConfirmButton: true,
+                        //timer: 3000
+                    });
+                }
+            });
+
+        }
+    });
+</script>

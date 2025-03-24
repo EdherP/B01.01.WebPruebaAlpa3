@@ -1,0 +1,80 @@
+﻿@using Web_ALPA.Models.Entidad
+
+@model List<BE_SalidaDeJabas>
+
+<html>
+<body>
+    <div>
+        <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_Scroller1">
+            <thead class="thead-dark">
+                <tr role="row">
+                    <th class="text-light">Fecha</th>
+                    <th class="text-light">Ruta</th>
+                    <th class="text-light">Secuencia</th>
+                    <th class="text-light">Jaba</th>
+                    <th class="text-light">Código Cliente</th>
+                    <th class="text-light">Cliente</th>
+                    <th class="text-light">Registrado por</th>
+                    <th class="text-light">Fecha registro</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr style="text-align:justify">
+
+                            <td class="text-dark">
+                                @Html.HiddenFor(x => Model[i].Fecha)
+                                @Html.DisplayFor(x => Model[i].Fecha)
+                            </td>
+
+                            <td class="text-dark">
+                                @Html.HiddenFor(x => Model[i].U_Ruta)
+                                @Html.DisplayFor(x => Model[i].U_Ruta)
+                            </td>
+
+                            <td class="text-dark">
+                                @Html.HiddenFor(x => Model[i].U_Secuencia)
+                                @Html.DisplayFor(x => Model[i].U_Secuencia)
+                            </td>
+
+
+
+                            <td class="text-dark">
+                                @Html.HiddenFor(x => Model[i].U_CodJaba)
+                                @Html.DisplayFor(x => Model[i].U_CodJaba)
+                            </td>
+
+                            <td class="text-dark">
+                                @Html.HiddenFor(x => Model[i].U_CodCliente)
+                                @Html.DisplayFor(x => Model[i].U_CodCliente)
+                            </td>
+                            <td class="text-dark">
+                                @Html.HiddenFor(x => Model[i].U_NomCliente)
+                                @Html.DisplayFor(x => Model[i].U_NomCliente)
+                            </td>
+
+                            <td class="text-dark">
+                                @Html.HiddenFor(x => Model[i].U_UsuarioRegistro)
+                                @Html.DisplayFor(x => Model[i].U_UsuarioRegistro)
+                            </td>
+                            <td class="text-dark">
+                                @Html.HiddenFor(x => Model[i].U_FechaRegistro)
+                                @Html.DisplayFor(x => Model[i].U_FechaRegistro)
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <script src="~/assets/app/custom/general/components/datatables/MyTable/Table_Scrollable_V9.js"></script>
+</body>
+</html>
+
+
+
+

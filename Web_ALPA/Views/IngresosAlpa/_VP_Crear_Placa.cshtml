@@ -1,0 +1,152 @@
+﻿
+<body>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+            @ViewBag.oTitulo
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body">
+        <form form id="form" class="kt-form">
+            <fieldset id="SubmitFormx">
+                <div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>RUC (*)</label>
+                            @Html.TextBox("oRUC", ViewBag.oRUC as string, "", new { @class = "form-control validanumericos2", @disabled = "disabled", @name = "oRUC", @autocomplete = "off", @requerid = "requerid", @id = "oRUC", @maxlength = 11 })
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Codigo de Empresa (*)</label>
+                            @Html.TextBox("oCodEmpresa", ViewBag.oCodEmpresa as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oCodEmpresa", @autocomplete = "off", @requerid = "requerid", @id = "oCodEmpresa" })
+                        </div>
+                    </div>
+
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="kt-spinner kt-spinner--v2 kt-spinner--lg kt-spinner--focus" style="text-align:center;display:none" id="loaderDiv">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="BtnCerrar">Cerrar</button>
+        <button type="button" class="btnRegistrarEmp btn btn-primary" id="btnRegistrarEmp"></button>
+    </div>
+</body>
+@*<script src="../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+<script src="../assets/app/bundle/app.bundle.js" type="text/javascript"></script>*@
+
+<script>
+
+
+    $(function () {
+        $('.validanumericos').keypress(function (e) {
+            if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                return false;
+        })
+            .on("cut copy paste", function (e) {
+                e.preventDefault();
+            });
+    });
+
+    $(function () {
+        $('.validanumericos2').keypress(function (e) {
+            if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                return false;
+        })
+    });
+
+    $('.btnRegistrarEmp').click("click", function () {
+
+        var TipoForm = '@ViewBag.oTipoForm';
+        var oMensaje = "";
+        var oUrl = "";
+        
+        if (TipoForm == "A") {
+            oUrl = '/Drivin/RegistrarPlaca';
+        }
+        else {
+            
+            oUrl = '/IngresosAlpa/ActualizarEmpresa';
+        }
+
+        if (document.getElementById("oEmpresa").value == "" || document.getElementById("oRUC").value == "" ||
+            document.getElementById("oContacto").value == "" || document.getElementById("oCodTipoEmpresa").value == "") {
+            oMensaje = "Debe ingresar los datos obligatorios (*)";
+        }
+
+        if (oMensaje != "") {
+            swal({
+                type: 'info',
+                title: 'Validación',
+                text: oMensaje,
+                showConfirmButton: true,
+            });
+        }
+        else {
+
+            $("#loaderDiv").show();
+            var button = $(this).find('input[type="submit"]');
+            setTimeout(function () {
+                button.removeAttr('disabled');
+            }, 1);
+            
+            var datax = new FormData();
+            
+            datax.append("oRUC", document.getElementById("oRUC").value);
+            datax.append("oCodEmpresa", document.getElementById("oCodEmpresa").value);
+            
+
+            $.ajax({
+                url: oUrl,
+                type: "post",
+                processData: false,
+                data: datax,
+                //dataType: 'json',
+                contentType: false,
+                success: function (result) {
+                    $("#loaderDiv").hide();
+                    $("#btnCrearEmp").show();
+                    if (result.EnableSuccess == true) {
+                        $("#ModalCrear").modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                        swal({
+                            //position: 'top-Center',
+                            type: 'success',
+                            title: result.SuccessMsg,
+                            showConfirmButton: true,
+                            timer: 4000
+                        });
+                        $('#progress').hide();
+                        BuscarEmpresas();                       
+                    }
+                    else {
+                        swal({
+                            //position: 'top-right',
+                            type: 'error',
+                            title: 'No Creado',
+                            text: result.SuccessMsg,
+                            showConfirmButton: true,
+                        });
+                    }
+
+                },
+                error: function () {
+                    console.log("fallo");
+                    swal({
+                        position: 'top-right',
+                        type: 'error',
+                        title: result.SuccessMsg,
+                        showConfirmButton: true,
+                        //timer: 3000
+                    });
+                }
+            });
+
+        }
+    });
+
+</script>
+

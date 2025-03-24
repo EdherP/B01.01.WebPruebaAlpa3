@@ -1,0 +1,142 @@
+﻿@using Web_ALPA.Data
+@model List<KORBER_Listar_OrdenCompra_Cab_Result>
+<html>
+<body>
+
+    <div>
+        <table class="table table-striped table-hover" id="kt_table5">
+
+            <thead>
+                <tr role="row">
+                    <th class="text-dark">#</th>
+                    <th class="text-dark">Almacen</th>
+                    <th class="text-dark">Tipo</th>
+                    <th class="text-dark" style="text-align:center">Fecha Entrega</th>
+                    <th class="text-dark">Orden Compra</th>
+                    <th class="text-dark">Estado</th>
+                    <th class="text-dark">Tipo Compra</th>
+                    <th class="text-dark">Linea Negocio</th>
+                    <th class="text-dark">Presentación</th>
+                    <th class="text-dark">Modalidad</th>
+                    <th class="text-dark" style="text-align:center">Fecha Registro</th>
+                    <th class="text-dark">Cantidad Esperada</th>
+                    <th class="text-dark">...</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        //int @Code = Convert.ToInt32(Model[i].display_po_number);
+                        string @Code = (Model[i].display_po_number);
+                <tr>
+                    <td>
+                        @Html.HiddenFor(x => Model[i].Nro)
+                        @Html.DisplayFor(x => Model[i].Nro, Model[i].Nro)
+                    </td>
+
+                    <td>
+                        @Html.HiddenFor(x => Model[i].wh_id)
+                        @Html.DisplayFor(x => Model[i].wh_id, Model[i].wh_id)
+                    </td>
+
+                    <td>
+                        @Html.HiddenFor(x => Model[i].type)
+                        @Html.DisplayFor(x => Model[i].type, Model[i].type)
+                    </td>
+
+                    <td style="text-align: center; width: 120px">
+                        @Html.HiddenFor(x => Model[i].fecha_entrega_mxt)
+                        @Html.DisplayFor(x => Model[i].fecha_entrega_mxt, Model[i].fecha_entrega_mxt)
+                    </td>
+
+                    <td>
+                        @Html.HiddenFor(x => Model[i].display_po_number)
+                        @Html.DisplayFor(x => Model[i].display_po_number, Model[i].display_po_number)
+                    </td>
+
+                    <td>
+                        @Html.HiddenFor(x => Model[i].status)
+                        @Html.DisplayFor(x => Model[i].status, Model[i].status)
+                    </td>
+
+                    <td>
+                        @Html.HiddenFor(x => Model[i].tipo_compra_mxt)
+                        @Html.DisplayFor(x => Model[i].tipo_compra_mxt, Model[i].tipo_compra_mxt)
+                    </td>
+
+                    <td>
+                        @Html.HiddenFor(x => Model[i].division_mxt)
+                        @Html.DisplayFor(x => Model[i].division_mxt, Model[i].division_mxt)
+                    </td>
+
+                    <td>
+                        @Html.HiddenFor(x => Model[i].presentacion_mxt)
+                        @Html.DisplayFor(x => Model[i].presentacion_mxt, Model[i].presentacion_mxt)
+                    </td>
+
+                    <td>
+                        @Html.HiddenFor(x => Model[i].modalidad_mxt)
+                        @Html.DisplayFor(x => Model[i].modalidad_mxt, Model[i].modalidad_mxt)
+                    </td>
+
+                    <td style="text-align: center; width: 120px">
+                        @Html.HiddenFor(x => Model[i].fecha_registro_mxt)
+                        @Html.DisplayFor(x => Model[i].fecha_registro_mxt, Model[i].fecha_registro_mxt)
+                    </td>
+
+                    <td>
+                        @Html.HiddenFor(x => Model[i].cantidad_esperada_mxt)
+                        @Html.DisplayFor(x => Model[i].cantidad_esperada_mxt, Model[i].cantidad_esperada_mxt)
+                    </td>
+
+                    <td style="text-align:center">
+                        <a href="#" class="BtnDetUsu btn btn-clean btn-sm btn-icon" data-Code="@Code" id="BtnDetUsu"
+                           title="Ver detalle" data-placement="top">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </td>
+                </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    $('.BtnDetUsu').click("click", function () {
+        var xCode = $(this).attr("data-Code");
+        window.location.href = "../IngresosAlpa/EditarReporteCompra?oCode=" + xCode;
+    });
+
+    $(document).ready(function () {
+        // DataTable
+        var table = $('#kt_table5').DataTable({
+           /* scrollY: '60vh',*/
+            scrollCollapse: true,
+            scrollX: true,
+            paging: true,
+            responsive: false,
+            //autoWidth: true,
+            //"processing": true,
+            //"serverSide": true,
+            // Pagination settings
+            dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
+            <'row'<'col-sm-12'tr>>
+            <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+
+            buttons: [
+                // 'copyHtml5',
+                //'excelHtml5',
+            ],
+            filterable: true,
+            pagination: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+        });
+    });
+</script>
+

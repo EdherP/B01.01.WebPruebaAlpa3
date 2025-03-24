@@ -1,0 +1,389 @@
+﻿@using Web_ALPA.Data
+@model List<KORBER_Listar_OrdenCompra_Cab_Result>
+
+@{
+    ViewBag.Title = "EditarUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <br />
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Detalle Orden de Compra
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <div class="kt-subheader__wrapper">
+                            <a href="#" class="btn btn-secondary kt-margin-r-10" title="Cancelar" id="BtnRegresarEditUsu">
+                                <i class="la la-arrow-left"></i> <span class="kt-hidden-mobile">Regresar</span>
+                            </a>
+                            <a href="#" class="btn btn-secondary kt-margin-r-10" id="BtnEditarUsu" title="Editar Usuario">
+                                <i class="la la-refresh"></i> <span class="kt-hidden-mobile">Editar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-portlet__body">
+                    <form class="kt-form" id="kt_form">
+                        <fieldset id="SubmitFormx" autocomplete="off">
+                            <div class="row">
+                                <div class="col-xl-2"></div>
+                                <div class="col-xl-12">
+                                    @if (Model != null & Model.Count == 1)
+                                    {
+                                        <div class="kt-section kt-section--first">
+                                            <div class="kt-section__body">
+
+                                                <div class="form-group" style="display:none">
+                                                    <input class="form-control" id="oCode" type="text" name="oCode" value=@Model[0].display_po_number />
+                                                    <input class="form-control form-control-sm" id="oTipoEstado" name="oTipoEstado" value="@ViewBag.oTipo" />
+                                                </div>
+                                                @*<h3 class="kt-section__title kt-section__title-lg">
+            Datos Generales:
+        </h3>*@
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <label>Almacén</label>
+                                                        <div class="input-group">
+                                                            @Html.DropDownList("oWh_id", ViewBag.ListarAlmacen as SelectList, "", new { @class = "form-control", @name = "oWh_id" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Cliente</label>
+                                                        <div class="input-group">
+                                                            @Html.DropDownList("oCliente_code", ViewBag.ListarCliente as SelectList, "", new { @class = "form-control", @name = "oCliente_code" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Línea Negocio</label>
+                                                        <div class="input-group">
+                                                            @Html.DropDownList("oDivision", ViewBag.ListarLineaNegocio as SelectList, "", new { @class = "form-control", @name = "oDivision" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Fecha Recepción</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oFechaRecepcion", "", new { @class = "form-control form-control-sm", @id = "oFechaRecepcion", type = "date", @name = "oFechaRecepcion" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <label>Fecha Registro</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oFechaRegistro", "", new { @class = "form-control form-control-sm", @id = "oFechaRegistro", type = "date", @name = "oFechaRegistro" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label>Fecha Fecha Informe</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oFechaInforme", "", new { @class = "form-control form-control-sm", @id = "oFechaInforme", type = "date", @name = "oFechaInforme" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <label>Conductor</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oConductor", @Model[0].conductor, "", new { @class = "form-control", @id = "oConductor", @name = "oConductor" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Placa</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroPlaca", @Model[0].nro_placa, "", new { @class = "form-control", @id = "oNroPlaca", @name = "oNroPlaca" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Nro Contenedor</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroContenedor", @Model[0].nro_contenedor, "", new { @class = "form-control", @id = "oNroContenedor", @name = "oNroContenedor" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Nro Precinto</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroPrecinto", @Model[0].nro_precinto, "", new { @class = "form-control", @id = "oNroPrecinto", @name = "oNroPrecinto" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <label>Tipo de Vehículo</label>
+                                                        <div class="input-group">
+                                                            @Html.DropDownList("oTipoVehiculo", ViewBag.ListarTipoVehiculo as SelectList, "", new { @class = "form-control", @name = "oTipoVehiculo" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>DNI</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroDni", @Model[0].nro_dni, "", new { @class = "form-control", @id = "oNroDni", @name = "oNroDni" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Licencia</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroLicencia", @Model[0].nro_licencia, "", new { @class = "form-control", @id = "oNroLicencia", @name = "oNroLicencia" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Soat</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroSoat", @Model[0].nro_soat, "", new { @class = "form-control", @id = "oNroSoat", @name = "oNroSoat" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <label>Tipo Compra</label>
+                                                        <div class="input-group">
+                                                            @Html.DropDownList("oTipoCompra", ViewBag.ListarTipoCompra as SelectList, "", new { @class = "form-control", @name = "oTipoCompra" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Tipo Carga</label>
+                                                        <div class="input-group">
+                                                            @Html.DropDownList("oTipoCarga", ViewBag.ListarTipoCarga as SelectList, "", new { @class = "form-control", @name = "oTipoCarga" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Nro Orden compra</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroOrdenCompra", @Model[0].display_po_number, "", new { @class = "form-control", @id = "oNroOrdenCompra", @name = "oNroOrdenCompra" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Nro Dua</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroDua", @Model[0].nro_dua, "", new { @class = "form-control", @id = "oNroDua", @name = "oNroDua" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <label>Nro Orden Traslado</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroOrdenTraslado", @Model[0].nro_traslado, "", new { @class = "form-control", @id = "oNroOrdenTraslado", @name = "oNroOrdenTraslado" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Nro Bill Of Lading</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroBill", @Model[0].nro_bill_lading, "", new { @class = "form-control", @id = "oNroBill", @name = "oNroBill" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Nro Factura</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroFactura", @Model[0].nro_factura, "", new { @class = "form-control", @id = "oNroFactura", @name = "oNroFactura" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label>Nro Guía Remisión</label>
+                                                        <div class="input-group">
+                                                            @Html.TextBox("oNroGuia", @Model[0].nro_guia_remision, "", new { @class = "form-control", @id = "oNroGuia", @name = "oNroGuia" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <a href="#ModalCrear" class="BtnDetEmp btn btn-danger kt-margin-r-10" data-Code="@Model[0].display_po_number" data-toggle="modal" id="BtnDetEmp" title="Nueva Empresa">
+                                                            <i class="la la-plus"></i> <span class="kt-hidden-mobile">Agregar Fotos</span>
+                                                        </a>
+                                                    </div>
+                                                    </div>
+
+                                                    <div id="ListUsuarios">
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+
+                                        <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+                                    }
+                                </div>
+                                <div class="col-xl-2"></div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ModalCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div id="modal-contentCrear">
+                            Cargando...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end:: Content -->
+    </div>
+    <div id="progress" class="modal">
+        <div class="center" style="position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">
+            <div class="kt-section__content kt-section__content--border">
+                <div class="spinner-grow text-primary" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-secondary" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-success" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-danger" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-warning" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span> </div>
+                <div class="spinner-grow text-light" role="status"> <span class="sr-only">Loading...</span> </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+<script>
+
+    $(document).ready(function () {
+        $('#progress').show();
+        var xCode = document.getElementById("oCode").value;
+        var url = "@Url.Action("VP_ListarOrdenCompraDetalle", "IngresosAlpa")?xCode=" + xCode;
+        $.get(url).done(function (data) {
+            $("#ListUsuarios").html(data);
+            $('#progress').hide();
+        });
+    });
+
+    $(".BtnDetEmp").click(function (eve) {
+        var XCod = $(this).attr("data-Code");
+        debugger;
+        var datax = { oCodEmp: XCod };
+        $.get('/IngresosAlpa/VP_Crear_Imagenes', datax).done(function (data) {
+            $("#modal-contentCrear").html(data);
+        });
+    });
+
+    $("#BtnRegresarEditUsu").click("click", function () {
+        window.location.href = "../Administracion/Usuarios";
+    });
+    function BloquearDatos() {
+        //document.getElementById("oNombres").disabled = true;
+        //document.getElementById("oApellidos").disabled = true;
+
+        var oBtn = document.getElementById('BtnEditarUsu');
+        oBtn.innerHTML = '<i class="la la-refresh"></i> Editar';
+        document.getElementById("oTipoEstado").value = "View";
+
+    }
+    $("#BtnEditarUsu").click("click", function () {
+        var xTipoEstado = document.getElementById("oTipoEstado").value;
+
+        if (xTipoEstado == "View") {
+
+            //document.getElementById("oNombres").disabled = false;
+            //document.getElementById("oApellidos").disabled = false;
+            //document.getElementById("oEmail").disabled = false;
+
+            var oBtn = document.getElementById('BtnEditarUsu');
+            oBtn.innerHTML = '<i class="la la-save"></i> Guardar';
+            document.getElementById("oTipoEstado").value = "Edit";
+        }
+
+        if (xTipoEstado == "Edit") {
+            var oMsg = "";
+
+            if (document.getElementById("oWh_id").value == "" || document.getElementById("oCliente_code").value == "" || document.getElementById("oDivision").value == 0) {
+                oMsg = "Debe ingresar los datos obligatorios (*)";
+            }
+
+            if (oMsg != "") {
+                swal(
+                    'Alerta!',
+                    oMsg,
+                )
+            }
+            else {
+
+                swal({
+                    title: 'Esta seguro de actualizar los datos del usuario?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Si, actualizar!',
+
+                }).then(function (result) {
+                    if (result.value == true) {
+                        $('#progress').show();
+                        var datax = $("#SubmitFormx").serialize();
+                        $.ajax({
+                            url: '/IngresosAlpa/ActualizarReporteCompra',
+                            type: 'post',
+                            data: datax,
+                            dataType: 'json',
+                            success: function (result) {
+                                if (result.EnableSuccess == true) {
+                                   BloquearDatos();
+                                    $('#progress').hide();
+
+                                    swal({
+                                        type: 'success',
+                                        text: result.SuccessMsg,
+                                        title: 'Mensaje!',
+                                        showConfirmButton: true,
+                                    });
+                                }
+                                else {
+
+                                    swal({
+                                        type: 'success',
+                                        text: result.SuccessMsg,
+                                        title: 'Alerta!',
+                                        showConfirmButton: true,
+                                    });
+                                }
+                            },
+                            error: function () {
+                                console.log("fallo");
+                                swal({
+                                    type: 'error',
+                                    title: result.SuccessMsg,
+                                    showConfirmButton: true,
+                                });
+                            }
+                        });
+
+                    }
+                });
+            }
+        }
+    });
+</script>
+
+

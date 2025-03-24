@@ -1,0 +1,131 @@
+﻿@using Web_ALPA.Models.Entidad
+@model List<Empresa>
+
+<style>
+    .size {
+        width: 200px;
+    }
+
+    .size2 {
+        width: 110px;
+    }
+</style>
+<html>
+<body>
+
+    <div>
+        <table class="table table-striped table-hover" id="kt_table2">
+
+            <thead>
+                <tr role="row">
+                    <th class="text-dark">#</th>
+                    <th class="text-dark">Código</th>
+                    <th class="text-dark">Empresa</th>
+                    <th class="text-dark">RUC</th>
+                    <th class="text-dark">Contacto</></th>
+                    <th class="text-dark">Tipo</th>
+                    <th class="text-dark" style="text-align:center">Activo</th>
+                    <th class="text-dark" style="text-align:center">...</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        int @Code = Convert.ToInt32(Model[i].Code);
+                        <tr>
+                            <td>
+                                @Html.HiddenFor(x => Model[i].Nro)
+                                @Html.DisplayFor(x => Model[i].Nro, Model[i].Nro)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].U_CodEmpresa)
+                                @Html.DisplayFor(x => Model[i].U_CodEmpresa, Model[i].U_CodEmpresa)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].U_Empresa)
+                                @Html.DisplayFor(x => Model[i].U_Empresa, Model[i].U_Empresa)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].U_RUC)
+                                @Html.DisplayFor(x => Model[i].U_RUC, Model[i].U_RUC)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].U_Contacto)
+                                @Html.DisplayFor(x => Model[i].U_Contacto, Model[i].U_Contacto)
+                            </td>
+
+                            <td>
+                                @Html.HiddenFor(x => Model[i].U_TipoDesc)
+                                @Html.DisplayFor(x => Model[i].U_TipoDesc, Model[i].U_TipoDesc)
+                            </td>
+
+                            <td style="text-align:center">
+                                @if (Model[i].U_FlagActivo == true)
+                                {
+                                    <span class="kt-font-bold kt-font-brand">SI</span>
+                                }
+                                else
+                                {
+                                    <span class="kt-font-bold kt-font-danger">NO</span>
+                                }
+
+                            </td>
+
+                            <td style="text-align:center">
+                                <a href="#ModalCrear" class="BtnDetEmp btn btn-clean btn-sm btn-icon" data-Code="@Code"
+                                   title="Ver detalle" data-toggle="modal">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    @*<script src="~/assets/app/custom/general/components/datatables/MyTable/Table_Scrollable_V2.js"></script>*@
+</body>
+</html>
+<script>
+    $(".BtnDetEmp").click(function (eve) {
+        var XCod = $(this).attr("data-Code");
+        var datax = { oCodEmp: XCod };
+        $.get('/IngresosAlpa/VP_Crear_Empresa', datax).done(function (data) {
+            $("#modal-contentCrear").html(data);
+        });
+    });
+    $(document).ready(function () {
+        // DataTable
+        var table = $('#kt_table2').DataTable({
+            //scrollY: '60vh',
+            scrollCollapse: true,
+            scrollX: true,
+            paging: true,
+            //responsive: false, 
+            //autoWidth: true,
+            //"processing": true,
+            //"serverSide": true,
+            // Pagination settings
+            dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
+            <'row'<'col-sm-12'tr>>
+            <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+
+            buttons: [
+                // 'copyHtml5',
+                //'excelHtml5',
+            ],
+            filterable: true,
+            pagination: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+        });
+    });
+</script>
+

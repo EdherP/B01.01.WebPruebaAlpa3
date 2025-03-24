@@ -1,0 +1,251 @@
+﻿<body>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+            @ViewBag.oTitulo
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body">
+        <form form id="form" class="kt-form">
+            <fieldset id="SubmitFormx">
+                <div>
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                            <label>Ingrese Placa(*)</label>
+                            @{ var isDisabled = ViewBag.oLineaNegocio == "CIANURO"; }
+
+                            @if (isDisabled)
+                            {
+                                @Html.DropDownList("" +
+                               "oCodPlaca", ViewBag.ListarPlacaDrivin as SelectList ?? new SelectList(new List<string>()), "Seleccionar",
+                                new
+                                {
+                                    @class = "show-tick form-control",
+                                    @name = "oCodPlaca",                                    
+                                    @id = "oCodPlaca"
+                                })
+                            }
+                            else
+                            {
+                                @Html.DropDownList("" +
+                               "oCodPlaca", ViewBag.ListarPlacaDrivin as SelectList ?? new SelectList(new List<string>()), "Seleccionar",
+                                new
+                                {
+                                    @class = "show-tick form-control",
+                                    @name = "oCodPlaca",
+                                    @disabled = "disabled",
+                                    @id = "oCodPlaca"
+                                })
+                            }
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Ingrese Conductor (*)</label>
+                            @if (isDisabled)
+                            {
+                                @Html.DropDownList(
+                                     "oConductor", ViewBag.ListarTransportistaDrivin as SelectList ?? new SelectList(new List<string>()), "Seleccionar",
+                                     new
+                                     {
+                                         @class = "show-tick form-control",
+                                         @name = "oConductor",
+                                         @id = "oConductor"
+                                     })
+                            }
+                            else
+                            {
+                                @Html.DropDownList(
+                                    "oConductor", ViewBag.ListarTransportistaDrivin as SelectList ?? new SelectList(new List<string>()), "Seleccionar",
+                                    new
+                                    {
+                                        @class = "show-tick form-control",
+                                        @name = "oConductor",
+                                        @disabled = "disabled",
+                                        @id = "oConductor"
+                                    })
+
+                            }
+                        </div>
+                        <div class="col-lg-2">
+                            <label>Prioridad</label>
+                            @Html.TextBox("oPrioridad", ViewBag.oPrioridad as string, "", new { @class = "form-control validanumericos2", @name = "oPrioridad", @autocomplete = "off", @requerid = "requerid", @id = "oPrioridad", @maxlength = 5, })
+                        </div>
+
+                    </div>
+                    <div class="form-group row" style="display:none">
+                        <div class="col-lg-3">
+                            <label>Numero Pedido</label>
+                            @Html.TextBox("oCustPoNumber", ViewBag.oCustPoNumber as string, "", new { @class = "form-control form-control-sm", @name = "oCustPoNumber", @autocomplete = "off", @requerid = "requerid", @disabled = "disabled" })
+                        </div>
+                        <div class="col-lg-3" style="display:none">
+                            <label>Documento</label>
+                            @Html.TextBox("numeroguia", ViewBag.numeroguia as string, "", new { @class = "form-control form-control-sm", @name = "numeroguia", @autocomplete = "off", @requerid = "requerid", @disabled = "disabled" })
+                        </div>
+                        <div class="col-lg-3" style="display:none">
+                            <label>Lineanegocio</label>
+                            @Html.TextBox("oLineaNegocio", ViewBag.oLineaNegocio as string, "", new { @class = "form-control form-control-sm", @name = "oLineaNegocio", @autocomplete = "off", @requerid = "requerid", @disabled = "disabled" })
+                        </div>
+                    </div>
+
+</fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="kt-spinner kt-spinner--v2 kt-spinner--lg kt-spinner--focus" style="text-align:center;display:none" id="loaderDiv">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="BtnCerrar">Cerrar</button>
+        <button type="button" class="btnRegistrarEmp btn btn-primary" id="btnRegistrarEmp"></button>
+    </div>
+</body>
+@*<script src="../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <script src="../assets/app/bundle/app.bundle.js" type="text/javascript"></script>*@
+<script>
+    $('#oCodPlaca').selectpicker({
+        liveSearch: true,
+        maxOptions: 1
+    });
+
+    $('#oConductor').selectpicker({
+        liveSearch: true,
+        maxOptions: 1
+    });
+
+    $(document).ready(function () {
+
+        var TipoForm = '@ViewBag.oTipoForm';
+        var x = document.getElementById("divActivoEmp");
+
+        if (TipoForm == 'A') {
+            document.getElementById("btnRegistrarEmp").innerHTML = 'Registrar';
+            document.getElementById("oCodPlaca").disabled = false;
+            document.getElementById("oRUC").disabled = false;
+        }
+        else {
+            document.getElementById("btnRegistrarEmp").innerHTML = 'Editar';
+            document.getElementById("oCodPlaca").disabled = true;
+            document.getElementById("oEmpresa").disabled = false;
+        }
+    });
+
+    $(function () {
+        $('.validanumericos').keypress(function (e) {
+            if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                return false;
+        })
+            .on("cut copy paste", function (e) {
+                e.preventDefault();
+            });
+    });
+
+    $(function () {
+        $('.validanumericos2').keypress(function (e) {
+            if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                return false;
+        })
+    });
+
+    $('.btnRegistrarEmp').click("click", function () {
+
+        var TipoForm = '@ViewBag.oTipoForm';
+        var oMensaje = "";
+        var oUrl = "";
+
+        if (TipoForm == "A") {
+            oUrl = '/Drivin/RegistrarPlacaIndividual';
+        }
+        else {
+
+            oUrl = '/IngresosAlpa/ActualizarEmpresa';
+        }
+
+        if (document.getElementById("oCodPlaca").value == "" && document.getElementById("oLineaNegocio").value == "CIANURO"
+            ) {
+            oMensaje = "Debe ingresar los datos obligatorios (*)";
+        }
+
+        if (document.getElementById("oConductor").value == "" && document.getElementById("oLineaNegocio").value == "CIANURO"
+        ) {
+            oMensaje = "Debe ingresar los datos obligatorios (*)";
+        }
+
+        if (oMensaje != "") {
+            swal({
+                type: 'info',
+                title: 'Validación',
+                text: oMensaje,
+                showConfirmButton: true,
+            });
+        }
+        else {
+
+            $("#loaderDiv").show();
+            var button = $(this).find('input[type="submit"]');
+            setTimeout(function () {
+                button.removeAttr('disabled');
+            }, 1);
+
+            /* ****************++ ************* */
+            var datax = new FormData();
+
+            datax.append("oCodPlaca", document.getElementById("oCodPlaca").value); 
+            datax.append("numeroguia", document.getElementById("numeroguia").value);
+            datax.append("oPrioridad", document.getElementById("oPrioridad").value);
+            datax.append("oConductor", document.getElementById("oConductor").value);
+            datax.append("oCustPoNumber", document.getElementById("oCustPoNumber").value);
+
+            /* ****************++ ************* */
+
+            //
+            $.ajax({
+                url: oUrl,
+                type: "post",
+                processData: false,
+                data: datax,
+                //dataType: 'json',
+                contentType: false,
+                success: function (result) {
+                    $("#loaderDiv").hide();
+                    $("#btnCrearEmp").show();
+                    if (result.EnableSuccess == true) {
+                        $("#ModalCrear").modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                        swal({
+                            //position: 'top-Center',
+                            type: 'success',
+                            title: result.SuccessMsg,
+                            showConfirmButton: true,
+                            timer: 8000
+                        });
+                        $('#progress').hide();
+                        BuscarPedidos();
+                    }
+                    else {
+                        swal({
+                            //position: 'top-right',
+                            type: 'error',
+                            title: 'No Creado',
+                            text: result.SuccessMsg,
+                            showConfirmButton: true,
+                        });
+                    }
+
+                },
+                error: function () {
+                    console.log("fallo");
+                    swal({
+                        position: 'top-right',
+                        type: 'error',
+                        title: result.SuccessMsg,
+                        showConfirmButton: true,
+                        //timer: 3000
+                    });
+                }
+            });
+
+        }
+    });
+
+</script>
+

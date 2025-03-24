@@ -1,0 +1,217 @@
+﻿
+<body>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+            @ViewBag.oTitulo
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body">
+        <form form id="form" class="kt-form">
+            <fieldset id="SubmitFormx">
+                <div>
+                    <div class="form-group" style="display:none">
+                        @Html.TextBox("oCode", ViewBag.oCode as string, "", new { @class = "form-control", @name = "oCode" })
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>RUC (*)</label>
+                            @Html.TextBox("oRUC", ViewBag.oRUC as string, "", new { @class = "form-control validanumericos", @disabled = "disabled", @name = "oRUC", @autocomplete = "off", @requerid = "requerid", @id = "oRUC", @MaxLengthAttributeAdapter = 11 })
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Codigo de Transportista (*)</label>
+                            @Html.TextBox("oCodTransportista", ViewBag.oCodTransportista as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oCodTransportista", @autocomplete = "off", @requerid = "requerid", @id = "oCodTransportista" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-8">
+                            <label>Nombre de Transportista (*)</label>
+                            @Html.TextBox("oTransportista", ViewBag.oTransportista as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oTransportista", @autocomplete = "off", @requerid = "requerid", @id = "oTransportista" })
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label>Tipo (*)</label>
+                            @Html.DropDownList("oCodEmpresa", ViewBag.ListarEmpresa as SelectList, "Seleccionar",
+                            new { @class = "form-control", @name = "oCodEmpresa", @disabled = "disabled" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>Contacto (*)</label>
+                            @Html.TextBox("oContacto", ViewBag.oContacto as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oContacto", @autocomplete = "off", @requerid = "requerid", @id = "oContacto" })
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Teléfono de Contacto</label>
+                            @Html.TextBox("oFonoContacto", ViewBag.oFonoContacto as string, "", new { @class = "form-control ", @disabled = "disabled", @name = "oFonoContacto", @autocomplete = "off", @requerid = "requerid", @id = "oFonoContacto" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row" style="display:none" id="divActivoTra">
+                        <div class="col-lg-6">
+                            <label>Estado</label>
+                            <div class="kt-checkbox-inline">
+                                <label class="kt-checkbox kt-checkbox--brand">
+
+                                    @if (ViewBag.oActivo == true)
+                                    {<input type="checkbox" id="oActivoEMP" name="oActivoTRA" checked="checked" disabled="disabled">}
+                                    else
+                                    {<input type="checkbox" id="oActivoEMP" name="oActivoTRA" disabled="disabled">}
+                                    Activo <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="kt-spinner kt-spinner--v2 kt-spinner--lg kt-spinner--focus" style="text-align:center;display:none" id="loaderDiv">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="BtnCerrar">Cerrar</button>
+        <button type="button" class="btnRegistrarTra btn btn-primary" id="btnRegistrarTra"></button>
+    </div>
+</body>
+
+<script>
+
+    $(document).ready(function () {
+        var TipoForm = '@ViewBag.oTipoForm';
+        var x = document.getElementById("divActivoTra");
+        if (TipoForm == 'A') {
+            document.getElementById("btnRegistrarTra").innerHTML = 'Registrar';
+            document.getElementById("oCodTransportista").disabled = true;
+            document.getElementById("oTransportista").disabled = false;
+            document.getElementById("oRUC").disabled = false;
+            document.getElementById("oCodEmpresa").disabled = false;
+            document.getElementById("oContacto").disabled = false;
+            document.getElementById("oFonoContacto").disabled = false;
+        }
+        else {
+            document.getElementById("oCodTransportista").disabled = true;
+            document.getElementById("btnRegistrarTra").innerHTML = 'Editar';
+            document.getElementById("oTransportista").disabled = false;
+            //document.getElementById("oRUC").disabled = false;
+            //document.getElementById("oCodEmpresa").disabled = false;
+            document.getElementById("oContacto").disabled = false;
+            document.getElementById("oFonoContacto").disabled = false;
+            x.style.display = "block";
+            document.getElementById("oActivoTRA").disabled = false;
+        }
+    });
+
+
+    $(function () {
+        $('.validanumericos').keypress(function (e) {
+            if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                return false;
+        })
+            .on("cut copy paste", function (e) {
+                e.preventDefault();
+            });
+    });
+
+    $('.btnRegistrarTra').click("click", function () {
+
+        var TipoForm = '@ViewBag.oTipoForm';
+        var oMensaje = "";
+        var oUrl = "";
+
+        if (TipoForm == "A") {
+            oUrl = '/IngresosAlpa/RegistrarTransportista';
+        }
+        else {
+            oUrl = '/IngresosAlpa/ActualizarTransportista';
+        }
+
+        if (document.getElementById("oCodTransportista").value == "" & document.getElementById("oTransportista").value == "" & document.getElementById("oRUC").value == "" &
+            document.getElementById("oContacto").value == "" & document.getElementById("oCodEmpresa").value == "") {
+            oMensaje = "Debe ingresar los datos obligatorios (*)";
+        }
+
+        if (oMensaje != "") {
+            swal({
+                type: 'info',
+                title: 'Validación',
+                text: oMensaje,
+                showConfirmButton: true,
+            });
+        }
+        else {
+
+            $("#loaderDiv").show();
+
+            var button = $(this).find('input[type="submit"]');
+            setTimeout(function () {
+                button.removeAttr('disabled');
+            }, 1);
+            var datax = $("#SubmitFormx").serialize();
+            $.ajax({url: oUrl,type: 'post',data: datax,dataType: 'json',success: function (result) {
+                    $("#loaderDiv").hide();
+                    $("#btnCrearTra").show();
+                    if (result.EnableSuccess == true) {
+                        $("#ModalCrearEdit").modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                        swal({
+                            //position: 'top-Center',
+                            type: 'success',
+                            title: result.SuccessMsg,
+                            showConfirmButton: true,
+                            timer: 4000
+                        });
+                        $('#progress').hide();
+                        BuscarTransportistas();
+                    }
+                    else {
+                        swal({
+                            //position: 'top-right',
+                            type: 'error',
+                            title: 'No Creado',
+                            text: result.SuccessMsg,
+                            showConfirmButton: true,
+                        });
+                    }
+
+                },
+                error: function () {
+                    console.log("fallo");
+                    swal({
+                        position: 'top-right',
+                        type: 'error',
+                        title: result.SuccessMsg,
+                        showConfirmButton: true,
+                        //timer: 3000
+                    });
+                }
+            });
+
+        }
+    });
+    $("#oRUC").change(function () {
+        var xRUC = document.getElementById("oRUC").value;
+        if (xRUC.length == 11) {
+            //document.getElementById("oEmpresa").disabled = true;
+            var datax = { oConsulta: "RUC", oNroDoc: xRUC };
+            var oUrl = "@Url.Action("ValidarDocIdentidad", "IngresosAlpa")";
+            $.ajax({
+                url: oUrl, type: 'post', data: datax, dataType: 'json', success: function (result) {
+                    if (result.EnableSuccess == true) {
+                        document.getElementById("oTransportista").value = result.xRazonSocial;
+                        //document.getElementById("oRUC").disabled = true;
+                        document.getElementById("oContacto").focus();
+                    }
+                    else {
+                        document.getElementById("oTransportista").disabled = false;
+                        document.getElementById("oTransportista").value = '';
+                    }
+                },
+            });
+        }
+    });
+</script>
+

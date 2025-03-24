@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "TomaInventarioGral";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="kt-portlet">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Programación de Inventario.
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <a href="#" class="btn btn-secondary kt-margin-r-10" id="BtnBuscarProgInvx" title="Consultar">
+                            <i class="la la-refresh"></i> <span class="kt-hidden-mobile">Consultar</span>
+                        </a>
+                        <a href="#ModalCrear" class="btnCrearProgINV btn btn-danger kt-margin-r-10" data-toggle="modal" id="btnCrearProgINV" title="Nueva Programación">
+                            <i class="flaticon2-plus"></i> <span class="kt-hidden-mobile">Nuevo</span>
+                        </a>
+                    </div>
+                </div>
+                <form class="kt-form kt-form--label-right">
+                    <div class="kt-portlet__body">
+                        <div class="form-group row">
+
+                            <div class="col-sm-2">
+                                <label>Desde</label>
+                                <input class="form-control form-control-sm" id="oFechaDesde" type="date" value=@ViewBag.oFechaDesde name="oFechaDesde" required />
+                            </div>
+
+                            <div class="col-sm-2">
+                                <label>Hasta</label>
+                                <input class="form-control form-control-sm" id="oFechaHasta" type="date" value=@ViewBag.oFechaHasta name="oFechaHasta" required />
+
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label>Estado</label>
+                                @Html.DropDownList("oEstado", ViewBag.ListarEstado as SelectList, "", new { @class = "form-control form-control-sm", @name = "oEstado", @id = "oEstado" })
+
+                            </div>
+
+                            <div class="col-sm-2">
+                                <label><br /></label>
+                                <input type="button" class="BtnBuscarProgInvx form-control form-control-sm btn btn-primary " value="Buscar" id="BtnBuscarProgInvx" />
+                            </div>
+                        </div>
+                        <div id="DivGetProgInv">
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="modal fade" id="ModalCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" data-keyboard="false">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+
+                            <div class="modal-body">
+                                <div id="modal-contentCrear">
+                                    Cargando...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="progress" class="modal">
+    <div class="center" style="position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">
+        <div class="kt-section__content kt-section__content--border">
+            <div class="spinner-grow text-primary" role="status"> <span class="sr-only">Loading...</span> </div>
+            <div class="spinner-grow text-secondary" role="status"> <span class="sr-only">Loading...</span> </div>
+            <div class="spinner-grow text-success" role="status"> <span class="sr-only">Loading...</span> </div>
+            <div class="spinner-grow text-danger" role="status"> <span class="sr-only">Loading...</span> </div>
+            <div class="spinner-grow text-warning" role="status"> <span class="sr-only">Loading...</span> </div>
+            <div class="spinner-grow text-info" role="status"> <span class="sr-only">Loading...</span> </div>
+            <div class="spinner-grow text-light" role="status"> <span class="sr-only">Loading...</span> </div>
+        </div>
+        <div>
+            <br />
+            <h5>Procesando..</h5>
+        </div>
+    </div>
+</div>
+
+
+<script src="../assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+<script>
+
+    $(document).ready(function () {
+        BuscarProgInv();
+    });
+
+    function BuscarProgInv() {
+        $('#progress').show();
+        var button = $(this).find('input[type="button"]');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+
+        var url = "@Url.Action("VP_progInventario_Cab", "Favo")";
+        var xFechaDesde = $("#oFechaDesde").val();
+        var xFecHasta = $("#oFechaHasta").val();
+        var xEstado = $("#oEstado").val();
+        var datax = { oFechaDesde: xFechaDesde, oFechaHasta: xFecHasta, oEstado: xEstado };
+        $.get(url, datax).done(function (data) {
+            $("#DivGetProgInv").html(data);
+            setTimeout(function () {
+                button.attr('disabled', 'disabled');
+            }, 0);
+            $('#progress').hide();
+        });
+    }
+
+    $(".btnCrearProgINV").click(function (eve) {
+
+        $.get('/Favo/VP_Crear_ProgInventario').done(function (data) {
+            $("#modal-contentCrear").html(data);
+        });
+    });
+
+     $("#BtnBuscarProgInvx").click("click", function () {
+         BuscarProgInv();
+     });
+</script>

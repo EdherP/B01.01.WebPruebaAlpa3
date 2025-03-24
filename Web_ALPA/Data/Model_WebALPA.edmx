@@ -1,0 +1,1505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model_ALPA_WEB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="USP_Listar_Menu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_Listar_MenuPermiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="varchar" Mode="In" />
+          <Parameter Name="RoleID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_Listar_Roles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_Web_Actualizar_Ayudante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_IdTx" Type="bigint" Mode="In" />
+          <Parameter Name="U_Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="U_Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaCuestionario" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaVacunacion" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaSCTR" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaInduccion" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="U_FlagActivo" Type="bit" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Actualizar_Ayudante_Docs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_NroDocumento" Type="int" Mode="In" />
+          <Parameter Name="U_EstadoDocs" Type="int" Mode="In" />
+          <Parameter Name="U_ObsEstadoDocs" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Actualizar_Conductor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_IdTx" Type="bigint" Mode="In" />
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="U_Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaCuestionario" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaVacunacion" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaSCTR" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaLicConducir" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="U_FlagActivo" Type="bit" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Actualizar_Conductor_Docs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_NroDocumento" Type="int" Mode="In" />
+          <Parameter Name="U_EstadoDocs" Type="int" Mode="In" />
+          <Parameter Name="U_ObsEstadoDocs" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Actualizar_Empresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="int" Mode="In" />
+          <Parameter Name="U_Empresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_RUC" Type="varchar" Mode="In" />
+          <Parameter Name="U_Contacto" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodTipoEmpresa" Type="int" Mode="In" />
+          <Parameter Name="U_FonoContacto" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="U_FlagActivo" Type="bit" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Actualizar_Permisos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MenuID" Type="int" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="RoleID" Type="int" Mode="In" />
+          <Parameter Name="PermisoType" Type="int" Mode="In" />
+          <Parameter Name="Permiso" Type="int" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Actualizar_Personal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_IdTx" Type="bigint" Mode="In" />
+          <Parameter Name="U_Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="U_Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_FechaCuestionarioInicio" Type="datetime" Mode="In" />
+          <Parameter Name="U_FechaCuestionarioFin" Type="datetime" Mode="In" />
+          <Parameter Name="U_Vacunacion" Type="bit" Mode="In" />
+          <Parameter Name="U_FechaSCTRInicio" Type="datetime" Mode="In" />
+          <Parameter Name="U_FechaSCTRFin" Type="datetime" Mode="In" />
+          <Parameter Name="U_Induccion" Type="bit" Mode="In" />
+          <Parameter Name="U_FechaLicenciaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="U_FechaLicenciaFin" Type="datetime" Mode="In" />
+          <Parameter Name="U_Email" Type="varchar" Mode="In" />
+          <Parameter Name="U_ListaNegra" Type="bit" Mode="In" />
+          <Parameter Name="U_MotivoListaNegra" Type="varchar" Mode="In" />
+          <Parameter Name="U_FechaListaNegra" Type="datetime" Mode="In" />
+          <Parameter Name="U_Sancionado" Type="bit" Mode="In" />
+          <Parameter Name="U_FechaSancionInicio" Type="datetime" Mode="In" />
+          <Parameter Name="U_Fecha_SancionFin" Type="datetime" Mode="In" />
+          <Parameter Name="U_Cuestionario" Type="bit" Mode="In" />
+          <Parameter Name="U_NroDosis" Type="int" Mode="In" />
+          <Parameter Name="U_SCTR" Type="bit" Mode="In" />
+          <Parameter Name="U_LicenciaConducir" Type="bit" Mode="In" />
+          <Parameter Name="U_UsuarioModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Actualizar_PersonalAsistencia_Salida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_NroDocumento" Type="int" Mode="In" />
+          <Parameter Name="U_ObservacionSalida" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="U_DevuelveLlave" Type="bit" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+          <Parameter Name="ValRpta" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Actualizar_Transportista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="int" Mode="In" />
+          <Parameter Name="U_Transportista" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_RUC" Type="varchar" Mode="In" />
+          <Parameter Name="U_Contacto" Type="varchar" Mode="In" />
+          <Parameter Name="U_FonoContacto" Type="varchar" Mode="In" />
+          <Parameter Name="U_FlagActivo" Type="bit" Mode="In" />
+          <Parameter Name="U_UsuarioRegistro" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Actualizar_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="int" Mode="In" />
+          <Parameter Name="U_Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="U_Nombres" Type="varchar" Mode="In" />
+          <Parameter Name="U_Email" Type="varchar" Mode="In" />
+          <Parameter Name="U_FlagActivo" Type="bit" Mode="In" />
+          <Parameter Name="U_SuperUsuario" Type="bit" Mode="In" />
+          <Parameter Name="U_Web" Type="bit" Mode="In" />
+          <Parameter Name="U_APP" Type="bit" Mode="In" />
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Actualizar_Usuario_Rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="U_RoleId" Type="int" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Actualizar_Vehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_IdTx" Type="bigint" Mode="In" />
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_Anio" Type="varchar" Mode="In" />
+          <Parameter Name="U_Marca" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaRevTecnica" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaSOAT" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaTarjPropiedad" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_Ayudante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_TipoDocumento" Type="int" Mode="In" />
+          <Parameter Name="U_DocIdentidad" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="U_Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaCuestionario" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaVacunacion" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaSCTR" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaInduccion" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioRegistro" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+          <Parameter Name="ValRpta" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_Conductor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_TipoDocumento" Type="int" Mode="In" />
+          <Parameter Name="U_DocIdentidad" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="U_Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaCuestionario" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaVacunacion" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaSCTR" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaLicConducir" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioRegistro" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+          <Parameter Name="ValRpta" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_Empresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_Empresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_RUC" Type="varchar" Mode="In" />
+          <Parameter Name="U_Contacto" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodTipoEmpresa" Type="int" Mode="In" />
+          <Parameter Name="U_FonoContacto" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioRegistro" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_Personal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_TipoDocumento" Type="int" Mode="In" />
+          <Parameter Name="U_DocIdentidad" Type="varchar" Mode="In" />
+          <Parameter Name="U_Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="U_Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_Cuestionario" Type="bit" Mode="In" />
+          <Parameter Name="U_FechaCuestionarioInicio" Type="datetime" Mode="In" />
+          <Parameter Name="U_FechaCuestionarioFin" Type="datetime" Mode="In" />
+          <Parameter Name="U_Vacunacion" Type="bit" Mode="In" />
+          <Parameter Name="U_NroDosis" Type="int" Mode="In" />
+          <Parameter Name="U_SCTR" Type="bit" Mode="In" />
+          <Parameter Name="U_FechaSCTRInicio" Type="datetime" Mode="In" />
+          <Parameter Name="U_FechaSCTRFin" Type="datetime" Mode="In" />
+          <Parameter Name="U_Induccion" Type="bit" Mode="In" />
+          <Parameter Name="U_LicenciaConducir" Type="bit" Mode="In" />
+          <Parameter Name="U_FechaLicenciaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="U_FechaLicenciaFin" Type="datetime" Mode="In" />
+          <Parameter Name="U_Email" Type="varchar" Mode="In" />
+          <Parameter Name="U_ListaNegra" Type="bit" Mode="In" />
+          <Parameter Name="U_MotivoListaNegra" Type="varchar" Mode="In" />
+          <Parameter Name="U_FechaListaNegra" Type="datetime" Mode="In" />
+          <Parameter Name="U_Sancionado" Type="bit" Mode="In" />
+          <Parameter Name="U_FechaSancionInicio" Type="datetime" Mode="In" />
+          <Parameter Name="U_FechaSancionFin" Type="datetime" Mode="In" />
+          <Parameter Name="U_UsuarioRegistro" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+          <Parameter Name="ValRpta" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_PersonalAsistencia_Cab" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodPersonal" Type="int" Mode="In" />
+          <Parameter Name="U_ObservacionIngreso" Type="varchar" Mode="In" />
+          <Parameter Name="U_TipoAsistencia" Type="int" Mode="In" />
+          <Parameter Name="U_EntregaLlave" Type="bit" Mode="In" />
+          <Parameter Name="U_OficinaLlave" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodAutorizante" Type="varchar" Mode="In" />
+          <Parameter Name="U_MotivoAutorizacion" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioRegistro" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+          <Parameter Name="ValRpta" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_ProgInventarioFavo_Cab" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_FechaProgramacion" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioRegistro" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodAlmacen" Type="varchar" Mode="In" />
+          <Parameter Name="U_Comentario" Type="varchar" Mode="In" />
+          <Parameter Name="U_ProgParcial" Type="bit" Mode="In" />
+          <Parameter Name="U_NroDocumento" Type="int" Mode="InOut" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_ProgInventarioFavo_Locacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_NroDocumento" Type="int" Mode="In" />
+          <Parameter Name="U_CodUbicacion" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_ProgInventarioFavo_LocacionStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_NroDocumento" Type="int" Mode="In" />
+          <Parameter Name="U_CodUbicacion" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodProducto" Type="varchar" Mode="In" />
+          <Parameter Name="U_LoteSerie" Type="varchar" Mode="In" />
+          <Parameter Name="U_Producto_FecVcto" Type="datetime" Mode="In" />
+          <Parameter Name="U_CantOperacion" Type="decimal" Mode="In" />
+          <Parameter Name="U_UsuarioRegistro" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_Transportista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_CodTransportista" Type="varchar" Mode="In" />
+          <Parameter Name="U_Transportista" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_RUC" Type="varchar" Mode="In" />
+          <Parameter Name="U_Contacto" Type="varchar" Mode="In" />
+          <Parameter Name="U_FonoContacto" Type="varchar" Mode="In" />
+          <Parameter Name="U_FlagActivo" Type="bit" Mode="In" />
+          <Parameter Name="U_UsuarioRegistro" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_CodUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="U_Contrasena" Type="varchar" Mode="In" />
+          <Parameter Name="U_Nombres" Type="varchar" Mode="In" />
+          <Parameter Name="U_Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="U_Email" Type="varchar" Mode="In" />
+          <Parameter Name="U_SuperUsuario" Type="bit" Mode="In" />
+          <Parameter Name="U_Web" Type="bit" Mode="In" />
+          <Parameter Name="U_APP" Type="bit" Mode="In" />
+          <Parameter Name="U_UsuarioRegistro" Type="varchar" Mode="In" />
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_Usuario_Rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CodUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="RoleId" Type="int" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Insertar_Vehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_CodEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="U_Placa" Type="varchar" Mode="In" />
+          <Parameter Name="U_Anio" Type="varchar" Mode="In" />
+          <Parameter Name="U_Marca" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaRevTecnica" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaSOAT" Type="varchar" Mode="In" />
+          <Parameter Name="U_RutaTarjPropiedad" Type="varchar" Mode="In" />
+          <Parameter Name="U_UsuarioRegistro" Type="varchar" Mode="In" />
+          <Parameter Name="ValRpta" Type="varchar" Mode="InOut" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="USP_Web_Listar_Ayudantes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="int" Mode="In" />
+          <Parameter Name="busqGral" Type="varchar" Mode="In" />
+          <Parameter Name="CodEmpresa" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_Conductores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="int" Mode="In" />
+          <Parameter Name="busqGral" Type="varchar" Mode="In" />
+          <Parameter Name="CodEmpresa" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_DatosInicialesUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserCode" Type="varchar" Mode="In" />
+          <Parameter Name="UserPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_Empresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_Cod" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_Personal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="int" Mode="In" />
+          <Parameter Name="busqGral" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_PersonalAsistencia_Cab" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaIni" Type="varchar" Mode="In" />
+          <Parameter Name="FechaFin" Type="varchar" Mode="In" />
+          <Parameter Name="busqGral" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_PersonalAsistencia_Doc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_NroDocumento" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_PersonalAsistencia_Doc_Det" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_IdTx_Doc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_ProgInventarioFavo_Cab" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_FecDesde" Type="varchar" Mode="In" />
+          <Parameter Name="U_FecHasta" Type="varchar" Mode="In" />
+          <Parameter Name="U_NroDocumento" Type="int" Mode="In" />
+          <Parameter Name="U_Cerrado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_ProgInventarioFavo_Comparativo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_NroDocumento" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_ProgInventarioFavo_LS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_NroDocumento" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_ProgInventarioFavo_Locacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_NroDocumento" Type="int" Mode="In" />
+          <Parameter Name="U_CodUbicacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_TipoDocumento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_Cod" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_TipoEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_Cod" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_TipoIngreso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_Web_Listar_Transportista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_Cod" Type="int" Mode="In" />
+          <Parameter Name="busqGral" Type="varchar" Mode="In" />
+          <Parameter Name="CodEmpresa" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_Usuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_Web_Listar_Vehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="U_Cod" Type="int" Mode="In" />
+          <Parameter Name="busqGral" Type="varchar" Mode="In" />
+          <Parameter Name="CodEmpresa" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Model_ALPA_WEBStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model_ALPA_WEB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ALPA_WEBEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="GET_Listar_Menu" ReturnType="Collection(Model_ALPA_WEB.USP_Listar_Menu_Result)">
+          <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_MenuPermiso" ReturnType="Collection(Model_ALPA_WEB.USP_Listar_MenuPermiso_Result)">
+            <Parameter Name="UserID" Mode="In" Type="String" />
+            <Parameter Name="RoleID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_Roles" ReturnType="Collection(Model_ALPA_WEB.USP_Listar_Roles_Result)" />
+          <FunctionImport Name="UPDATE_Permisos">
+            <Parameter Name="MenuID" Mode="In" Type="Int32" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="RoleID" Mode="In" Type="Int32" />
+            <Parameter Name="PermisoType" Mode="In" Type="Int32" />
+            <Parameter Name="Permiso" Mode="In" Type="Int32" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_Usuario_Rol">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="U_RoleId" Mode="In" Type="Int32" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="POST_ProgInventarioFavo_Cab">
+            <Parameter Name="U_FechaProgramacion" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioRegistro" Mode="In" Type="String" />
+            <Parameter Name="U_CodAlmacen" Mode="In" Type="String" />
+            <Parameter Name="U_Comentario" Mode="In" Type="String" />
+            <Parameter Name="U_ProgParcial" Mode="In" Type="Boolean" />
+            <Parameter Name="U_NroDocumento" Mode="InOut" Type="Int32" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="POST_ProgInventarioFavo_Locacion">
+            <Parameter Name="U_NroDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="U_CodUbicacion" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_ProgInventarioFavo_Cab" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_ProgInventarioFavo_Cab_Result)">
+            <Parameter Name="U_FecDesde" Mode="In" Type="String" />
+            <Parameter Name="U_FecHasta" Mode="In" Type="String" />
+            <Parameter Name="U_NroDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="U_Cerrado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_ProgInventarioFavo_Locacion" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_ProgInventarioFavo_Locacion_Result)">
+            <Parameter Name="U_NroDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="U_CodUbicacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="POST_ProgInventarioFavo_LocacionStock">
+            <Parameter Name="U_NroDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="U_CodUbicacion" Mode="In" Type="String" />
+            <Parameter Name="U_CodProducto" Mode="In" Type="String" />
+            <Parameter Name="U_LoteSerie" Mode="In" Type="String" />
+            <Parameter Name="U_Producto_FecVcto" Mode="In" Type="DateTime" />
+            <Parameter Name="U_CantOperacion" Mode="In" Type="Decimal" />
+            <Parameter Name="U_UsuarioRegistro" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_ProgInventarioFavo_LS" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_ProgInventarioFavo_LS_Result)">
+          <Parameter Name="U_NroDocumento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_ProgInventarioFavo_Comparativo" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_ProgInventarioFavo_Comparativo_Result)">
+          <Parameter Name="U_NroDocumento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_TipoDocumento" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_TipoDocumento_Result)">
+          <Parameter Name="U_Cod" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="POST_Personal">
+            <Parameter Name="U_TipoDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="U_DocIdentidad" Mode="In" Type="String" />
+            <Parameter Name="U_Nombre" Mode="In" Type="String" />
+            <Parameter Name="U_Apellidos" Mode="In" Type="String" />
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="U_Cuestionario" Mode="In" Type="Boolean" />
+            <Parameter Name="U_FechaCuestionarioInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="U_FechaCuestionarioFin" Mode="In" Type="DateTime" />
+            <Parameter Name="U_Vacunacion" Mode="In" Type="Boolean" />
+            <Parameter Name="U_NroDosis" Mode="In" Type="Int32" />
+            <Parameter Name="U_SCTR" Mode="In" Type="Boolean" />
+            <Parameter Name="U_FechaSCTRInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="U_FechaSCTRFin" Mode="In" Type="DateTime" />
+            <Parameter Name="U_Induccion" Mode="In" Type="Boolean" />
+            <Parameter Name="U_LicenciaConducir" Mode="In" Type="Boolean" />
+            <Parameter Name="U_FechaLicenciaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="U_FechaLicenciaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="U_Email" Mode="In" Type="String" />
+            <Parameter Name="U_ListaNegra" Mode="In" Type="Boolean" />
+            <Parameter Name="U_MotivoListaNegra" Mode="In" Type="String" />
+            <Parameter Name="U_FechaListaNegra" Mode="In" Type="DateTime" />
+            <Parameter Name="U_Sancionado" Mode="In" Type="Boolean" />
+            <Parameter Name="U_FechaSancionInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="U_FechaSancionFin" Mode="In" Type="DateTime" />
+            <Parameter Name="U_UsuarioRegistro" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+            <Parameter Name="ValRpta" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_Usuario">
+            <Parameter Name="Code" Mode="In" Type="Int32" />
+            <Parameter Name="U_Apellidos" Mode="In" Type="String" />
+            <Parameter Name="U_Nombres" Mode="In" Type="String" />
+            <Parameter Name="U_Email" Mode="In" Type="String" />
+            <Parameter Name="U_FlagActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="U_SuperUsuario" Mode="In" Type="Boolean" />
+            <Parameter Name="U_Web" Mode="In" Type="Boolean" />
+            <Parameter Name="U_APP" Mode="In" Type="Boolean" />
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioModificacion" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_TipoEmpresa" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_TipoEmpresa_Result)">
+          <Parameter Name="U_Cod" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_Transportista">
+            <Parameter Name="Code" Mode="In" Type="Int32" />
+            <Parameter Name="U_Transportista" Mode="In" Type="String" />
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="U_RUC" Mode="In" Type="String" />
+            <Parameter Name="U_Contacto" Mode="In" Type="String" />
+            <Parameter Name="U_FonoContacto" Mode="In" Type="String" />
+            <Parameter Name="U_FlagActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="U_UsuarioRegistro" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="POST_Transportista">
+            <Parameter Name="U_CodTransportista" Mode="In" Type="String" />
+            <Parameter Name="U_Transportista" Mode="In" Type="String" />
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="U_RUC" Mode="In" Type="String" />
+            <Parameter Name="U_Contacto" Mode="In" Type="String" />
+            <Parameter Name="U_FonoContacto" Mode="In" Type="String" />
+            <Parameter Name="U_FlagActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="U_UsuarioRegistro" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="POST_Empresa">
+            <Parameter Name="U_Empresa" Mode="In" Type="String" />
+            <Parameter Name="U_RUC" Mode="In" Type="String" />
+            <Parameter Name="U_Contacto" Mode="In" Type="String" />
+            <Parameter Name="U_CodTipoEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="U_FonoContacto" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioRegistro" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_Empresa" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_Empresa_Result)">
+          <Parameter Name="U_Cod" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="POST_Conductor">
+            <Parameter Name="U_TipoDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="U_DocIdentidad" Mode="In" Type="String" />
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="U_Nombre" Mode="In" Type="String" />
+            <Parameter Name="U_Apellidos" Mode="In" Type="String" />
+            <Parameter Name="U_RutaCuestionario" Mode="In" Type="String" />
+            <Parameter Name="U_RutaVacunacion" Mode="In" Type="String" />
+            <Parameter Name="U_RutaSCTR" Mode="In" Type="String" />
+            <Parameter Name="U_RutaLicConducir" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioRegistro" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+            <Parameter Name="ValRpta" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_Vehiculo">
+            <Parameter Name="U_IdTx" Mode="In" Type="Int64" />
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="U_Anio" Mode="In" Type="String" />
+            <Parameter Name="U_Marca" Mode="In" Type="String" />
+            <Parameter Name="U_RutaRevTecnica" Mode="In" Type="String" />
+            <Parameter Name="U_RutaSOAT" Mode="In" Type="String" />
+            <Parameter Name="U_RutaTarjPropiedad" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioModificacion" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="POST_Vehiculo">
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="U_Placa" Mode="In" Type="String" />
+            <Parameter Name="U_Anio" Mode="In" Type="String" />
+            <Parameter Name="U_Marca" Mode="In" Type="String" />
+            <Parameter Name="U_RutaRevTecnica" Mode="In" Type="String" />
+            <Parameter Name="U_RutaSOAT" Mode="In" Type="String" />
+            <Parameter Name="U_RutaTarjPropiedad" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioRegistro" Mode="In" Type="String" />
+            <Parameter Name="ValRpta" Mode="InOut" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_Empresa">
+            <Parameter Name="Code" Mode="In" Type="Int32" />
+            <Parameter Name="U_Empresa" Mode="In" Type="String" />
+            <Parameter Name="U_RUC" Mode="In" Type="String" />
+            <Parameter Name="U_Contacto" Mode="In" Type="String" />
+            <Parameter Name="U_CodTipoEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="U_FonoContacto" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioModificacion" Mode="In" Type="String" />
+            <Parameter Name="U_FlagActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_Personal">
+            <Parameter Name="U_IdTx" Mode="In" Type="Int64" />
+            <Parameter Name="U_Nombre" Mode="In" Type="String" />
+            <Parameter Name="U_Apellidos" Mode="In" Type="String" />
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="U_FechaCuestionarioInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="U_FechaCuestionarioFin" Mode="In" Type="DateTime" />
+            <Parameter Name="U_Vacunacion" Mode="In" Type="Boolean" />
+            <Parameter Name="U_FechaSCTRInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="U_FechaSCTRFin" Mode="In" Type="DateTime" />
+            <Parameter Name="U_Induccion" Mode="In" Type="Boolean" />
+            <Parameter Name="U_FechaLicenciaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="U_FechaLicenciaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="U_Email" Mode="In" Type="String" />
+            <Parameter Name="U_ListaNegra" Mode="In" Type="Boolean" />
+            <Parameter Name="U_MotivoListaNegra" Mode="In" Type="String" />
+            <Parameter Name="U_FechaListaNegra" Mode="In" Type="DateTime" />
+            <Parameter Name="U_Sancionado" Mode="In" Type="Boolean" />
+            <Parameter Name="U_FechaSancionInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="U_Fecha_SancionFin" Mode="In" Type="DateTime" />
+            <Parameter Name="U_Cuestionario" Mode="In" Type="Boolean" />
+            <Parameter Name="U_NroDosis" Mode="In" Type="Int32" />
+            <Parameter Name="U_SCTR" Mode="In" Type="Boolean" />
+            <Parameter Name="U_LicenciaConducir" Mode="In" Type="Boolean" />
+            <Parameter Name="U_UsuarioModificacion" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_Personal" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_Personal_Result)">
+            <Parameter Name="Code" Mode="In" Type="Int32" />
+            <Parameter Name="busqGral" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_PersonalAsistencia_Salida">
+            <Parameter Name="U_NroDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="U_ObservacionSalida" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioModificacion" Mode="In" Type="String" />
+            <Parameter Name="U_DevuelveLlave" Mode="In" Type="Boolean" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+            <Parameter Name="ValRpta" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="POST_PersonalAsistencia_Cab">
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="U_CodPersonal" Mode="In" Type="Int32" />
+            <Parameter Name="U_ObservacionIngreso" Mode="In" Type="String" />
+            <Parameter Name="U_TipoAsistencia" Mode="In" Type="Int32" />
+            <Parameter Name="U_EntregaLlave" Mode="In" Type="Boolean" />
+            <Parameter Name="U_OficinaLlave" Mode="In" Type="String" />
+            <Parameter Name="U_CodAutorizante" Mode="In" Type="String" />
+            <Parameter Name="U_MotivoAutorizacion" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioRegistro" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+            <Parameter Name="ValRpta" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_DatosInicialesUsuario" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_DatosInicialesUsuario_Result)">
+            <Parameter Name="UserCode" Mode="In" Type="String" />
+            <Parameter Name="UserPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_TipoIngreso" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_TipoIngreso_Result)" />
+          <FunctionImport Name="GET_Listar_Usuarios" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_Usuarios_Result)">
+          <Parameter Name="Code" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_Vehiculo" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_Vehiculo_Result)">
+            <Parameter Name="U_Cod" Mode="In" Type="Int32" />
+            <Parameter Name="busqGral" Mode="In" Type="String" />
+            <Parameter Name="CodEmpresa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="POST_Ayudante">
+            <Parameter Name="U_TipoDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="U_DocIdentidad" Mode="In" Type="String" />
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="U_Nombre" Mode="In" Type="String" />
+            <Parameter Name="U_Apellidos" Mode="In" Type="String" />
+            <Parameter Name="U_RutaCuestionario" Mode="In" Type="String" />
+            <Parameter Name="U_RutaVacunacion" Mode="In" Type="String" />
+            <Parameter Name="U_RutaSCTR" Mode="In" Type="String" />
+            <Parameter Name="U_RutaInduccion" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioRegistro" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+            <Parameter Name="ValRpta" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_Ayudante">
+            <Parameter Name="U_IdTx" Mode="In" Type="Int64" />
+            <Parameter Name="U_Nombre" Mode="In" Type="String" />
+            <Parameter Name="U_Apellidos" Mode="In" Type="String" />
+            <Parameter Name="U_RutaCuestionario" Mode="In" Type="String" />
+            <Parameter Name="U_RutaVacunacion" Mode="In" Type="String" />
+            <Parameter Name="U_RutaSCTR" Mode="In" Type="String" />
+            <Parameter Name="U_RutaInduccion" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioModificacion" Mode="In" Type="String" />
+            <Parameter Name="U_FlagActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_Conductor">
+            <Parameter Name="U_IdTx" Mode="In" Type="Int64" />
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="U_Nombre" Mode="In" Type="String" />
+            <Parameter Name="U_Apellidos" Mode="In" Type="String" />
+            <Parameter Name="U_RutaCuestionario" Mode="In" Type="String" />
+            <Parameter Name="U_RutaVacunacion" Mode="In" Type="String" />
+            <Parameter Name="U_RutaSCTR" Mode="In" Type="String" />
+            <Parameter Name="U_RutaLicConducir" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioModificacion" Mode="In" Type="String" />
+            <Parameter Name="U_FlagActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_PersonalAsistencia_Cab" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_PersonalAsistencia_Cab_Result)">
+            <Parameter Name="FechaIni" Mode="In" Type="String" />
+            <Parameter Name="FechaFin" Mode="In" Type="String" />
+            <Parameter Name="busqGral" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="POST_Usuario">
+            <Parameter Name="U_CodUsuario" Mode="In" Type="String" />
+            <Parameter Name="U_Contrasena" Mode="In" Type="String" />
+            <Parameter Name="U_Nombres" Mode="In" Type="String" />
+            <Parameter Name="U_Apellidos" Mode="In" Type="String" />
+            <Parameter Name="U_Email" Mode="In" Type="String" />
+            <Parameter Name="U_SuperUsuario" Mode="In" Type="Boolean" />
+            <Parameter Name="U_Web" Mode="In" Type="Boolean" />
+            <Parameter Name="U_APP" Mode="In" Type="Boolean" />
+            <Parameter Name="U_UsuarioRegistro" Mode="In" Type="String" />
+            <Parameter Name="U_CodEmpresa" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="POST_Usuario_Rol">
+            <Parameter Name="CodUsuario" Mode="In" Type="String" />
+            <Parameter Name="RoleId" Mode="In" Type="Int32" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_Ayudantes" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_Ayudantes_Result)">
+            <Parameter Name="Code" Mode="In" Type="Int32" />
+            <Parameter Name="busqGral" Mode="In" Type="String" />
+            <Parameter Name="CodEmpresa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_Conductores" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_Conductores_Result)">
+            <Parameter Name="Code" Mode="In" Type="Int32" />
+            <Parameter Name="busqGral" Mode="In" Type="String" />
+            <Parameter Name="CodEmpresa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Listar_Transportista" ReturnType="Collection(Model_ALPA_WEB.USP_Web_Listar_Transportista_Result)">
+            <Parameter Name="U_Cod" Mode="In" Type="Int32" />
+            <Parameter Name="busqGral" Mode="In" Type="String" />
+            <Parameter Name="CodEmpresa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_Ayudante_Docs">
+            <Parameter Name="U_NroDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="U_EstadoDocs" Mode="In" Type="Int32" />
+            <Parameter Name="U_ObsEstadoDocs" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioModificacion" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_Conductor_Docs">
+            <Parameter Name="U_NroDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="U_EstadoDocs" Mode="In" Type="Int32" />
+            <Parameter Name="U_ObsEstadoDocs" Mode="In" Type="String" />
+            <Parameter Name="U_UsuarioModificacion" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="USP_Listar_Menu_Result">
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="String" Name="DisplayName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ParentMenuID" Nullable="false" />
+          <Property Type="Int32" Name="OrderNumber" Nullable="false" />
+          <Property Type="String" Name="MenuURL" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MenuIcon" Nullable="true" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="USP_Listar_MenuPermiso_Result">
+          <Property Type="Int32" Name="MenuID" Nullable="false" />
+          <Property Type="String" Name="DisplayName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ParentMenuID" Nullable="false" />
+          <Property Type="Int32" Name="PermisoType" Nullable="false" />
+          <Property Type="Boolean" Name="Permiso" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_Listar_Roles_Result">
+          <Property Type="Int32" Name="Code" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_ProgInventarioFavo_Cab_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int64" Name="U_NroDocumento" Nullable="false" />
+          <Property Type="String" Name="U_FechaProgramacion" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="U_UsuarioRegistro" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="U_FechaCierre" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="U_FechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="String" Name="U_UsuarioCierre" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="U_UsuarioModificacion" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="U_UsuarioCancelacion" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaCancelacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="U_Comentario" Nullable="false" MaxLength="150" />
+          <Property Type="Boolean" Name="U_FlagCancelado" Nullable="true" />
+          <Property Type="Boolean" Name="U_ProgParcial" Nullable="true" />
+          <Property Type="String" Name="U_Parcial" Nullable="false" MaxLength="7" />
+          <Property Type="Boolean" Name="U_Cerrado" Nullable="true" />
+          <Property Type="String" Name="U_Estado" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_ProgInventarioFavo_Locacion_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int64" Name="U_NroDocumento" Nullable="false" />
+          <Property Type="String" Name="U_CodUbicacion" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="U_CodOperador" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FecHoraInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="U_FecHoraFin" Nullable="true" Precision="23" />
+          <Property Type="String" Name="U_EstadoProceso" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_ProgInventarioFavo_LS_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int64" Name="U_NroDocumento" Nullable="false" />
+          <Property Type="String" Name="U_CodProducto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="U_CodUbicacion" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="U_LoteSerie" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="U_CantOperacion" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="DateTime" Name="U_Producto_FecVcto" Nullable="false" Precision="23" />
+          <Property Type="String" Name="U_FecVcto" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="U_UM" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="U_Comentario" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="U_FechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="String" Name="U_UsuarioRegistro" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_TipoDocumento_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int32" Name="U_CodTipo" Nullable="false" />
+          <Property Type="String" Name="U_TipoDesc" Nullable="false" MaxLength="70" />
+          <Property Type="Boolean" Name="U_FlagActivo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_ProgInventarioFavo_Comparativo_Result">
+          <Property Type="Int32" Name="U_NroDocumento" Nullable="true" />
+          <Property Type="String" Name="U_CodUbicacion" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="U_CodProducto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FecVcto_Favo" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="FecVcto_Inv" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="StockFavo" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="StockInv" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="DifCantidad" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_TipoEmpresa_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int32" Name="U_CodTipo" Nullable="false" />
+          <Property Type="String" Name="U_TipoDesc" Nullable="false" MaxLength="90" />
+          <Property Type="Boolean" Name="U_FlagActivo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_Empresa_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int32" Name="Code" Nullable="false" />
+          <Property Type="String" Name="U_CodEmpresa" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="U_Empresa" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="U_RUC" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="U_Contacto" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="U_CodTipoEmpresa" Nullable="false" />
+          <Property Type="String" Name="U_TipoDesc" Nullable="false" MaxLength="90" />
+          <Property Type="String" Name="U_FonoContacto" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Activo" Nullable="false" MaxLength="8" />
+          <Property Type="Boolean" Name="U_FlagActivo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_PersonalAsistencia_Doc_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int64" Name="U_IdTx" Nullable="false" />
+          <Property Type="Int64" Name="U_NroDocumento" Nullable="false" />
+          <Property Type="String" Name="U_CodTipo" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="U_NroGuia" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="U_Comentario" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="U_FechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="String" Name="U_UsuarioRegistro" Nullable="false" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaCancelacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="U_UsuarioCancelacion" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="U_FlagCancelado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_PersonalAsistencia_Doc_Det_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int64" Name="U_IdTx" Nullable="false" />
+          <Property Type="Int64" Name="U_IdTx_Doc" Nullable="false" />
+          <Property Type="String" Name="U_DescProducto" Nullable="false" MaxLength="170" />
+          <Property Type="String" Name="U_NroSerie" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="U_Modelo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="U_Marca" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="U_FechaCancelacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="U_UsuarioCancelacion" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="U_FlagCancelado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_Personal_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int64" Name="U_IdTx" Nullable="false" />
+          <Property Type="Int64" Name="U_NroDocumento" Nullable="false" />
+          <Property Type="Int32" Name="U_TipoDocumento" Nullable="false" />
+          <Property Type="String" Name="U_DescTipoDoc" Nullable="false" MaxLength="70" />
+          <Property Type="String" Name="U_DocIdentidad" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="U_Nombre" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="U_Apellidos" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="U_CodEmpresa" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="U_Empresa" Nullable="false" MaxLength="80" />
+          <Property Type="Boolean" Name="U_Cuestionario" Nullable="true" />
+          <Property Type="Boolean" Name="U_VencimientoCuestionario" Nullable="true" />
+          <Property Type="DateTime" Name="U_FechaCuestionarioInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="U_FechaCuestionarioFin" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="U_Vacunacion" Nullable="true" />
+          <Property Type="Int32" Name="U_NroDosis" Nullable="true" />
+          <Property Type="Boolean" Name="U_SCTR" Nullable="true" />
+          <Property Type="Boolean" Name="U_VencimientoSCTR" Nullable="true" />
+          <Property Type="DateTime" Name="U_FechaSCTRInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="U_FechaSCTRFin" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="U_Induccion" Nullable="true" />
+          <Property Type="Boolean" Name="U_LicenciaConducir" Nullable="true" />
+          <Property Type="Boolean" Name="U_VencimientoLConducir" Nullable="true" />
+          <Property Type="DateTime" Name="U_FechaLicenciaInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="U_FechaLicenciaFin" Nullable="true" Precision="23" />
+          <Property Type="String" Name="U_Email" Nullable="true" MaxLength="15" />
+          <Property Type="Boolean" Name="U_ListaNegra" Nullable="true" />
+          <Property Type="String" Name="U_MotivoListaNegra" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="U_FechaListaNegra" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="U_Sancionado" Nullable="true" />
+          <Property Type="Boolean" Name="U_VencimientoSancion" Nullable="true" />
+          <Property Type="DateTime" Name="U_FechaSancionInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="U_Fecha_SancionFin" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="U_FechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="String" Name="U_UsuarioRegistro" Nullable="false" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="U_UsuarioModificacion" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_DatosInicialesUsuario_Result">
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="String" Name="CodUsuario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="E_Mail" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Activo" Nullable="true" />
+          <Property Type="Boolean" Name="SuperUsuario" Nullable="true" />
+          <Property Type="Boolean" Name="U_APP" Nullable="false" />
+          <Property Type="Boolean" Name="U_Web" Nullable="false" />
+          <Property Type="Boolean" Name="U_FlagValidarDocs" Nullable="false" />
+          <Property Type="String" Name="U_CodEmpresa" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="U_AutorizaIngreso" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_TipoIngreso_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int32" Name="U_CodTipo" Nullable="false" />
+          <Property Type="String" Name="U_TipoDesc" Nullable="false" MaxLength="90" />
+          <Property Type="Boolean" Name="U_FlagActivo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_Usuarios_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int32" Name="Code" Nullable="false" />
+          <Property Type="String" Name="CodUsuario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Apellidos" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombres" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="E_Mail" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="U_FlagActivo" Nullable="true" />
+          <Property Type="String" Name="Activo" Nullable="false" MaxLength="8" />
+          <Property Type="Boolean" Name="SuperUsuario" Nullable="true" />
+          <Property Type="String" Name="U_UsuarioRegistro" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="U_fechaRegistro" Nullable="true" MaxLength="61" />
+          <Property Type="String" Name="U_UsuarioModificacion" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="U_fechaModificacion" Nullable="false" MaxLength="61" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="Rol" Nullable="false" MaxLength="150" />
+          <Property Type="Boolean" Name="U_Web" Nullable="false" />
+          <Property Type="Boolean" Name="U_APP" Nullable="false" />
+          <Property Type="String" Name="U_CodEmpresa" Nullable="true" MaxLength="20" />
+          <Property Type="Boolean" Name="U_AutorizaIngreso" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_Vehiculo_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int64" Name="U_IdTx" Nullable="false" />
+          <Property Type="Int64" Name="U_NroDocumento" Nullable="false" />
+          <Property Type="String" Name="U_Anio" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="U_Marca" Nullable="true" MaxLength="90" />
+          <Property Type="String" Name="U_Placa" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="U_CodEmpresa" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="U_Empresa" Nullable="false" MaxLength="80" />
+          <Property Type="Boolean" Name="U_RevisionTecnica" Nullable="true" />
+          <Property Type="String" Name="U_RutaRevTecnica" Nullable="true" MaxLength="70" />
+          <Property Type="DateTime" Name="U_FechaRevTecnicaInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="U_FechaRevTecnicaFin" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="U_ConformeRevTecnica" Nullable="true" />
+          <Property Type="Boolean" Name="U_SOAT" Nullable="true" />
+          <Property Type="DateTime" Name="U_SOAT_Inicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="U_SOAT_Fin" Nullable="true" Precision="23" />
+          <Property Type="String" Name="U_RutaSOAT" Nullable="true" MaxLength="70" />
+          <Property Type="Boolean" Name="U_ConformeSOAT" Nullable="true" />
+          <Property Type="Boolean" Name="U_TarjetaPropiedad" Nullable="true" />
+          <Property Type="DateTime" Name="U_TarjPropiedadInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="U_TarjPropiedadFin" Nullable="true" Precision="23" />
+          <Property Type="String" Name="U_RutaTarjPropiedad" Nullable="true" MaxLength="70" />
+          <Property Type="Boolean" Name="U_ConformeTarjPropiedad" Nullable="true" />
+          <Property Type="String" Name="U_UsuarioRegistro" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaRegistro" Nullable="true" Precision="23" />
+          <Property Type="String" Name="U_UsuarioModificacion" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_PersonalAsistencia_Cab_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int64" Name="U_NroDocumento" Nullable="false" />
+          <Property Type="String" Name="U_CodEmpresa" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="U_Empresa" Nullable="false" MaxLength="80" />
+          <Property Type="Int64" Name="U_CodPersonal" Nullable="false" />
+          <Property Type="String" Name="TipoDocIdentidad" Nullable="false" MaxLength="70" />
+          <Property Type="String" Name="U_DocIdentidad" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="U_Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="U_Apellidos" Nullable="false" MaxLength="150" />
+          <Property Type="Boolean" Name="U_Ingreso" Nullable="true" />
+          <Property Type="DateTime" Name="U_FechaIngreso" Nullable="true" />
+          <Property Type="String" Name="FechaIngreso" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="U_HoraIngreso" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Hora_Ingreso" Nullable="true" MaxLength="65" />
+          <Property Type="Boolean" Name="U_Salida" Nullable="true" />
+          <Property Type="DateTime" Name="U_FechaSalida" Nullable="true" />
+          <Property Type="String" Name="FechaSalida" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="U_HoraSalida" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Hora_Salida" Nullable="true" MaxLength="65" />
+          <Property Type="String" Name="U_ObservacionIngreso" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="U_ObservacionSalida" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="U_TipoAsistencia" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="U_ConceptoIngreso" Nullable="false" MaxLength="90" />
+          <Property Type="Boolean" Name="U_EntregaLlave" Nullable="true" />
+          <Property Type="String" Name="U_OficinaLlave" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="U_DevuelveLlave" Nullable="true" />
+          <Property Type="String" Name="U_CodAutorizante" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="U_MotivoAutorizacion" Nullable="true" MaxLength="90" />
+          <Property Type="String" Name="U_UsuarioRegistro" Nullable="false" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="String" Name="U_UsuarioModificacion" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="U_FlagCancelado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_Ayudantes_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int64" Name="U_IdTx" Nullable="false" />
+          <Property Type="Int64" Name="U_NroDocumento" Nullable="false" />
+          <Property Type="String" Name="U_CodEmpresa" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="U_Empresa" Nullable="true" MaxLength="80" />
+          <Property Type="Int32" Name="U_TipoDocumento" Nullable="true" />
+          <Property Type="String" Name="U_TipoDesc" Nullable="true" MaxLength="70" />
+          <Property Type="String" Name="U_DocIdentidad" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="U_Nombre" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="U_Apellidos" Nullable="true" MaxLength="150" />
+          <Property Type="Boolean" Name="U_Cuestionario" Nullable="true" />
+          <Property Type="String" Name="U_RutaCuestionario" Nullable="true" MaxLength="70" />
+          <Property Type="Boolean" Name="U_Vacunacion" Nullable="true" />
+          <Property Type="String" Name="U_RutaVacunacion" Nullable="true" MaxLength="70" />
+          <Property Type="Boolean" Name="U_SCTR" Nullable="true" />
+          <Property Type="String" Name="U_RutaSCTR" Nullable="true" MaxLength="70" />
+          <Property Type="Boolean" Name="U_Induccion" Nullable="false" />
+          <Property Type="String" Name="U_RutaInduccion" Nullable="true" MaxLength="70" />
+          <Property Type="String" Name="U_UsuarioRegistro" Nullable="false" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="String" Name="U_UsuarioModificacion" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="U_FlagActivo" Nullable="true" />
+          <Property Type="Int32" Name="U_EstadoDocs" Nullable="true" />
+          <Property Type="String" Name="U_ObsEstadoDocs" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="DescEstadoDocs" Nullable="false" MaxLength="9" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_Conductores_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int64" Name="U_IdTx" Nullable="false" />
+          <Property Type="Int64" Name="U_NroDocumento" Nullable="false" />
+          <Property Type="String" Name="U_TipoDesc" Nullable="true" MaxLength="70" />
+          <Property Type="Int32" Name="U_TipoDocumento" Nullable="true" />
+          <Property Type="String" Name="U_DocIdentidad" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="U_CodEmpresa" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="U_Empresa" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="U_Nombre" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="U_Apellidos" Nullable="true" MaxLength="150" />
+          <Property Type="Boolean" Name="U_Cuestionario" Nullable="true" />
+          <Property Type="String" Name="U_RutaCuestionario" Nullable="true" MaxLength="70" />
+          <Property Type="Boolean" Name="U_Vacunacion" Nullable="true" />
+          <Property Type="String" Name="U_RutaVacunacion" Nullable="true" MaxLength="70" />
+          <Property Type="Boolean" Name="U_SCTR" Nullable="true" />
+          <Property Type="String" Name="U_RutaSCTR" Nullable="true" MaxLength="70" />
+          <Property Type="Boolean" Name="U_LicenciaConducir" Nullable="true" />
+          <Property Type="String" Name="U_RutaLicConducir" Nullable="true" MaxLength="70" />
+          <Property Type="DateTime" Name="U_FechaLicenciaInicio" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="U_FechaLicenciaFin" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="U_ConformeLicConducir" Nullable="true" />
+          <Property Type="String" Name="U_UsuarioRegistro" Nullable="false" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="String" Name="U_UsuarioModificacion" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="U_FlagActivo" Nullable="true" />
+          <Property Type="Int32" Name="U_EstadoDocs" Nullable="true" />
+          <Property Type="String" Name="U_ObsEstadoDocs" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="DescEstadoDocs" Nullable="false" MaxLength="9" />
+        </ComplexType>
+        <ComplexType Name="USP_Web_Listar_Transportista_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int32" Name="Code" Nullable="false" />
+          <Property Type="String" Name="U_CodTransportista" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="U_CodEmpresa" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="U_Empresa" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="U_Transportista" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Activo" Nullable="false" MaxLength="8" />
+          <Property Type="Boolean" Name="U_FlagActivo" Nullable="false" />
+          <Property Type="String" Name="U_RUC" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="U_Contacto" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="U_FonoContacto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="U_UsuarioRegistro" Nullable="false" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaRegistro" Nullable="true" Precision="23" />
+          <Property Type="String" Name="U_UsuarioModificacion" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="U_FechaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model_ALPA_WEBStoreContainer" CdmEntityContainer="ALPA_WEBEntities" >
+          <FunctionImportMapping FunctionImportName="GET_Listar_Menu" FunctionName="Model_ALPA_WEB.Store.USP_Listar_Menu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Listar_Menu_Result">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="ParentMenuID" ColumnName="ParentMenuID" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="MenuURL" ColumnName="MenuURL" />
+                <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_Listar_MenuPermiso" FunctionName="Model_ALPA_WEB.Store.USP_Listar_MenuPermiso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Listar_MenuPermiso_Result">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="ParentMenuID" ColumnName="ParentMenuID" />
+                <ScalarProperty Name="PermisoType" ColumnName="PermisoType" />
+                <ScalarProperty Name="Permiso" ColumnName="Permiso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_Listar_Roles" FunctionName="Model_ALPA_WEB.Store.USP_Listar_Roles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Listar_Roles_Result">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UPDATE_Permisos" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_Permisos" />
+          <FunctionImportMapping FunctionImportName="UPDATE_Usuario_Rol" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_Usuario_Rol" />
+          <FunctionImportMapping FunctionImportName="POST_ProgInventarioFavo_Cab" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_ProgInventarioFavo_Cab" />
+          <FunctionImportMapping FunctionImportName="POST_ProgInventarioFavo_Locacion" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_ProgInventarioFavo_Locacion" />
+          <FunctionImportMapping FunctionImportName="GET_Listar_ProgInventarioFavo_Cab" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_ProgInventarioFavo_Cab">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_ProgInventarioFavo_Cab_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="U_NroDocumento" ColumnName="U_NroDocumento" />
+                <ScalarProperty Name="U_FechaProgramacion" ColumnName="U_FechaProgramacion" />
+                <ScalarProperty Name="U_UsuarioRegistro" ColumnName="U_UsuarioRegistro" />
+                <ScalarProperty Name="U_FechaCierre" ColumnName="U_FechaCierre" />
+                <ScalarProperty Name="U_FechaRegistro" ColumnName="U_FechaRegistro" />
+                <ScalarProperty Name="U_UsuarioCierre" ColumnName="U_UsuarioCierre" />
+                <ScalarProperty Name="U_UsuarioModificacion" ColumnName="U_UsuarioModificacion" />
+                <ScalarProperty Name="U_FechaModificacion" ColumnName="U_FechaModificacion" />
+                <ScalarProperty Name="U_UsuarioCancelacion" ColumnName="U_UsuarioCancelacion" />
+                <ScalarProperty Name="U_FechaCancelacion" ColumnName="U_FechaCancelacion" />
+                <ScalarProperty Name="U_Comentario" ColumnName="U_Comentario" />
+                <ScalarProperty Name="U_FlagCancelado" ColumnName="U_FlagCancelado" />
+                <ScalarProperty Name="U_ProgParcial" ColumnName="U_ProgParcial" />
+                <ScalarProperty Name="U_Parcial" ColumnName="U_Parcial" />
+                <ScalarProperty Name="U_Cerrado" ColumnName="U_Cerrado" />
+                <ScalarProperty Name="U_Estado" ColumnName="U_Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_Listar_ProgInventarioFavo_Locacion" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_ProgInventarioFavo_Locacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_ProgInventarioFavo_Locacion_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="U_NroDocumento" ColumnName="U_NroDocumento" />
+                <ScalarProperty Name="U_CodUbicacion" ColumnName="U_CodUbicacion" />
+                <ScalarProperty Name="U_CodOperador" ColumnName="U_CodOperador" />
+                <ScalarProperty Name="U_FecHoraInicio" ColumnName="U_FecHoraInicio" />
+                <ScalarProperty Name="U_FecHoraFin" ColumnName="U_FecHoraFin" />
+                <ScalarProperty Name="U_EstadoProceso" ColumnName="U_EstadoProceso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="POST_ProgInventarioFavo_LocacionStock" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_ProgInventarioFavo_LocacionStock" />
+          <FunctionImportMapping FunctionImportName="GET_Listar_ProgInventarioFavo_LS" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_ProgInventarioFavo_LS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_ProgInventarioFavo_LS_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="U_NroDocumento" ColumnName="U_NroDocumento" />
+                <ScalarProperty Name="U_CodProducto" ColumnName="U_CodProducto" />
+                <ScalarProperty Name="Descripcion1" ColumnName="Descripcion1" />
+                <ScalarProperty Name="U_CodUbicacion" ColumnName="U_CodUbicacion" />
+                <ScalarProperty Name="U_LoteSerie" ColumnName="U_LoteSerie" />
+                <ScalarProperty Name="U_CantOperacion" ColumnName="U_CantOperacion" />
+                <ScalarProperty Name="U_Producto_FecVcto" ColumnName="U_Producto_FecVcto" />
+                <ScalarProperty Name="U_FecVcto" ColumnName="U_FecVcto" />
+                <ScalarProperty Name="U_UM" ColumnName="U_UM" />
+                <ScalarProperty Name="U_Comentario" ColumnName="U_Comentario" />
+                <ScalarProperty Name="U_FechaRegistro" ColumnName="U_FechaRegistro" />
+                <ScalarProperty Name="U_UsuarioRegistro" ColumnName="U_UsuarioRegistro" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_Listar_TipoDocumento" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_TipoDocumento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_TipoDocumento_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="U_CodTipo" ColumnName="U_CodTipo" />
+                <ScalarProperty Name="U_TipoDesc" ColumnName="U_TipoDesc" />
+                <ScalarProperty Name="U_FlagActivo" ColumnName="U_FlagActivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_Listar_ProgInventarioFavo_Comparativo" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_ProgInventarioFavo_Comparativo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_ProgInventarioFavo_Comparativo_Result">
+                <ScalarProperty Name="U_NroDocumento" ColumnName="U_NroDocumento" />
+                <ScalarProperty Name="U_CodUbicacion" ColumnName="U_CodUbicacion" />
+                <ScalarProperty Name="U_CodProducto" ColumnName="U_CodProducto" />
+                <ScalarProperty Name="Descripcion1" ColumnName="Descripcion1" />
+                <ScalarProperty Name="FecVcto_Favo" ColumnName="FecVcto_Favo" />
+                <ScalarProperty Name="FecVcto_Inv" ColumnName="FecVcto_Inv" />
+                <ScalarProperty Name="StockFavo" ColumnName="StockFavo" />
+                <ScalarProperty Name="StockInv" ColumnName="StockInv" />
+                <ScalarProperty Name="DifCantidad" ColumnName="DifCantidad" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="POST_Personal" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_Personal" />
+          <FunctionImportMapping FunctionImportName="UPDATE_Usuario" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_Usuario" />
+          <FunctionImportMapping FunctionImportName="GET_Listar_TipoEmpresa" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_TipoEmpresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_TipoEmpresa_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="U_CodTipo" ColumnName="U_CodTipo" />
+                <ScalarProperty Name="U_TipoDesc" ColumnName="U_TipoDesc" />
+                <ScalarProperty Name="U_FlagActivo" ColumnName="U_FlagActivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UPDATE_Transportista" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_Transportista" />
+          <FunctionImportMapping FunctionImportName="POST_Transportista" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_Transportista" />
+          <FunctionImportMapping FunctionImportName="POST_Empresa" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_Empresa" />
+          <FunctionImportMapping FunctionImportName="GET_Listar_Empresa" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_Empresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_Empresa_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="U_CodEmpresa" ColumnName="U_CodEmpresa" />
+                <ScalarProperty Name="U_Empresa" ColumnName="U_Empresa" />
+                <ScalarProperty Name="U_RUC" ColumnName="U_RUC" />
+                <ScalarProperty Name="U_Contacto" ColumnName="U_Contacto" />
+                <ScalarProperty Name="U_CodTipoEmpresa" ColumnName="U_CodTipoEmpresa" />
+                <ScalarProperty Name="U_TipoDesc" ColumnName="U_TipoDesc" />
+                <ScalarProperty Name="U_FonoContacto" ColumnName="U_FonoContacto" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="U_FlagActivo" ColumnName="U_FlagActivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="POST_Conductor" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_Conductor" />
+          <FunctionImportMapping FunctionImportName="UPDATE_Vehiculo" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_Vehiculo" />
+          <FunctionImportMapping FunctionImportName="POST_Vehiculo" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_Vehiculo" />
+          <FunctionImportMapping FunctionImportName="UPDATE_Empresa" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_Empresa" />
+          <FunctionImportMapping FunctionImportName="UPDATE_Personal" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_Personal" />
+          <FunctionImportMapping FunctionImportName="GET_Listar_Personal" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_Personal">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_Personal_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="U_IdTx" ColumnName="U_IdTx" />
+                <ScalarProperty Name="U_NroDocumento" ColumnName="U_NroDocumento" />
+                <ScalarProperty Name="U_TipoDocumento" ColumnName="U_TipoDocumento" />
+                <ScalarProperty Name="U_DescTipoDoc" ColumnName="U_DescTipoDoc" />
+                <ScalarProperty Name="U_DocIdentidad" ColumnName="U_DocIdentidad" />
+                <ScalarProperty Name="U_Nombre" ColumnName="U_Nombre" />
+                <ScalarProperty Name="U_Apellidos" ColumnName="U_Apellidos" />
+                <ScalarProperty Name="U_CodEmpresa" ColumnName="U_CodEmpresa" />
+                <ScalarProperty Name="U_Empresa" ColumnName="U_Empresa" />
+                <ScalarProperty Name="U_Cuestionario" ColumnName="U_Cuestionario" />
+                <ScalarProperty Name="U_VencimientoCuestionario" ColumnName="U_VencimientoCuestionario" />
+                <ScalarProperty Name="U_FechaCuestionarioInicio" ColumnName="U_FechaCuestionarioInicio" />
+                <ScalarProperty Name="U_FechaCuestionarioFin" ColumnName="U_FechaCuestionarioFin" />
+                <ScalarProperty Name="U_Vacunacion" ColumnName="U_Vacunacion" />
+                <ScalarProperty Name="U_NroDosis" ColumnName="U_NroDosis" />
+                <ScalarProperty Name="U_SCTR" ColumnName="U_SCTR" />
+                <ScalarProperty Name="U_VencimientoSCTR" ColumnName="U_VencimientoSCTR" />
+                <ScalarProperty Name="U_FechaSCTRInicio" ColumnName="U_FechaSCTRInicio" />
+                <ScalarProperty Name="U_FechaSCTRFin" ColumnName="U_FechaSCTRFin" />
+                <ScalarProperty Name="U_Induccion" ColumnName="U_Induccion" />
+                <ScalarProperty Name="U_LicenciaConducir" ColumnName="U_LicenciaConducir" />
+                <ScalarProperty Name="U_VencimientoLConducir" ColumnName="U_VencimientoLConducir" />
+                <ScalarProperty Name="U_FechaLicenciaInicio" ColumnName="U_FechaLicenciaInicio" />
+                <ScalarProperty Name="U_FechaLicenciaFin" ColumnName="U_FechaLicenciaFin" />
+                <ScalarProperty Name="U_Email" ColumnName="U_Email" />
+                <ScalarProperty Name="U_ListaNegra" ColumnName="U_ListaNegra" />
+                <ScalarProperty Name="U_MotivoListaNegra" ColumnName="U_MotivoListaNegra" />
+                <ScalarProperty Name="U_FechaListaNegra" ColumnName="U_FechaListaNegra" />
+                <ScalarProperty Name="U_Sancionado" ColumnName="U_Sancionado" />
+                <ScalarProperty Name="U_VencimientoSancion" ColumnName="U_VencimientoSancion" />
+                <ScalarProperty Name="U_FechaSancionInicio" ColumnName="U_FechaSancionInicio" />
+                <ScalarProperty Name="U_Fecha_SancionFin" ColumnName="U_Fecha_SancionFin" />
+                <ScalarProperty Name="U_FechaRegistro" ColumnName="U_FechaRegistro" />
+                <ScalarProperty Name="U_UsuarioRegistro" ColumnName="U_UsuarioRegistro" />
+                <ScalarProperty Name="U_FechaModificacion" ColumnName="U_FechaModificacion" />
+                <ScalarProperty Name="U_UsuarioModificacion" ColumnName="U_UsuarioModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UPDATE_PersonalAsistencia_Salida" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_PersonalAsistencia_Salida" />
+          <FunctionImportMapping FunctionImportName="GET_Listar_DatosInicialesUsuario" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_DatosInicialesUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_DatosInicialesUsuario_Result">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="CodUsuario" ColumnName="CodUsuario" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="E_Mail" ColumnName="E_Mail" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="SuperUsuario" ColumnName="SuperUsuario" />
+                <ScalarProperty Name="U_APP" ColumnName="U_APP" />
+                <ScalarProperty Name="U_Web" ColumnName="U_Web" />
+                <ScalarProperty Name="U_FlagValidarDocs" ColumnName="U_FlagValidarDocs" />
+                <ScalarProperty Name="U_CodEmpresa" ColumnName="U_CodEmpresa" />
+                <ScalarProperty Name="U_AutorizaIngreso" ColumnName="U_AutorizaIngreso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_Listar_TipoIngreso" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_TipoIngreso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_TipoIngreso_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="U_CodTipo" ColumnName="U_CodTipo" />
+                <ScalarProperty Name="U_TipoDesc" ColumnName="U_TipoDesc" />
+                <ScalarProperty Name="U_FlagActivo" ColumnName="U_FlagActivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_Listar_Usuarios" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_Usuarios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_Usuarios_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CodUsuario" ColumnName="CodUsuario" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="E_Mail" ColumnName="E_Mail" />
+                <ScalarProperty Name="U_FlagActivo" ColumnName="U_FlagActivo" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="SuperUsuario" ColumnName="SuperUsuario" />
+                <ScalarProperty Name="U_UsuarioRegistro" ColumnName="U_UsuarioRegistro" />
+                <ScalarProperty Name="U_fechaRegistro" ColumnName="U_fechaRegistro" />
+                <ScalarProperty Name="U_UsuarioModificacion" ColumnName="U_UsuarioModificacion" />
+                <ScalarProperty Name="U_fechaModificacion" ColumnName="U_fechaModificacion" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="U_Web" ColumnName="U_Web" />
+                <ScalarProperty Name="U_APP" ColumnName="U_APP" />
+                <ScalarProperty Name="U_CodEmpresa" ColumnName="U_CodEmpresa" />
+                <ScalarProperty Name="U_AutorizaIngreso" ColumnName="U_AutorizaIngreso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_Listar_Vehiculo" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_Vehiculo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_Vehiculo_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="U_IdTx" ColumnName="U_IdTx" />
+                <ScalarProperty Name="U_NroDocumento" ColumnName="U_NroDocumento" />
+                <ScalarProperty Name="U_Anio" ColumnName="U_Anio" />
+                <ScalarProperty Name="U_Marca" ColumnName="U_Marca" />
+                <ScalarProperty Name="U_Placa" ColumnName="U_Placa" />
+                <ScalarProperty Name="U_CodEmpresa" ColumnName="U_CodEmpresa" />
+                <ScalarProperty Name="U_Empresa" ColumnName="U_Empresa" />
+                <ScalarProperty Name="U_RevisionTecnica" ColumnName="U_RevisionTecnica" />
+                <ScalarProperty Name="U_RutaRevTecnica" ColumnName="U_RutaRevTecnica" />
+                <ScalarProperty Name="U_FechaRevTecnicaInicio" ColumnName="U_FechaRevTecnicaInicio" />
+                <ScalarProperty Name="U_FechaRevTecnicaFin" ColumnName="U_FechaRevTecnicaFin" />
+                <ScalarProperty Name="U_ConformeRevTecnica" ColumnName="U_ConformeRevTecnica" />
+                <ScalarProperty Name="U_SOAT" ColumnName="U_SOAT" />
+                <ScalarProperty Name="U_SOAT_Inicio" ColumnName="U_SOAT_Inicio" />
+                <ScalarProperty Name="U_SOAT_Fin" ColumnName="U_SOAT_Fin" />
+                <ScalarProperty Name="U_RutaSOAT" ColumnName="U_RutaSOAT" />
+                <ScalarProperty Name="U_ConformeSOAT" ColumnName="U_ConformeSOAT" />
+                <ScalarProperty Name="U_TarjetaPropiedad" ColumnName="U_TarjetaPropiedad" />
+                <ScalarProperty Name="U_TarjPropiedadInicio" ColumnName="U_TarjPropiedadInicio" />
+                <ScalarProperty Name="U_TarjPropiedadFin" ColumnName="U_TarjPropiedadFin" />
+                <ScalarProperty Name="U_RutaTarjPropiedad" ColumnName="U_RutaTarjPropiedad" />
+                <ScalarProperty Name="U_ConformeTarjPropiedad" ColumnName="U_ConformeTarjPropiedad" />
+                <ScalarProperty Name="U_UsuarioRegistro" ColumnName="U_UsuarioRegistro" />
+                <ScalarProperty Name="U_FechaRegistro" ColumnName="U_FechaRegistro" />
+                <ScalarProperty Name="U_UsuarioModificacion" ColumnName="U_UsuarioModificacion" />
+                <ScalarProperty Name="U_FechaModificacion" ColumnName="U_FechaModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="POST_Ayudante" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_Ayudante" />
+          <FunctionImportMapping FunctionImportName="UPDATE_Ayudante" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_Ayudante" />
+          <FunctionImportMapping FunctionImportName="UPDATE_Conductor" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_Conductor" />
+          <FunctionImportMapping FunctionImportName="POST_PersonalAsistencia_Cab" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_PersonalAsistencia_Cab" />
+          <FunctionImportMapping FunctionImportName="GET_Listar_PersonalAsistencia_Cab" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_PersonalAsistencia_Cab">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_PersonalAsistencia_Cab_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="U_NroDocumento" ColumnName="U_NroDocumento" />
+                <ScalarProperty Name="U_CodEmpresa" ColumnName="U_CodEmpresa" />
+                <ScalarProperty Name="U_Empresa" ColumnName="U_Empresa" />
+                <ScalarProperty Name="U_CodPersonal" ColumnName="U_CodPersonal" />
+                <ScalarProperty Name="TipoDocIdentidad" ColumnName="TipoDocIdentidad" />
+                <ScalarProperty Name="U_DocIdentidad" ColumnName="U_DocIdentidad" />
+                <ScalarProperty Name="U_Nombre" ColumnName="U_Nombre" />
+                <ScalarProperty Name="U_Apellidos" ColumnName="U_Apellidos" />
+                <ScalarProperty Name="U_Ingreso" ColumnName="U_Ingreso" />
+                <ScalarProperty Name="U_FechaIngreso" ColumnName="U_FechaIngreso" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="U_HoraIngreso" ColumnName="U_HoraIngreso" />
+                <ScalarProperty Name="Hora_Ingreso" ColumnName="Hora_Ingreso" />
+                <ScalarProperty Name="U_Salida" ColumnName="U_Salida" />
+                <ScalarProperty Name="U_FechaSalida" ColumnName="U_FechaSalida" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="U_HoraSalida" ColumnName="U_HoraSalida" />
+                <ScalarProperty Name="Hora_Salida" ColumnName="Hora_Salida" />
+                <ScalarProperty Name="U_ObservacionIngreso" ColumnName="U_ObservacionIngreso" />
+                <ScalarProperty Name="U_ObservacionSalida" ColumnName="U_ObservacionSalida" />
+                <ScalarProperty Name="U_TipoAsistencia" ColumnName="U_TipoAsistencia" />
+                <ScalarProperty Name="U_ConceptoIngreso" ColumnName="U_ConceptoIngreso" />
+                <ScalarProperty Name="U_EntregaLlave" ColumnName="U_EntregaLlave" />
+                <ScalarProperty Name="U_OficinaLlave" ColumnName="U_OficinaLlave" />
+                <ScalarProperty Name="U_DevuelveLlave" ColumnName="U_DevuelveLlave" />
+                <ScalarProperty Name="U_CodAutorizante" ColumnName="U_CodAutorizante" />
+                <ScalarProperty Name="U_MotivoAutorizacion" ColumnName="U_MotivoAutorizacion" />
+                <ScalarProperty Name="U_UsuarioRegistro" ColumnName="U_UsuarioRegistro" />
+                <ScalarProperty Name="U_FechaRegistro" ColumnName="U_FechaRegistro" />
+                <ScalarProperty Name="U_UsuarioModificacion" ColumnName="U_UsuarioModificacion" />
+                <ScalarProperty Name="U_FechaModificacion" ColumnName="U_FechaModificacion" />
+                <ScalarProperty Name="U_FlagCancelado" ColumnName="U_FlagCancelado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="POST_Usuario" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_Usuario" />
+          <FunctionImportMapping FunctionImportName="POST_Usuario_Rol" FunctionName="Model_ALPA_WEB.Store.USP_Web_Insertar_Usuario_Rol" />
+          <FunctionImportMapping FunctionImportName="GET_Listar_Ayudantes" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_Ayudantes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_Ayudantes_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="U_IdTx" ColumnName="U_IdTx" />
+                <ScalarProperty Name="U_NroDocumento" ColumnName="U_NroDocumento" />
+                <ScalarProperty Name="U_CodEmpresa" ColumnName="U_CodEmpresa" />
+                <ScalarProperty Name="U_Empresa" ColumnName="U_Empresa" />
+                <ScalarProperty Name="U_TipoDocumento" ColumnName="U_TipoDocumento" />
+                <ScalarProperty Name="U_TipoDesc" ColumnName="U_TipoDesc" />
+                <ScalarProperty Name="U_DocIdentidad" ColumnName="U_DocIdentidad" />
+                <ScalarProperty Name="U_Nombre" ColumnName="U_Nombre" />
+                <ScalarProperty Name="U_Apellidos" ColumnName="U_Apellidos" />
+                <ScalarProperty Name="U_Cuestionario" ColumnName="U_Cuestionario" />
+                <ScalarProperty Name="U_RutaCuestionario" ColumnName="U_RutaCuestionario" />
+                <ScalarProperty Name="U_Vacunacion" ColumnName="U_Vacunacion" />
+                <ScalarProperty Name="U_RutaVacunacion" ColumnName="U_RutaVacunacion" />
+                <ScalarProperty Name="U_SCTR" ColumnName="U_SCTR" />
+                <ScalarProperty Name="U_RutaSCTR" ColumnName="U_RutaSCTR" />
+                <ScalarProperty Name="U_Induccion" ColumnName="U_Induccion" />
+                <ScalarProperty Name="U_RutaInduccion" ColumnName="U_RutaInduccion" />
+                <ScalarProperty Name="U_UsuarioRegistro" ColumnName="U_UsuarioRegistro" />
+                <ScalarProperty Name="U_FechaRegistro" ColumnName="U_FechaRegistro" />
+                <ScalarProperty Name="U_UsuarioModificacion" ColumnName="U_UsuarioModificacion" />
+                <ScalarProperty Name="U_FechaModificacion" ColumnName="U_FechaModificacion" />
+                <ScalarProperty Name="U_FlagActivo" ColumnName="U_FlagActivo" />
+                <ScalarProperty Name="U_EstadoDocs" ColumnName="U_EstadoDocs" />
+                <ScalarProperty Name="U_ObsEstadoDocs" ColumnName="U_ObsEstadoDocs" />
+                <ScalarProperty Name="DescEstadoDocs" ColumnName="DescEstadoDocs" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_Listar_Conductores" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_Conductores">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_Conductores_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="U_IdTx" ColumnName="U_IdTx" />
+                <ScalarProperty Name="U_NroDocumento" ColumnName="U_NroDocumento" />
+                <ScalarProperty Name="U_TipoDesc" ColumnName="U_TipoDesc" />
+                <ScalarProperty Name="U_TipoDocumento" ColumnName="U_TipoDocumento" />
+                <ScalarProperty Name="U_DocIdentidad" ColumnName="U_DocIdentidad" />
+                <ScalarProperty Name="U_CodEmpresa" ColumnName="U_CodEmpresa" />
+                <ScalarProperty Name="U_Empresa" ColumnName="U_Empresa" />
+                <ScalarProperty Name="U_Nombre" ColumnName="U_Nombre" />
+                <ScalarProperty Name="U_Apellidos" ColumnName="U_Apellidos" />
+                <ScalarProperty Name="U_Cuestionario" ColumnName="U_Cuestionario" />
+                <ScalarProperty Name="U_RutaCuestionario" ColumnName="U_RutaCuestionario" />
+                <ScalarProperty Name="U_Vacunacion" ColumnName="U_Vacunacion" />
+                <ScalarProperty Name="U_RutaVacunacion" ColumnName="U_RutaVacunacion" />
+                <ScalarProperty Name="U_SCTR" ColumnName="U_SCTR" />
+                <ScalarProperty Name="U_RutaSCTR" ColumnName="U_RutaSCTR" />
+                <ScalarProperty Name="U_LicenciaConducir" ColumnName="U_LicenciaConducir" />
+                <ScalarProperty Name="U_RutaLicConducir" ColumnName="U_RutaLicConducir" />
+                <ScalarProperty Name="U_FechaLicenciaInicio" ColumnName="U_FechaLicenciaInicio" />
+                <ScalarProperty Name="U_FechaLicenciaFin" ColumnName="U_FechaLicenciaFin" />
+                <ScalarProperty Name="U_ConformeLicConducir" ColumnName="U_ConformeLicConducir" />
+                <ScalarProperty Name="U_UsuarioRegistro" ColumnName="U_UsuarioRegistro" />
+                <ScalarProperty Name="U_FechaRegistro" ColumnName="U_FechaRegistro" />
+                <ScalarProperty Name="U_UsuarioModificacion" ColumnName="U_UsuarioModificacion" />
+                <ScalarProperty Name="U_FechaModificacion" ColumnName="U_FechaModificacion" />
+                <ScalarProperty Name="U_FlagActivo" ColumnName="U_FlagActivo" />
+                <ScalarProperty Name="U_EstadoDocs" ColumnName="U_EstadoDocs" />
+                <ScalarProperty Name="U_ObsEstadoDocs" ColumnName="U_ObsEstadoDocs" />
+                <ScalarProperty Name="DescEstadoDocs" ColumnName="DescEstadoDocs" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_Listar_Transportista" FunctionName="Model_ALPA_WEB.Store.USP_Web_Listar_Transportista">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_ALPA_WEB.USP_Web_Listar_Transportista_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="U_CodTransportista" ColumnName="U_CodTransportista" />
+                <ScalarProperty Name="U_CodEmpresa" ColumnName="U_CodEmpresa" />
+                <ScalarProperty Name="U_Empresa" ColumnName="U_Empresa" />
+                <ScalarProperty Name="U_Transportista" ColumnName="U_Transportista" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="U_FlagActivo" ColumnName="U_FlagActivo" />
+                <ScalarProperty Name="U_RUC" ColumnName="U_RUC" />
+                <ScalarProperty Name="U_Contacto" ColumnName="U_Contacto" />
+                <ScalarProperty Name="U_FonoContacto" ColumnName="U_FonoContacto" />
+                <ScalarProperty Name="U_UsuarioRegistro" ColumnName="U_UsuarioRegistro" />
+                <ScalarProperty Name="U_FechaRegistro" ColumnName="U_FechaRegistro" />
+                <ScalarProperty Name="U_UsuarioModificacion" ColumnName="U_UsuarioModificacion" />
+                <ScalarProperty Name="U_FechaModificacion" ColumnName="U_FechaModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UPDATE_Ayudante_Docs" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_Ayudante_Docs" />
+          <FunctionImportMapping FunctionImportName="UPDATE_Conductor_Docs" FunctionName="Model_ALPA_WEB.Store.USP_Web_Actualizar_Conductor_Docs" />        
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

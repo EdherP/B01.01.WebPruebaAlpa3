@@ -1,0 +1,784 @@
+﻿
+@using Web_ALPA.Data
+@model List<DRIVIN_SAP_Listar_Pedidos_Result>
+
+<style>
+    .size {
+        width: 240px;
+    }
+
+    .size2 {
+        width: 160px;
+    }
+
+    .size3 {
+        width: 400px;
+    }
+
+    .size4 {
+        width: 80px;
+    }
+
+    .size5 {
+        width: 120px;
+    }
+
+    .circle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+        .circle[data-estado-drivin="0"] {
+            background-color: red;
+        }
+
+        .circle[data-estado-drivin="1"] {
+            background-color: green;
+        }
+
+        .circle[data-estado-drivin="2"] {
+            background-color: yellow;
+        }
+
+    .a {
+        /*        font: Arial, Helvetica, sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        text-decoration: none;*/
+        color: black;
+        font-weight: bold;
+/*        border: 0;
+        background-color: transparent;*/
+    }
+</style>
+
+<html>
+<body>
+    <fieldset id="SubmitFormx">
+        <div>
+            <table class="table table-striped table-hover" id="kt_table2" @*id="kt_table_Scroller2"*@ @*class="table table-striped- table-bordered table-hover table-checkable"*@>
+
+                <thead class="thead-dark">
+                    <tr role="row">
+                        <th class="text-light">#</th>
+                        <th>
+
+                            <center>
+                                @Html.CheckBox("CheckAll", false, new { id = "select_all" })
+                            </center>
+
+                        </th>
+                        <th class="text-light" style="text-align:center">...</th>
+                        <th class="text-light" style="text-align:center">Guia</th>
+                        <th class="text-light" style="text-align:center">Estado</th>
+
+                        <th class="text-light">Fec.Despacho</th>
+                        <th class="text-light">Fec.Entrega Final</th>
+                        <th class="text-light">Placa Individual</th>
+                        <th class="text-light"><div class="size4">Placa Drivin</div></th>
+                        <th class="text-light">Línea Negocio</th>
+                        <th class="text-light">Número Orden</th>
+                        <th class="text-light"><div class="size2">Cliente</div></th>
+                        <th class="text-light"><div class="size2">Vendedor</div></th>
+                        <th class="text-light"><div class="size2">Distrito</div></th>
+                        <th class="text-light"><div class="size3">Dirección</div></th>
+                        <th class="text-light">Peso</th>
+                        <th class="text-light">Cantidad Pedido</th>
+                        <th class="text-light" style="display:none">latest_appt_time</th>
+                        <th class="text-light">Almacen</th>
+                        <th class="text-light"><div class="size3">Id Direccion</div></th>
+                        <th class="text-light"><div class="size2">Número Documento</div></th>
+                        <th class="text-light"><div class="size2">Tipo Orden</div></th>
+                        <th class="text-light">Almacén Sap</th>
+                        <th class="text-light"><div class="size2">Forma Envío</div></th>
+                        <th class="text-light">Tiempo Servicio</th>
+                        <th class="text-light">Inicio Horario</th>
+                        <th class="text-light">Fin Horario</th>
+                        <th class="text-light" style="display:none">reference</th>
+                        <th class="text-light" style="display:none">country</th>
+                        <th class="text-light" style="display:none">name</th>
+
+
+                        <th class="text-light" style="display:none">address_type</th>
+                        <th class="text-light" style="display:none">contact_name</th>
+                        <th class="text-light" style="display:none">contact_phone</th>
+                        <th class="text-light" style="display:none">contact_email</th>
+                        <th class="text-light" style="display:none">additional_contact_name</th>
+                        <th class="text-light" style="display:none">additional_contact_phone</th>
+                        <th class="text-light" style="display:none">additional_contact_email</th>
+
+                        <th class="text-light" style="display:none">start_contact_phone</th>
+                        <th class="text-light" style="display:none">start_contact_email</th>
+
+                        <th class="text-light" style="display:none">near_contact_phone</th>
+                        <th class="text-light" style="display:none">near_contact_email</th>
+                        <th class="text-light" style="display:none">delivered_contact_name</th>
+                        <th class="text-light" style="display:none">delivered_contact_phone</th>
+                        <th class="text-light" style="display:none">delivered_contact_email</th>
+                        <th class="text-light" style="display:none">service_time</th>
+                        <th class="text-light" style="display:none">code_2</th>
+                        <th class="text-light" style="display:none">delivery_date</th>
+                        <th class="text-light">Estado_Picking</th>
+                        <th class="text-light">Estado_Packing</th>
+                        <th class="text-light">Estado_Loaded</th>
+                        <th class="text-light">Estado_Loaded_Audit</th>
+                        <th class="text-light">Estado_Shipped</th>
+                        <th class="text-light">Email_aprobar_ruta</th>
+                        <th class="text-light">Email_iniciar_ruta</th>
+                        <th class="text-light">Email_en_camino</th>
+                        <th class="text-light"><div class="size3">Email_entrega_finalizada</div></th>
+                        <th class="text-light" style="display:none">Token_Escenario</th>
+                        <th class="text-light" style="display:none">Code_Esquema</th>
+                        <th class="text-light" style="display:none">Esquema_Drivin</th>
+                        <th class="text-light" style="display:none">Guia</th>
+                        <th class="text-light" style="display:none">Pedido Origen</th>
+                        <th class="text-light" style="display:none">Code Cliente-</th>
+                        <th class="text-light" style="display:none">start_contact_name</th>
+                        <th class="text-light" style="display:none">approve_contact_name</th>
+                        <th class="text-light" style="display:none">approve_contact_phone</th>
+                        <th class="text-light" style="display:none">approve_contact_email</th>
+                        <th class="text-light" style="display:none">county</th>
+                        <th class="text-light" style="display:none">postal_code</th>
+                        <th class="text-light">Convoy</th>
+                        <th class="text-light"><div class="size3">Comentario</div></th>
+                        <th class="text-light" style="display:none">DocNum</th>
+                        <th class="text-light" style="display:none">DocEntry</th>
+                        <th class="text-light" style="display:none">Doctype</th>
+                        <th class="text-light">Pago Adelantado</th>
+                        <th class="text-light">Prioridad</th>
+                        <th class="text-light">Licencia</th>
+                        <th class="text-light">Volumen</th>
+                        <th class="text-light">Nro Bultos</th>
+                        <th class="text-light" style="display:none">Nombre Transportista</th>
+                        <th class="text-light" style="display:none">Flota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        for (int i = 0; i < Model.Count; i++)
+                        {
+                            string @Code = Model[i].code_2;
+                            string @NumeroGuia = Model[i].Docentry;
+                            string @CustPoNumber = Model[i].pedido_origen;
+                            string @Referencia = Model[i].reference;
+                            string @Token = Model[i].token_escenario_MXT;
+                            string @LineaNegocio = Model[i].linea_negocio;
+
+                            string @id_direccion = Model[i].id_direccion;
+                            string @address = Model[i].address;
+                            string @city = Model[i].city;
+                            string @state = Model[i].county;
+                            string @county = Model[i].county;
+                            string @country = Model[i].country;
+
+                            string @latitud = Model[i].latitud;
+                            string @longitud = Model[i].longitud;
+                            string @NombreDireccion = Model[i].id_direccion;
+                            string @client_name = Model[i].client_name;
+                            string @code_cliente = Model[i].code_cliente;
+                            string @address_type = Model[i].linea_negocio;
+                            string @contact_name = Model[i].contact_name;
+                            string @Docentry = Model[i].Docentry;
+
+                    <tr>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].Nro)
+                            @Html.DisplayFor(x => Model[i].Nro, Model[i].Nro)
+                        </td>
+
+                        <td class="text-light">
+                            @if (Model[i].estado_drivin == 0 || Model[i].estado_drivin == 2)
+                            {
+                                if (Model[i].georeferencia == 0)
+                                {
+                                    @Html.CheckBoxFor(x => Model[i].Nro1, new { @class = "kt-checkbox kt-checkbox--brand checkbox-marcado", id = "Checkbox1" + Convert.ToString(Model[i].Orden).Trim(), name = "Checkbox1" + Convert.ToString(Model[i].Orden).Trim(), style = "transform: scale(1.5);", @disabled = "disabled" })
+                                }
+                                else
+                                {
+                                    @Html.CheckBoxFor(x => Model[i].Nro1, new { @class = "kt-checkbox kt-checkbox--brand checkbox-marcado", id = "Checkbox1" + Convert.ToString(Model[i].Orden).Trim(), name = "Checkbox1" + Convert.ToString(Model[i].Orden).Trim(), style = "transform: scale(1.5);" })
+                                }
+
+                            }
+                        </td>
+
+                        <td>
+                            @if (Model[i].estado_drivin == 1 || Model[i].estado_drivin == 2)
+                            {
+                                <a @*href="#ModalCrear"*@ class="BtnDetEmp btn btn-clean btn-sm btn-icon" data-Code="@Code" data-NumeroGuia="@NumeroGuia" data-CustPoNumber="@CustPoNumber" data-Referencia="@Referencia" data-Token="@Token"
+                                   title="Desasignar" data-toggle="modal">
+                                    <i class="flaticon-delete fa-2x"></i>
+                                </a>
+                            }
+                        </td>
+
+                        <td class="a">
+                            @if (Model[i].estado_drivin == 0 || Model[i].estado_drivin == 2)
+                            {
+                                <a @*href="#ModalCrear"*@ class="btnCrearPlacaIn btn btn-clean btn-sm btn-icon" data-NumeroGuia="@Docentry" data-CustPoNumber="@CustPoNumber" data-LineaNegocio="@LineaNegocio" data-toggle="modal" id="btnCrearPlacaIn" title="Agregar Placa">
+                                    <u>Actualizar guia</u>
+                                </a>
+                            }
+                        </td>
+
+                        <td>
+                            @if (Model[i].estado_drivin == 0 || Model[i].estado_drivin == 2)
+                            {
+                                if (Model[i].georeferencia == 0)
+                                {
+
+                                    <a href="#Modal_EditLocalizacion" class="BtnMap btn btn-default btn-sm btn-ico" data-toggle="modal" id="BtnMap"
+                                       data-CodDirec="@id_direccion"
+                                       data-Direc="@address"
+                                       data-City="@city"
+                                       data-State="@state"
+                                       data-County="@county"
+                                       data-Country="@country"
+                                       data-Latitud="@latitud"
+                                       data-Longitud="@longitud"
+                                       data-NombreDireccion="@NombreDireccion"
+                                       data-Cliente="@client_name"
+                                       data-CodCliente="@code_cliente"
+                                       data-AddressType="@address_type"
+                                       data-ContactName="@contact_name"
+                                       aria-haspopup="true" title="Editar localización" data-placement="Center">
+                                        <i class="fa fa-map-marker-alt fa-2x" style="color:red"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="#Modal_EditLocalizacion" class="BtnMap btn btn-default btn-sm btn-ico" data-toggle="modal" id="BtnMap"
+                                       data-CodDirec="@id_direccion"
+                                       data-Direc="@address"
+                                       data-City="@city"
+                                       data-State="@state"
+                                       data-County="@county"
+                                       data-Country="@country"
+                                       data-Latitud="@latitud"
+                                       data-Longitud="@longitud"
+                                       data-NombreDireccion="@NombreDireccion"
+                                       data-Cliente="@client_name"
+                                       data-CodCliente="@code_cliente"
+                                       data-AddressType="@address_type"
+                                       data-ContactName="@contact_name"
+                                       aria-haspopup="true" title="Editar localización" data-placement="Center">
+                                        <i class=" fa fa-map-marker-alt fa-2x" style="color:mediumblue"></i>
+                                    </a>
+
+                                }
+                            }
+                            @*@Html.HiddenFor(x => Model[i].georeferencia)*@
+                            @*@Html.DisplayFor(x => Model[i].estado_drivin, Model[i].estado_drivin)*@
+                            @*<div class="circle" data-estado-drivin="@Model[i].georeferencia"></div>*@
+
+                        </td>
+
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].FecEntrega)
+                            @Html.DisplayFor(x => Model[i].FecEntrega, Model[i].FecEntrega)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].delivery_date)
+                            @Html.DisplayFor(x => Model[i].delivery_date, Model[i].delivery_date)
+                        </td>
+                        <td class="a" style="color:green">
+                            @Html.HiddenFor(x => Model[i].placa_individual)
+                            @Html.DisplayFor(x => Model[i].placa_individual, Model[i].placa_individual)
+                        </td>
+                        <td class="a" style="color:green">
+                            @Html.HiddenFor(x => Model[i].placa)
+                            @Html.DisplayFor(x => Model[i].placa, Model[i].placa)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].linea_negocio)
+                            @Html.DisplayFor(x => Model[i].linea_negocio, Model[i].linea_negocio)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].pedido_origen)
+                            @Html.DisplayFor(x => Model[i].pedido_origen, Model[i].pedido_origen)
+                        </td>
+                        @{
+                            string clientName = Model[i].client_name;
+                            string displayText = clientName.Length > 20 ? clientName.Substring(0, 20) + "..." : clientName;
+                        }
+
+                        <td class="a" style="width: 20px;">
+                            <div title="@Model[i].client_name">
+                                @Html.HiddenFor(x => Model[i].client_name)
+                                @displayText
+                            </div>
+                        </td>
+                        @{
+                            string VendorName = Model[i].near_contact_name;
+                            string displayText2 = VendorName.Length > 20 ? VendorName.Substring(0, 20) + "..." : VendorName;
+                        }
+                        <td class="a" style="width: 20px;">
+                            <div title="@Model[i].near_contact_name">
+                                @Html.HiddenFor(x => Model[i].near_contact_name)
+                                @displayText2
+                            </div>
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].city)
+                            @Html.DisplayFor(x => Model[i].city, Model[i].city)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].address)
+                            @Html.DisplayFor(x => Model[i].address, Model[i].address)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].peso)
+                            @Html.DisplayFor(x => Model[i].peso, Model[i].peso)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].cantidadpedido)
+                            @Html.DisplayFor(x => Model[i].cantidadpedido, Model[i].cantidadpedido)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].latest_appt_time)
+                            @Html.DisplayFor(x => Model[i].latest_appt_time, Model[i].latest_appt_time)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].wh_id)
+                            @Html.DisplayFor(x => Model[i].wh_id, Model[i].wh_id)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].id_direccion)
+                            @Html.DisplayFor(x => Model[i].id_direccion, Model[i].id_direccion)
+                        </td>
+
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].Orden)
+                            @Html.DisplayFor(x => Model[i].Orden, Model[i].Orden)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].tipo_orden)
+                            @Html.DisplayFor(x => Model[i].tipo_orden, Model[i].tipo_orden)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].almacen_sap)
+                            @Html.DisplayFor(x => Model[i].almacen_sap, Model[i].almacen_sap)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].forma_envio)
+                            @Html.DisplayFor(x => Model[i].forma_envio, Model[i].forma_envio)
+                        </td>
+                        <td class="a" style="color:green">
+                            @Html.HiddenFor(x => Model[i].tiempo_servicio)
+                            @Html.DisplayFor(x => Model[i].tiempo_servicio, Model[i].tiempo_servicio)
+                        </td>
+                        <td class="a" style="color:green">
+                            @Html.HiddenFor(x => Model[i].inicio_ventana_horario)
+                            @Html.DisplayFor(x => Model[i].inicio_ventana_horario, Model[i].inicio_ventana_horario)
+                        </td>
+                        <td class="a" style="color:green">
+                            @Html.HiddenFor(x => Model[i].fin_ventana_horario)
+                            @Html.DisplayFor(x => Model[i].fin_ventana_horario, Model[i].fin_ventana_horario)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].reference)
+                            @Html.DisplayFor(x => Model[i].reference, Model[i].reference)
+                        </td>
+
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].country)
+                            @Html.DisplayFor(x => Model[i].country, Model[i].country)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].name)
+                            @Html.DisplayFor(x => Model[i].name, Model[i].name)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].address_type)
+                            @Html.DisplayFor(x => Model[i].address_type, Model[i].address_type)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].contact_name)
+                            @Html.DisplayFor(x => Model[i].contact_name, Model[i].contact_name)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].contact_phone)
+                            @Html.DisplayFor(x => Model[i].contact_phone, Model[i].contact_phone)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].contact_email)
+                            @Html.DisplayFor(x => Model[i].contact_email, Model[i].contact_email)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].additional_contact_name)
+                            @Html.DisplayFor(x => Model[i].additional_contact_name, Model[i].additional_contact_name)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].additional_contact_phone)
+                            @Html.DisplayFor(x => Model[i].additional_contact_phone, Model[i].additional_contact_phone)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].additional_contact_email)
+                            @Html.DisplayFor(x => Model[i].additional_contact_email, Model[i].additional_contact_email)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].start_contact_phone)
+                            @Html.DisplayFor(x => Model[i].start_contact_phone, Model[i].start_contact_phone)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].start_contact_email)
+                            @Html.DisplayFor(x => Model[i].start_contact_email, Model[i].start_contact_email)
+                        </td>
+
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].near_contact_phone)
+                            @Html.DisplayFor(x => Model[i].near_contact_phone, Model[i].near_contact_phone)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].near_contact_email)
+                            @Html.DisplayFor(x => Model[i].near_contact_email, Model[i].near_contact_email)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].delivered_contact_name)
+                            @Html.DisplayFor(x => Model[i].delivered_contact_name, Model[i].delivered_contact_name)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].delivered_contact_phone)
+                            @Html.DisplayFor(x => Model[i].delivered_contact_phone, Model[i].delivered_contact_phone)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].delivered_contact_email)
+                            @Html.DisplayFor(x => Model[i].delivered_contact_email, Model[i].delivered_contact_email)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].service_time)
+                            @Html.DisplayFor(x => Model[i].service_time, Model[i].service_time)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].code_2)
+                            @Html.DisplayFor(x => Model[i].code_2, Model[i].code_2)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].delivery_date)
+                            @Html.DisplayFor(x => Model[i].delivery_date, Model[i].delivery_date)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].Estado_Picking)
+                            @Html.DisplayFor(x => Model[i].Estado_Picking, Model[i].Estado_Picking)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].Estado_Packing)
+                            @Html.DisplayFor(x => Model[i].Estado_Packing, Model[i].Estado_Packing)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].Estado_Loaded)
+                            @Html.DisplayFor(x => Model[i].Estado_Loaded, Model[i].Estado_Loaded)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].Estado_Loaded_Audit)
+                            @Html.DisplayFor(x => Model[i].Estado_Loaded_Audit, Model[i].Estado_Loaded_Audit)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].Estado_Shipped)
+                            @Html.DisplayFor(x => Model[i].Estado_Shipped, Model[i].Estado_Shipped)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].email_aprobar_ruta)
+                            @Html.DisplayFor(x => Model[i].email_aprobar_ruta, Model[i].email_aprobar_ruta)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].email_iniciar_ruta)
+                            @Html.DisplayFor(x => Model[i].email_iniciar_ruta, Model[i].email_iniciar_ruta)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].email_en_camino)
+                            @Html.DisplayFor(x => Model[i].email_en_camino, Model[i].email_en_camino)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].email_entrega_finalizada)
+                            @Html.DisplayFor(x => Model[i].email_entrega_finalizada, Model[i].email_entrega_finalizada)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].token_escenario_MXT)
+                            @Html.DisplayFor(x => Model[i].token_escenario_MXT, Model[i].token_escenario_MXT)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].code_esquema)
+                            @Html.DisplayFor(x => Model[i].code_esquema, Model[i].code_esquema)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].esquema_drivin)
+                            @Html.DisplayFor(x => Model[i].esquema_drivin, Model[i].esquema_drivin)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].numero_guia, new { @class = "numeroguia" })
+                            @Html.DisplayFor(x => Model[i].numero_guia, Model[i].numero_guia)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].pedido_origen)
+                            @Html.DisplayFor(x => Model[i].pedido_origen, Model[i].pedido_origen)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].code_cliente)
+                            @Html.DisplayFor(x => Model[i].code_cliente, Model[i].code_cliente)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].start_contact_name)
+                            @Html.DisplayFor(x => Model[i].start_contact_name, Model[i].start_contact_name)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].approve_contact_name)
+                            @Html.DisplayFor(x => Model[i].approve_contact_name, Model[i].approve_contact_name)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].approve_contact_email)
+                            @Html.DisplayFor(x => Model[i].approve_contact_email, Model[i].approve_contact_email)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].approve_contact_phone)
+                            @Html.DisplayFor(x => Model[i].approve_contact_phone, Model[i].approve_contact_phone)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].county)
+                            @Html.DisplayFor(x => Model[i].county, Model[i].county)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].postal_code)
+                            @Html.DisplayFor(x => Model[i].postal_code, Model[i].postal_code)
+                        </td>
+                        <td class="a" style="color:green">
+                            @Html.HiddenFor(x => Model[i].convoy)
+                            @Html.DisplayFor(x => Model[i].convoy, Model[i].convoy)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].comment_text)
+                            @Html.DisplayFor(x => Model[i].comment_text, Model[i].comment_text)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].Docnum)
+                            @Html.DisplayFor(x => Model[i].Docnum, Model[i].Docnum)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].Docentry, new { @class = "Docentry" })
+                            @Html.DisplayFor(x => Model[i].Docentry, Model[i].Docentry)
+                        </td>
+                        <td style="display:none">
+                            @Html.HiddenFor(x => Model[i].Doctype)
+                            @Html.DisplayFor(x => Model[i].Doctype, Model[i].Doctype)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].pago_adelantado)
+                            @Html.DisplayFor(x => Model[i].pago_adelantado, Model[i].pago_adelantado)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].prioridad)
+                            @Html.DisplayFor(x => Model[i].prioridad, Model[i].prioridad)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].licencia)
+                            @Html.DisplayFor(x => Model[i].licencia, Model[i].licencia)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].volumen)
+                            @Html.DisplayFor(x => Model[i].volumen, Model[i].volumen)
+                        </td>
+                        <td class="a">
+                            @Html.HiddenFor(x => Model[i].nro_bultos)
+                            @Html.DisplayFor(x => Model[i].nro_bultos, Model[i].nro_bultos)
+                        </td>
+                        <td class="a" style="display:none">
+                            @Html.HiddenFor(x => Model[i].nombre_conductor)
+                            @Html.DisplayFor(x => Model[i].nombre_conductor, Model[i].nombre_conductor)
+                        </td>
+                        <td class="a" style="display:none">
+                            @Html.HiddenFor(x => Model[i].transporte)
+                            @Html.DisplayFor(x => Model[i].transporte, Model[i].transporte)
+                        </td>
+                    </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal de confirmación -->
+        <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalConfirmacionLabel">Confirmación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Estás seguro de que deseas Desasignar de Drivin?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="btnAceptar">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="Modal_EditLocalizacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div id="modal-contentMap">
+                            Cargando...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</body>
+</html>
+
+<script>
+
+    $(document).ready(function () {
+        // DataTable
+        var table = $('#kt_table2').DataTable({
+            scrollY: '80vh',
+            scrollCollapse: true,
+            scrollX: true,
+            paging: false,
+            responsive: false,
+            sortable: true,
+            //autoWidth: true,
+            //"processing": true,
+            //"serverSide": true,
+            // Pagination settings
+            dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
+            <'row'<'col-sm-12'tr>>
+            <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+            searching: false,
+            buttons: [
+                // 'copyHtml5',
+                'excelHtml5',
+            ],
+
+            pagination: false,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            },
+        });
+
+    });
+
+    $(".BtnDetEmpbackup").click(function (eve) {
+
+        var XCod = $(this).attr("data-Code");
+        var datax = { oCodEmp: XCod };
+
+        $.get('/Drivin/VP_Eliminar_Pedido', datax).done(function (data) {
+            $("#modal-contentCrear").html(data);
+        });
+    });
+
+    //BotonEliminar
+    $(".BtnDetEmp").click(function (eve) {
+        var XCodOrder = $(this).attr("data-Code");
+        var XNumeroGuia = $(this).attr("data-NumeroGuia");
+        var XCustPoNumber = $(this).attr("data-CustPoNumber");
+        var XReferencia = $(this).attr("data-Referencia");
+        var XToken = $(this).attr("data-Token");
+
+        // Mostrar el modal de confirmación
+        $("#modalConfirmacion").modal("show");
+
+        // Manejar el clic en el botón "Aceptar" del modal
+        $("#btnAceptar").click(function () {
+            var datax = { oCodOrder: XCodOrder, oNumeroGuia: XNumeroGuia, oCustPoNumber: XCustPoNumber, oReferencia: XReferencia, oCodTokenEscenario: XToken };
+            EliminarDrivin(datax);
+
+            // Cerrar el modal después de ejecutar la función EliminarDrivin
+            $("#modalConfirmacion").modal("hide");
+        });
+    });
+
+    $(".btnCrearPlacaIn").click(function (eve) {
+
+        var XDocentry = $(this).attr("data-NumeroGuia");
+        var XCustPoNumber = $(this).attr("data-CustPoNumber");
+        var XLineaNegocio = $(this).attr("data-LineaNegocio");
+
+        var data = { numeroguia: XDocentry, oCustPoNumber: XCustPoNumber, oLineaNegocio: XLineaNegocio };
+       
+        $.get('/Drivin/VP_Crear_Placa_Individual', data).done(function (data) {
+                $('#ModalCrear').modal('show');
+                $("#modal-contentCrear").html(data);
+            });
+        
+    });
+
+
+    function EliminarDrivin(oDatosEnviar) {
+
+        var datax = oDatosEnviar;
+
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+        //$('#progress').show();
+        $.ajax({
+            url: '/Drivin/VP_Eliminar_Pedido',
+            type: 'post',
+            data: datax,
+            dataType: 'json',
+            success: function (result) {
+
+                if (result.EnableSuccess == true) {
+                    swal({
+                        type: 'success',
+                        title: result.SuccessTitle,
+                        text: result.SuccessMsg,
+                        showConfirmButton: true,
+                    });
+                    BuscarPedidos();
+                }
+                //$('#progress').hide();
+                if (result.EnableSuccess == false) {
+
+                    swal({
+                        type: 'error',
+                        title: result.SuccessTitle,
+                        text: result.SuccessMsg,
+                        showConfirmButton: true,
+                    });
+
+                }
+            },
+        });
+    }
+
+    function validartexto() {
+
+        $('.modal-backdrop').remove();
+    }
+
+    $(".BtnMap").click(function (eve) {
+
+        var xCodDireccion = $(this).attr("data-CodDirec");
+        var xDireccion = $(this).attr("data-Direc");
+        var xCity = $(this).attr("data-City");
+        var xState = $(this).attr("data-State");
+        var xCounty = $(this).attr("data-County");
+        var xCountry = $(this).attr("data-Country");
+        var xLatitud = $(this).attr("data-Latitud");
+        var xLongitud = $(this).attr("data-Longitud");
+        var xNombreDireccion = $(this).attr("data-NombreDireccion");
+        var xCliente = $(this).attr("data-Cliente");
+        var xCodCliente = $(this).attr("data-CodCliente");
+        var xAddressType = $(this).attr("data-AddressType");
+        var xContactName = $(this).attr("data-ContactName");        
+
+        var datax = { oCodDireccion: xCodDireccion, oDireccion: xDireccion, oCity: xCity, oState: xState, oCounty: xCounty, oCountry: xCountry, oLatitud: xLatitud, oLongitud: xLongitud, oNombreDireccion: xNombreDireccion, oCliente: xCliente, oCodCliente: xCodCliente, oAddressType: xAddressType, oContactName: xContactName };
+        $.get('/Drivin/VP_VerMapa', datax).done(function (data) {
+            $("#modal-contentMap").html(data);
+        });
+
+    });
+
+</script>
+<script src="~/Scripts/General/CheckAll.js"></script>

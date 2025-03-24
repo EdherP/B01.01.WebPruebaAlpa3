@@ -1,0 +1,788 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model_WMS_Korber.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="DRIVIN_Eliminar_direcciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_Eliminar_escenarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_Insertar_direccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="code" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="client" Type="varchar" Mode="In" />
+          <Parameter Name="address_type" Type="varchar" Mode="In" />
+          <Parameter Name="address1" Type="varchar" Mode="In" />
+          <Parameter Name="address2" Type="varchar" Mode="In" />
+          <Parameter Name="city" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+          <Parameter Name="country" Type="varchar" Mode="In" />
+          <Parameter Name="lat" Type="varchar" Mode="In" />
+          <Parameter Name="lng" Type="varchar" Mode="In" />
+          <Parameter Name="georeferenced" Type="bit" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_Insertar_escenarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="token" Type="varchar" Mode="In" />
+          <Parameter Name="description" Type="varchar" Mode="In" />
+          <Parameter Name="status" Type="varchar" Mode="In" />
+          <Parameter Name="schema_name" Type="varchar" Mode="In" />
+          <Parameter Name="schema_code" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_Insertar_esquema" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="code" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_Insertar_licencias_securitas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_licencia" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="description" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_Insertar_placa_securitas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="placa" Type="varchar" Mode="In" />
+          <Parameter Name="tipo" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="identificador" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_Insertar_transportista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="first_name" Type="varchar" Mode="In" />
+          <Parameter Name="last_name" Type="varchar" Mode="In" />
+          <Parameter Name="dni" Type="varchar" Mode="In" />
+          <Parameter Name="license_number" Type="varchar" Mode="In" />
+          <Parameter Name="role_name" Type="varchar" Mode="In" />
+          <Parameter Name="organization" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_Insertar_vehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="varchar" Mode="In" />
+          <Parameter Name="code" Type="varchar" Mode="In" />
+          <Parameter Name="description" Type="varchar" Mode="In" />
+          <Parameter Name="capacity_1" Type="float" Mode="In" />
+          <Parameter Name="capacity_2" Type="float" Mode="In" />
+          <Parameter Name="capacity_3" Type="float" Mode="In" />
+          <Parameter Name="flotas" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_Listar_Clientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DRIVIN_Listar_Direcciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DRIVIN_Listar_General" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sTabla" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DRIVIN_Listar_General_Conductor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sTabla" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DRIVIN_SAP_Listar_Pedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaIni" Type="varchar" Mode="In" />
+          <Parameter Name="FechaFin" Type="varchar" Mode="In" />
+          <Parameter Name="ClientId" Type="varchar" Mode="In" />
+          <Parameter Name="WhId" Type="varchar" Mode="In" />
+          <Parameter Name="OrderNumber" Type="varchar" Mode="In" />
+          <Parameter Name="EstadoDrivin" Type="int" Mode="In" />
+          <Parameter Name="FormaEnvioDrivin" Type="varchar" Mode="In" />
+          <Parameter Name="BusquedaGeneral" Type="varchar" Mode="In" />
+          <Parameter Name="LineaNegocio" Type="varchar" Mode="In" />
+          <Parameter Name="PlacaGeneral" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DRIVIN_SAP_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderNumber" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroGuia" Type="varchar" Mode="In" />
+          <Parameter Name="CustPoNumber" Type="varchar" Mode="In" />
+          <Parameter Name="Referencia" Type="varchar" Mode="In" />
+          <Parameter Name="TokenEscenario" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_SAP_Update_Placa_Guia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumeroGuia" Type="varchar" Mode="In" />
+          <Parameter Name="PlacaIndividual" Type="varchar" Mode="In" />
+          <Parameter Name="Prioridad" Type="int" Mode="In" />
+          <Parameter Name="Licencia" Type="varchar" Mode="In" />
+          <Parameter Name="CustPoNumber" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_SAP_update_Pedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pedido" Type="varchar(max)" Mode="In" />
+          <Parameter Name="NumeroGuia" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Referencia" Type="varchar" Mode="In" />
+          <Parameter Name="WhId" Type="varchar" Mode="In" />
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="TiempoServicio" Type="varchar" Mode="In" />
+          <Parameter Name="InicioVentana" Type="varchar" Mode="In" />
+          <Parameter Name="FinVentana" Type="varchar" Mode="In" />
+          <Parameter Name="FechaDespacho" Type="varchar" Mode="In" />
+          <Parameter Name="Convoy" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="DRIVIN_execute_job" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="KOBER_SP_INFORME_DET_IMAGENES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_imagen" Type="int" Mode="In" />
+          <Parameter Name="nro_orden_compra" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="imagen" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="KOBER_SP_INFORME_DET_OBSERVADOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_observado" Type="int" Mode="In" />
+          <Parameter Name="id_detalle" Type="int" Mode="In" />
+          <Parameter Name="comentario" Type="varchar" Mode="In" />
+          <Parameter Name="conclusiones" Type="varchar" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="KORBER_Listar_OrdenCompra_Cab" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrdenCompra" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="KORBER_Listar_OrdenCompra_Det" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrdenCompra" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="KORBER_Listar_OrdenCompra_IMG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nro_orden_compra" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="KORBER_Listar_OrdenCompra_OBS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_detalle" Type="int" Mode="In" />
+        </Function>
+        <Function Name="KORBER_SP_INFORME_MERCADERIA_CAB_INS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wh_id" Type="varchar" Mode="In" />
+          <Parameter Name="client_code" Type="varchar" Mode="In" />
+          <Parameter Name="nro_orden_compra" Type="varchar" Mode="In" />
+          <Parameter Name="codigo_negocio" Type="varchar" Mode="In" />
+          <Parameter Name="conductor" Type="varchar" Mode="In" />
+          <Parameter Name="nro_dni" Type="varchar" Mode="In" />
+          <Parameter Name="nro_licencia" Type="varchar" Mode="In" />
+          <Parameter Name="id_tipo_vehiculo" Type="int" Mode="In" />
+          <Parameter Name="id_tipo_compra" Type="int" Mode="In" />
+          <Parameter Name="id_tipo_carga" Type="int" Mode="In" />
+          <Parameter Name="nro_placa" Type="varchar" Mode="In" />
+          <Parameter Name="nro_contenedor" Type="varchar" Mode="In" />
+          <Parameter Name="nro_precinto" Type="varchar" Mode="In" />
+          <Parameter Name="nro_soat" Type="varchar" Mode="In" />
+          <Parameter Name="nro_dua" Type="varchar" Mode="In" />
+          <Parameter Name="nro_traslado" Type="varchar" Mode="In" />
+          <Parameter Name="nro_bill_lading" Type="varchar" Mode="In" />
+          <Parameter Name="nro_factura" Type="varchar" Mode="In" />
+          <Parameter Name="nro_guia_remision" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_recepcion" Type="date" Mode="In" />
+          <Parameter Name="fecha_registro" Type="date" Mode="In" />
+          <Parameter Name="fecha_informe" Type="date" Mode="In" />
+          <Parameter Name="Rpta" Type="bit" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="Model_WMS_KorberStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model_WMS_Korber" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities_Korber" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="DRIVIN_Eliminar_direcciones">
+          <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_Listar_Clientes" ReturnType="Collection(Model_WMS_Korber.DRIVIN_Listar_Clientes_Result)" />
+          <FunctionImport Name="DRIVIN_Insertar_esquema">
+            <Parameter Name="code" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_Listar_Direcciones" ReturnType="Collection(Model_WMS_Korber.DRIVIN_Listar_Direcciones_Result)" />
+          <FunctionImport Name="DRIVIN_Insertar_direccion">
+            <Parameter Name="code" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="client" Mode="In" Type="String" />
+            <Parameter Name="address_type" Mode="In" Type="String" />
+            <Parameter Name="address1" Mode="In" Type="String" />
+            <Parameter Name="address2" Mode="In" Type="String" />
+            <Parameter Name="city" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+            <Parameter Name="country" Mode="In" Type="String" />
+            <Parameter Name="lat" Mode="In" Type="String" />
+            <Parameter Name="lng" Mode="In" Type="String" />
+            <Parameter Name="georeferenced" Mode="In" Type="Boolean" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_SAP_Update_Estado">
+            <Parameter Name="OrderNumber" Mode="In" Type="String" />
+            <Parameter Name="NumeroGuia" Mode="In" Type="String" />
+            <Parameter Name="CustPoNumber" Mode="In" Type="String" />
+            <Parameter Name="Referencia" Mode="In" Type="String" />
+            <Parameter Name="TokenEscenario" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_SAP_update_Pedidos">
+            <Parameter Name="Pedido" Mode="In" Type="String" />
+            <Parameter Name="NumeroGuia" Mode="In" Type="String" />
+            <Parameter Name="Referencia" Mode="In" Type="String" />
+            <Parameter Name="WhId" Mode="In" Type="String" />
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="TiempoServicio" Mode="In" Type="String" />
+            <Parameter Name="InicioVentana" Mode="In" Type="String" />
+            <Parameter Name="FinVentana" Mode="In" Type="String" />
+            <Parameter Name="FechaDespacho" Mode="In" Type="String" />
+            <Parameter Name="Convoy" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_Insertar_transportista">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="first_name" Mode="In" Type="String" />
+            <Parameter Name="last_name" Mode="In" Type="String" />
+            <Parameter Name="dni" Mode="In" Type="String" />
+            <Parameter Name="license_number" Mode="In" Type="String" />
+            <Parameter Name="role_name" Mode="In" Type="String" />
+            <Parameter Name="organization" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_SAP_Update_Placa_Guia">
+            <Parameter Name="NumeroGuia" Mode="In" Type="String" />
+            <Parameter Name="PlacaIndividual" Mode="In" Type="String" />
+            <Parameter Name="Prioridad" Mode="In" Type="Int32" />
+            <Parameter Name="Licencia" Mode="In" Type="String" />
+            <Parameter Name="CustPoNumber" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_Eliminar_escenarios">
+          <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_Insertar_escenarios">
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="schema_name" Mode="In" Type="String" />
+            <Parameter Name="schema_code" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_execute_job" />
+          <FunctionImport Name="DRIVIN_SAP_Listar_Pedidos" ReturnType="Collection(Model_WMS_Korber.DRIVIN_SAP_Listar_Pedidos_Result)">
+            <Parameter Name="FechaIni" Mode="In" Type="String" />
+            <Parameter Name="FechaFin" Mode="In" Type="String" />
+            <Parameter Name="ClientId" Mode="In" Type="String" />
+            <Parameter Name="WhId" Mode="In" Type="String" />
+            <Parameter Name="OrderNumber" Mode="In" Type="String" />
+            <Parameter Name="EstadoDrivin" Mode="In" Type="Int32" />
+            <Parameter Name="FormaEnvioDrivin" Mode="In" Type="String" />
+            <Parameter Name="BusquedaGeneral" Mode="In" Type="String" />
+            <Parameter Name="LineaNegocio" Mode="In" Type="String" />
+            <Parameter Name="PlacaGeneral" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_Insertar_vehiculo">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="code" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="capacity_1" Mode="In" Type="Double" />
+            <Parameter Name="capacity_2" Mode="In" Type="Double" />
+            <Parameter Name="capacity_3" Mode="In" Type="Double" />
+            <Parameter Name="flotas" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_Insertar_licencias_securitas">
+            <Parameter Name="id_licencia" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_Insertar_placa_securitas">
+            <Parameter Name="placa" Mode="In" Type="String" />
+            <Parameter Name="tipo" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="identificador" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="KORBER_Listar_OrdenCompra_Det" ReturnType="Collection(Model_WMS_Korber.KORBER_Listar_OrdenCompra_Det_Result)">
+          <Parameter Name="OrdenCompra" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_Listar_General" ReturnType="Collection(Model_WMS_Korber.DRIVIN_Listar_General_Result)">
+          <Parameter Name="sTabla" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DRIVIN_Listar_General_Conductor" ReturnType="Collection(Model_WMS_Korber.DRIVIN_Listar_General_Conductor_Result)">
+          <Parameter Name="sTabla" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="KORBER_Listar_OrdenCompra_Cab" ReturnType="Collection(Model_WMS_Korber.KORBER_Listar_OrdenCompra_Cab_Result)">
+          <Parameter Name="OrdenCompra" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="KORBER_SP_INFORME_MERCADERIA_CAB_INS">
+            <Parameter Name="wh_id" Mode="In" Type="String" />
+            <Parameter Name="client_code" Mode="In" Type="String" />
+            <Parameter Name="nro_orden_compra" Mode="In" Type="String" />
+            <Parameter Name="codigo_negocio" Mode="In" Type="String" />
+            <Parameter Name="conductor" Mode="In" Type="String" />
+            <Parameter Name="nro_dni" Mode="In" Type="String" />
+            <Parameter Name="nro_licencia" Mode="In" Type="String" />
+            <Parameter Name="id_tipo_vehiculo" Mode="In" Type="Int32" />
+            <Parameter Name="id_tipo_compra" Mode="In" Type="Int32" />
+            <Parameter Name="id_tipo_carga" Mode="In" Type="Int32" />
+            <Parameter Name="nro_placa" Mode="In" Type="String" />
+            <Parameter Name="nro_contenedor" Mode="In" Type="String" />
+            <Parameter Name="nro_precinto" Mode="In" Type="String" />
+            <Parameter Name="nro_soat" Mode="In" Type="String" />
+            <Parameter Name="nro_dua" Mode="In" Type="String" />
+            <Parameter Name="nro_traslado" Mode="In" Type="String" />
+            <Parameter Name="nro_bill_lading" Mode="In" Type="String" />
+            <Parameter Name="nro_factura" Mode="In" Type="String" />
+            <Parameter Name="nro_guia_remision" Mode="In" Type="String" />
+            <Parameter Name="fecha_recepcion" Mode="In" Type="DateTime" />
+            <Parameter Name="fecha_registro" Mode="In" Type="DateTime" />
+            <Parameter Name="fecha_informe" Mode="In" Type="DateTime" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="KOBER_SP_INFORME_DET_OBSERVADOS">
+            <Parameter Name="id_observado" Mode="In" Type="Int32" />
+            <Parameter Name="id_detalle" Mode="In" Type="Int32" />
+            <Parameter Name="comentario" Mode="In" Type="String" />
+            <Parameter Name="conclusiones" Mode="In" Type="String" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="KORBER_Listar_OrdenCompra_OBS" ReturnType="Collection(Model_WMS_Korber.KORBER_Listar_OrdenCompra_OBS_Result)">
+          <Parameter Name="id_detalle" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="KOBER_SP_INFORME_DET_IMAGENES">
+            <Parameter Name="id_imagen" Mode="In" Type="Int32" />
+            <Parameter Name="nro_orden_compra" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="imagen" Mode="In" Type="Binary" />
+            <Parameter Name="Rpta" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="KORBER_Listar_OrdenCompra_IMG" ReturnType="Collection(Model_WMS_Korber.KORBER_Listar_OrdenCompra_IMG_Result)">
+            <Parameter Name="nro_orden_compra" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="DRIVIN_Listar_Clientes_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="Int32" Name="customer_id" Nullable="false" />
+          <Property Type="String" Name="customer_code" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="customer_name" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="wh_id" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="code" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="19" />
+        </ComplexType>
+        <ComplexType Name="DRIVIN_Listar_Direcciones_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="String" Name="id_direccion_mxt" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="cod_cliente_mxt" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="customer_name" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="direccion_mxt" Nullable="true" MaxLength="8000" />
+          <Property Type="String" Name="city_mxt" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="block_mxt" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="code" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="DRIVIN_SAP_Listar_Pedidos_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="String" Name="wh_id" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="FecEntrega" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="latest_appt_time" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Orden" Nullable="false" MaxLength="72" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="reference" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="city" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="county" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="country" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="code_cliente" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="client_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="client_code" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="address_type" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="contact_name" Nullable="true" MaxLength="120" />
+          <Property Type="String" Name="contact_phone" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="contact_email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="additional_contact_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="additional_contact_phone" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="additional_contact_email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="start_contact_name" Nullable="true" MaxLength="120" />
+          <Property Type="String" Name="start_contact_phone" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="start_contact_email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="near_contact_name" Nullable="true" MaxLength="120" />
+          <Property Type="String" Name="near_contact_phone" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="near_contact_email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="delivered_contact_name" Nullable="true" MaxLength="120" />
+          <Property Type="String" Name="delivered_contact_phone" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="delivered_contact_email" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="approve_contact_name" Nullable="true" MaxLength="120" />
+          <Property Type="String" Name="approve_contact_phone" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="approve_contact_email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="service_time" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="code_2" Nullable="false" MaxLength="72" />
+          <Property Type="String" Name="placa" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="delivery_date" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Estado_Picking" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="Estado_Packing" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="Estado_Loaded" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="Estado_Loaded_Audit" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="Estado_Shipped" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="email_aprobar_ruta" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="email_iniciar_ruta" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="email_en_camino" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="email_entrega_finalizada" Nullable="false" MaxLength="254" />
+          <Property Type="Int16" Name="estado_drivin" Nullable="false" />
+          <Property Type="String" Name="tiempo_servicio" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="inicio_ventana_horario" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="fin_ventana_horario" Nullable="false" MaxLength="10" />
+          <Property Type="Double" Name="cantidadpedido" Nullable="true" />
+          <Property Type="Decimal" Name="peso" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="String" Name="token_escenario_MXT" Nullable="true" MaxLength="225" />
+          <Property Type="String" Name="code_esquema" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="esquema_drivin" Nullable="false" MaxLength="17" />
+          <Property Type="String" Name="id_direccion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="almacen_sap" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="linea_negocio" Nullable="true" MaxLength="70" />
+          <Property Type="String" Name="forma_envio" Nullable="true" MaxLength="70" />
+          <Property Type="String" Name="numero_guia" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="pedido_origen" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="postal_code" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="convoy" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="tipo_orden" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="code" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="comment_text" Nullable="true" MaxLength="170" />
+          <Property Type="Int32" Name="georeferencia" Nullable="false" />
+          <Property Type="String" Name="latitud" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="longitud" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="Docnum" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Docentry" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Doctype" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="placa_individual" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="pago_adelantado" Nullable="false" MaxLength="1" />
+          <Property Type="Int16" Name="prioridad" Nullable="true" />
+          <Property Type="String" Name="licencia" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="nro_bultos" Nullable="false" />
+          <Property Type="Double" Name="volumen" Nullable="false" />
+          <Property Type="String" Name="nombre_conductor" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="transporte" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="KORBER_Listar_OrdenCompra_Det_Result">
+          <Property Type="String" Name="wh_id" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="po_number" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="item_number" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="um" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="lot_number" Nullable="true" MaxLength="36" />
+          <Property Type="String" Name="line_number" Nullable="false" MaxLength="5" />
+          <Property Type="DateTime" Name="FechaVencimiento_MXT" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="qty_received" Nullable="true" />
+          <Property Type="Double" Name="cant_correcto" Nullable="true" />
+          <Property Type="Double" Name="cant_defectuosa" Nullable="true" />
+          <Property Type="Double" Name="cant_faltante" Nullable="true" />
+          <Property Type="Double" Name="cant_sobrante" Nullable="true" />
+          <Property Type="Int32" Name="flag_observado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="DRIVIN_Listar_General_Result">
+          <Property Type="String" Name="code" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="DRIVIN_Listar_General_Conductor_Result">
+          <Property Type="String" Name="code" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="dni" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="licencia" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="KORBER_Listar_OrdenCompra_Cab_Result">
+          <Property Type="Int32" Name="Nro" Nullable="true" />
+          <Property Type="String" Name="wh_id" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="client_code" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="type" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fecha_entrega_mxt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="display_po_number" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="status" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="tipo_compra_mxt" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="division_mxt" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="presentacion_mxt" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="modalidad_mxt" Nullable="true" MaxLength="40" />
+          <Property Type="DateTime" Name="fecha_registro_mxt" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="cantidad_esperada_mxt" Nullable="true" />
+          <Property Type="String" Name="conductor" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="nro_dni" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="nro_licencia" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="id_tipo_vehiculo" Nullable="true" />
+          <Property Type="Int32" Name="id_tipo_compra" Nullable="true" />
+          <Property Type="Int32" Name="id_tipo_carga" Nullable="true" />
+          <Property Type="String" Name="nro_placa" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="nro_contenedor" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="nro_precinto" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="nro_soat" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="nro_dua" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="nro_traslado" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="nro_bill_lading" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="nro_factura" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="nro_guia_remision" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="fecha_recepcion" Nullable="true" />
+          <Property Type="DateTime" Name="fecha_registro" Nullable="true" />
+          <Property Type="DateTime" Name="fecha_informe" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="KORBER_Listar_OrdenCompra_OBS_Result">
+          <Property Type="Int32" Name="id_observado" Nullable="false" />
+          <Property Type="Int32" Name="id_detalle" Nullable="true" />
+          <Property Type="String" Name="comentario" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="conclusiones" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="KORBER_Listar_OrdenCompra_IMG_Result">
+          <Property Type="Int32" Name="id_imagen" Nullable="false" />
+          <Property Type="String" Name="nro_orden_compra" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Binary" Name="imagen" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model_WMS_KorberStoreContainer" CdmEntityContainer="Entities_Korber" >
+          <FunctionImportMapping FunctionImportName="DRIVIN_Eliminar_direcciones" FunctionName="Model_WMS_Korber.Store.DRIVIN_Eliminar_direcciones" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_Listar_Clientes" FunctionName="Model_WMS_Korber.Store.DRIVIN_Listar_Clientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_WMS_Korber.DRIVIN_Listar_Clientes_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="customer_code" ColumnName="customer_code" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="wh_id" ColumnName="wh_id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DRIVIN_Insertar_esquema" FunctionName="Model_WMS_Korber.Store.DRIVIN_Insertar_esquema" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_Listar_Direcciones" FunctionName="Model_WMS_Korber.Store.DRIVIN_Listar_Direcciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_WMS_Korber.DRIVIN_Listar_Direcciones_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="id_direccion_mxt" ColumnName="id_direccion_mxt" />
+                <ScalarProperty Name="cod_cliente_mxt" ColumnName="cod_cliente_mxt" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="direccion_mxt" ColumnName="direccion_mxt" />
+                <ScalarProperty Name="city_mxt" ColumnName="city_mxt" />
+                <ScalarProperty Name="block_mxt" ColumnName="block_mxt" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DRIVIN_Insertar_direccion" FunctionName="Model_WMS_Korber.Store.DRIVIN_Insertar_direccion" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_SAP_Update_Estado" FunctionName="Model_WMS_Korber.Store.DRIVIN_SAP_Update_Estado" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_SAP_update_Pedidos" FunctionName="Model_WMS_Korber.Store.DRIVIN_SAP_update_Pedidos" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_Insertar_transportista" FunctionName="Model_WMS_Korber.Store.DRIVIN_Insertar_transportista" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_SAP_Update_Placa_Guia" FunctionName="Model_WMS_Korber.Store.DRIVIN_SAP_Update_Placa_Guia" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_Eliminar_escenarios" FunctionName="Model_WMS_Korber.Store.DRIVIN_Eliminar_escenarios" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_Insertar_escenarios" FunctionName="Model_WMS_Korber.Store.DRIVIN_Insertar_escenarios" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_execute_job" FunctionName="Model_WMS_Korber.Store.DRIVIN_execute_job" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_SAP_Listar_Pedidos" FunctionName="Model_WMS_Korber.Store.DRIVIN_SAP_Listar_Pedidos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_WMS_Korber.DRIVIN_SAP_Listar_Pedidos_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="wh_id" ColumnName="wh_id" />
+                <ScalarProperty Name="FecEntrega" ColumnName="FecEntrega" />
+                <ScalarProperty Name="latest_appt_time" ColumnName="latest_appt_time" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="reference" ColumnName="reference" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="county" ColumnName="county" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code_cliente" ColumnName="code_cliente" />
+                <ScalarProperty Name="client_name" ColumnName="client_name" />
+                <ScalarProperty Name="client_code" ColumnName="client_code" />
+                <ScalarProperty Name="address_type" ColumnName="address_type" />
+                <ScalarProperty Name="contact_name" ColumnName="contact_name" />
+                <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
+                <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+                <ScalarProperty Name="additional_contact_name" ColumnName="additional_contact_name" />
+                <ScalarProperty Name="additional_contact_phone" ColumnName="additional_contact_phone" />
+                <ScalarProperty Name="additional_contact_email" ColumnName="additional_contact_email" />
+                <ScalarProperty Name="start_contact_name" ColumnName="start_contact_name" />
+                <ScalarProperty Name="start_contact_phone" ColumnName="start_contact_phone" />
+                <ScalarProperty Name="start_contact_email" ColumnName="start_contact_email" />
+                <ScalarProperty Name="near_contact_name" ColumnName="near_contact_name" />
+                <ScalarProperty Name="near_contact_phone" ColumnName="near_contact_phone" />
+                <ScalarProperty Name="near_contact_email" ColumnName="near_contact_email" />
+                <ScalarProperty Name="delivered_contact_name" ColumnName="delivered_contact_name" />
+                <ScalarProperty Name="delivered_contact_phone" ColumnName="delivered_contact_phone" />
+                <ScalarProperty Name="delivered_contact_email" ColumnName="delivered_contact_email" />
+                <ScalarProperty Name="approve_contact_name" ColumnName="approve_contact_name" />
+                <ScalarProperty Name="approve_contact_phone" ColumnName="approve_contact_phone" />
+                <ScalarProperty Name="approve_contact_email" ColumnName="approve_contact_email" />
+                <ScalarProperty Name="service_time" ColumnName="service_time" />
+                <ScalarProperty Name="code_2" ColumnName="code_2" />
+                <ScalarProperty Name="placa" ColumnName="placa" />
+                <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+                <ScalarProperty Name="Estado_Picking" ColumnName="Estado_Picking" />
+                <ScalarProperty Name="Estado_Packing" ColumnName="Estado_Packing" />
+                <ScalarProperty Name="Estado_Loaded" ColumnName="Estado_Loaded" />
+                <ScalarProperty Name="Estado_Loaded_Audit" ColumnName="Estado_Loaded_Audit" />
+                <ScalarProperty Name="Estado_Shipped" ColumnName="Estado_Shipped" />
+                <ScalarProperty Name="email_aprobar_ruta" ColumnName="email_aprobar_ruta" />
+                <ScalarProperty Name="email_iniciar_ruta" ColumnName="email_iniciar_ruta" />
+                <ScalarProperty Name="email_en_camino" ColumnName="email_en_camino" />
+                <ScalarProperty Name="email_entrega_finalizada" ColumnName="email_entrega_finalizada" />
+                <ScalarProperty Name="estado_drivin" ColumnName="estado_drivin" />
+                <ScalarProperty Name="tiempo_servicio" ColumnName="tiempo_servicio" />
+                <ScalarProperty Name="inicio_ventana_horario" ColumnName="inicio_ventana_horario" />
+                <ScalarProperty Name="fin_ventana_horario" ColumnName="fin_ventana_horario" />
+                <ScalarProperty Name="cantidadpedido" ColumnName="cantidadpedido" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="token_escenario_MXT" ColumnName="token_escenario_MXT" />
+                <ScalarProperty Name="code_esquema" ColumnName="code_esquema" />
+                <ScalarProperty Name="esquema_drivin" ColumnName="esquema_drivin" />
+                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="almacen_sap" ColumnName="almacen_sap" />
+                <ScalarProperty Name="linea_negocio" ColumnName="linea_negocio" />
+                <ScalarProperty Name="forma_envio" ColumnName="forma_envio" />
+                <ScalarProperty Name="numero_guia" ColumnName="numero_guia" />
+                <ScalarProperty Name="pedido_origen" ColumnName="pedido_origen" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="convoy" ColumnName="convoy" />
+                <ScalarProperty Name="tipo_orden" ColumnName="tipo_orden" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="comment_text" ColumnName="comment_text" />
+                <ScalarProperty Name="georeferencia" ColumnName="georeferencia" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="Docnum" ColumnName="Docnum" />
+                <ScalarProperty Name="Docentry" ColumnName="Docentry" />
+                <ScalarProperty Name="Doctype" ColumnName="Doctype" />
+                <ScalarProperty Name="placa_individual" ColumnName="placa_individual" />
+                <ScalarProperty Name="pago_adelantado" ColumnName="pago_adelantado" />
+                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+                <ScalarProperty Name="licencia" ColumnName="licencia" />
+                <ScalarProperty Name="nro_bultos" ColumnName="nro_bultos" />
+                <ScalarProperty Name="volumen" ColumnName="volumen" />
+                <ScalarProperty Name="nombre_conductor" ColumnName="nombre_conductor" />
+                <ScalarProperty Name="transporte" ColumnName="transporte" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DRIVIN_Insertar_vehiculo" FunctionName="Model_WMS_Korber.Store.DRIVIN_Insertar_vehiculo" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_Insertar_licencias_securitas" FunctionName="Model_WMS_Korber.Store.DRIVIN_Insertar_licencias_securitas" />
+          <FunctionImportMapping FunctionImportName="DRIVIN_Insertar_placa_securitas" FunctionName="Model_WMS_Korber.Store.DRIVIN_Insertar_placa_securitas" />
+          <FunctionImportMapping FunctionImportName="KORBER_Listar_OrdenCompra_Det" FunctionName="Model_WMS_Korber.Store.KORBER_Listar_OrdenCompra_Det">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_WMS_Korber.KORBER_Listar_OrdenCompra_Det_Result">
+                <ScalarProperty Name="wh_id" ColumnName="wh_id" />
+                <ScalarProperty Name="po_number" ColumnName="po_number" />
+                <ScalarProperty Name="item_number" ColumnName="item_number" />
+                <ScalarProperty Name="um" ColumnName="um" />
+                <ScalarProperty Name="lot_number" ColumnName="lot_number" />
+                <ScalarProperty Name="line_number" ColumnName="line_number" />
+                <ScalarProperty Name="FechaVencimiento_MXT" ColumnName="FechaVencimiento_MXT" />
+                <ScalarProperty Name="qty_received" ColumnName="qty_received" />
+                <ScalarProperty Name="cant_correcto" ColumnName="cant_correcto" />
+                <ScalarProperty Name="cant_defectuosa" ColumnName="cant_defectuosa" />
+                <ScalarProperty Name="cant_faltante" ColumnName="cant_faltante" />
+                <ScalarProperty Name="cant_sobrante" ColumnName="cant_sobrante" />
+                <ScalarProperty Name="flag_observado" ColumnName="flag_observado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DRIVIN_Listar_General" FunctionName="Model_WMS_Korber.Store.DRIVIN_Listar_General">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_WMS_Korber.DRIVIN_Listar_General_Result">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DRIVIN_Listar_General_Conductor" FunctionName="Model_WMS_Korber.Store.DRIVIN_Listar_General_Conductor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_WMS_Korber.DRIVIN_Listar_General_Conductor_Result">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="licencia" ColumnName="licencia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="KORBER_Listar_OrdenCompra_Cab" FunctionName="Model_WMS_Korber.Store.KORBER_Listar_OrdenCompra_Cab">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_WMS_Korber.KORBER_Listar_OrdenCompra_Cab_Result">
+                <ScalarProperty Name="Nro" ColumnName="Nro" />
+                <ScalarProperty Name="wh_id" ColumnName="wh_id" />
+                <ScalarProperty Name="client_code" ColumnName="client_code" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="fecha_entrega_mxt" ColumnName="fecha_entrega_mxt" />
+                <ScalarProperty Name="display_po_number" ColumnName="display_po_number" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="tipo_compra_mxt" ColumnName="tipo_compra_mxt" />
+                <ScalarProperty Name="division_mxt" ColumnName="division_mxt" />
+                <ScalarProperty Name="presentacion_mxt" ColumnName="presentacion_mxt" />
+                <ScalarProperty Name="modalidad_mxt" ColumnName="modalidad_mxt" />
+                <ScalarProperty Name="fecha_registro_mxt" ColumnName="fecha_registro_mxt" />
+                <ScalarProperty Name="cantidad_esperada_mxt" ColumnName="cantidad_esperada_mxt" />
+                <ScalarProperty Name="conductor" ColumnName="conductor" />
+                <ScalarProperty Name="nro_dni" ColumnName="nro_dni" />
+                <ScalarProperty Name="nro_licencia" ColumnName="nro_licencia" />
+                <ScalarProperty Name="id_tipo_vehiculo" ColumnName="id_tipo_vehiculo" />
+                <ScalarProperty Name="id_tipo_compra" ColumnName="id_tipo_compra" />
+                <ScalarProperty Name="id_tipo_carga" ColumnName="id_tipo_carga" />
+                <ScalarProperty Name="nro_placa" ColumnName="nro_placa" />
+                <ScalarProperty Name="nro_contenedor" ColumnName="nro_contenedor" />
+                <ScalarProperty Name="nro_precinto" ColumnName="nro_precinto" />
+                <ScalarProperty Name="nro_soat" ColumnName="nro_soat" />
+                <ScalarProperty Name="nro_dua" ColumnName="nro_dua" />
+                <ScalarProperty Name="nro_traslado" ColumnName="nro_traslado" />
+                <ScalarProperty Name="nro_bill_lading" ColumnName="nro_bill_lading" />
+                <ScalarProperty Name="nro_factura" ColumnName="nro_factura" />
+                <ScalarProperty Name="nro_guia_remision" ColumnName="nro_guia_remision" />
+                <ScalarProperty Name="fecha_recepcion" ColumnName="fecha_recepcion" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="fecha_informe" ColumnName="fecha_informe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="KORBER_SP_INFORME_MERCADERIA_CAB_INS" FunctionName="Model_WMS_Korber.Store.KORBER_SP_INFORME_MERCADERIA_CAB_INS" />
+          <FunctionImportMapping FunctionImportName="KOBER_SP_INFORME_DET_OBSERVADOS" FunctionName="Model_WMS_Korber.Store.KOBER_SP_INFORME_DET_OBSERVADOS" />
+          <FunctionImportMapping FunctionImportName="KORBER_Listar_OrdenCompra_OBS" FunctionName="Model_WMS_Korber.Store.KORBER_Listar_OrdenCompra_OBS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_WMS_Korber.KORBER_Listar_OrdenCompra_OBS_Result">
+                <ScalarProperty Name="id_observado" ColumnName="id_observado" />
+                <ScalarProperty Name="id_detalle" ColumnName="id_detalle" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="conclusiones" ColumnName="conclusiones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="KOBER_SP_INFORME_DET_IMAGENES" FunctionName="Model_WMS_Korber.Store.KOBER_SP_INFORME_DET_IMAGENES" />
+          <FunctionImportMapping FunctionImportName="KORBER_Listar_OrdenCompra_IMG" FunctionName="Model_WMS_Korber.Store.KORBER_Listar_OrdenCompra_IMG">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_WMS_Korber.KORBER_Listar_OrdenCompra_IMG_Result">
+                <ScalarProperty Name="id_imagen" ColumnName="id_imagen" />
+                <ScalarProperty Name="nro_orden_compra" ColumnName="nro_orden_compra" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

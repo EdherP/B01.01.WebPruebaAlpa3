@@ -1,0 +1,228 @@
+﻿@model Web_ALPA.ViewModel.InvFavoViewModel
+
+<html>
+<body>
+    <div>
+        @if (ViewBag.EstadoBusqueda == 0)
+        {
+            <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_Scrollerx">
+                <thead class="thead-dark">
+                    <tr role="row">
+                        <th class="text-light">#</th>
+                        <th class="text-light">Nro.Prog</th>
+                        <th class="text-light">Ubicación</th>
+                        <th class="text-light">Operario</th>
+                        <th class="text-light">Inicio</th>
+                        <th class="text-light">Culminación</th>
+                        <th class="text-light">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        for (int i = 0; i < Model.ProgInventarioFavo_Locacion.Count; i++)
+                        {
+                            var @NroDoc = Model.ProgInventarioFavo_Locacion[i].U_NroDocumento;
+                            <tr>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Locacion[i].Nro)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Locacion[i].Nro, Model.ProgInventarioFavo_Locacion[i].Nro)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Locacion[i].U_NroDocumento)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Locacion[i].U_NroDocumento, Model.ProgInventarioFavo_Locacion[i].U_NroDocumento)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Locacion[i].U_CodUbicacion)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Locacion[i].U_CodUbicacion, Model.ProgInventarioFavo_Locacion[i].U_CodUbicacion)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Locacion[i].U_CodOperador)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Locacion[i].U_CodOperador, Model.ProgInventarioFavo_Locacion[i].U_CodOperador)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Locacion[i].U_FecHoraInicio)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Locacion[i].U_FecHoraInicio, Model.ProgInventarioFavo_Locacion[i].U_FecHoraInicio)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Locacion[i].U_FecHoraFin)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Locacion[i].U_FecHoraFin, Model.ProgInventarioFavo_Locacion[i].U_FecHoraFin)
+                                </td>
+                                <td class="text-dark">
+                                    @if (Model.ProgInventarioFavo_Locacion[i].U_EstadoProceso == "P")
+                                    {
+                                        <h4><span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">PENDIENTE</span></h4>
+                                    }
+                                    @if (Model.ProgInventarioFavo_Locacion[i].U_EstadoProceso == "W")
+                                    {
+                                        <h4><span class="kt-badge kt-badge--accent kt-badge--inline kt-badge--pill">EN PROCESO</span></h4>
+                                    }
+                                    @if (Model.ProgInventarioFavo_Locacion[i].U_EstadoProceso == "F")
+                                    {
+                                        <h4><span class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill"> CULMINADO</span></h4>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+        @if (ViewBag.EstadoBusqueda == 1)
+        {
+            <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_Scrollerx">
+                <thead class="thead-dark">
+                    <tr role="row">
+                        <th class="text-light">#</th>
+                        <th class="text-light">Nro.Prog</th>
+                        <th class="text-light">Ubicación</th>
+                        <th class="text-light">Producto</th>
+                        <th class="text-light">Descripción</th>
+                        <th class="text-light">U.M</th>
+                        <th class="text-light">Cantidad</th>
+                        <th class="text-light">Fecha Expiración</th>
+                        <th class="text-light">Comentario</th>
+                        <th class="text-light">usuario registro</th>
+                        <th class="text-light">Fecha registro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        for (int i = 0; i < Model.ProgInventarioFavo_LS.Count; i++)
+                        {
+                            var @NroDoc = Model.ProgInventarioFavo_LS[i].U_NroDocumento;
+                            <tr>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_LS[i].Nro)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_LS[i].Nro, Model.ProgInventarioFavo_LS[i].Nro)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_LS[i].U_NroDocumento)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_LS[i].U_NroDocumento, Model.ProgInventarioFavo_LS[i].U_NroDocumento)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_LS[i].U_CodUbicacion)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_LS[i].U_CodUbicacion)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_LS[i].U_CodProducto)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_LS[i].U_CodProducto)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_LS[i].Descripcion1)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_LS[i].Descripcion1)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_LS[i].U_UM)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_LS[i].U_UM)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_LS[i].U_CantOperacion)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_LS[i].U_CantOperacion)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_LS[i].U_FecVcto)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_LS[i].U_FecVcto)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_LS[i].U_Comentario)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_LS[i].U_Comentario)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_LS[i].U_UsuarioRegistro)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_LS[i].U_UsuarioRegistro)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_LS[i].U_FechaRegistro)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_LS[i].U_FechaRegistro)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+        @if (ViewBag.EstadoBusqueda == 2)
+        {
+            <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_Scrollerx">
+                <thead class="thead-dark">
+                    <tr role="row">
+                        <th class="text-light">Nro.Prog</th>
+                        <th class="text-light">Ubicación</th>
+                        <th class="text-light">Producto</th>
+                        <th class="text-light">Descripción</th>
+                        <th class="text-light">Fec.Exp Favo</th>
+                        <th class="text-light">Fec. Exp Inventario</th>
+                        <th class="text-light">Cantidad Favo</th>
+                        <th class="text-light">Cantidad Inventario</th>
+                        <th class="text-light">Diferencia Favo-Inv</th>
+                        <th class="text-light">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        for (int i = 0; i < Model.ProgInventarioFavo_Comparativo.Count; i++)
+                        {
+                            <tr>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Comparativo[i].U_NroDocumento)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Comparativo[i].U_NroDocumento)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Comparativo[i].U_CodUbicacion)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Comparativo[i].U_CodUbicacion)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Comparativo[i].U_CodProducto)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Comparativo[i].U_CodProducto)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Comparativo[i].Descripcion1)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Comparativo[i].Descripcion1)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Comparativo[i].FecVcto_Favo)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Comparativo[i].FecVcto_Favo)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Comparativo[i].FecVcto_Inv)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Comparativo[i].FecVcto_Inv)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Comparativo[i].StockFavo)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Comparativo[i].StockFavo)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Comparativo[i].StockInv)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Comparativo[i].StockInv)
+                                </td>
+                                <td class="text-dark">
+                                    @Html.HiddenFor(x => Model.ProgInventarioFavo_Comparativo[i].DifCantidad)
+                                    @Html.DisplayFor(x => Model.ProgInventarioFavo_Comparativo[i].DifCantidad)
+                                </td>
+                                <td class="text-dark">
+                                    @if (Model.ProgInventarioFavo_Comparativo[i].Estado == "D")
+                                    {
+                                        <h4><span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">DIFERENCIA</span></h4>
+                                    }
+                                   
+                                    @if (Model.ProgInventarioFavo_Comparativo[i].Estado == "C")
+                                    {
+                                        <h4><span class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill"> CONFORME</span></h4>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+    <script src="~/assets/app/custom/general/components/datatables/MyTable/Table_Scrollable_V4.js"></script>
+</body>
+</html>
+
+
+
