@@ -1484,7 +1484,7 @@ namespace Web_ALPA.Service_WMS {
         private string UsuarioSAPField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.ObjectModel.ObservableCollection<Web_ALPA.Service_WMS.Param_CambioloteSerie_DET_SAP> XParam_CambioloteSerie_DET_SAPField;
+        private Web_ALPA.Service_WMS.Param_CambioloteSerie_DET_SAP[] XParam_CambioloteSerie_DET_SAPField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1575,7 +1575,7 @@ namespace Web_ALPA.Service_WMS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<Web_ALPA.Service_WMS.Param_CambioloteSerie_DET_SAP> XParam_CambioloteSerie_DET_SAP {
+        public Web_ALPA.Service_WMS.Param_CambioloteSerie_DET_SAP[] XParam_CambioloteSerie_DET_SAP {
             get {
                 return this.XParam_CambioloteSerie_DET_SAPField;
             }

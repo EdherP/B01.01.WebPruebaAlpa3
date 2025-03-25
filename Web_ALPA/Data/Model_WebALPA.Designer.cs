@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Andy\Desarrollos MSA\ALPA\Web_ALPA Produccion\Web_ALPA\Data\Model_WebALPA.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\EPALPA\Desarrollo\Visual\Git\B01.01.WebPruebaAlpa3\Web_ALPA\Data\Model_WebALPA.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.
